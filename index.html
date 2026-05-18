@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hệ Thống Đặt Combo Du Lịch Việt Nam</title>
+    <title>越南旅遊套裝行程線上預訂系統</title>
     <style>
-        /* --- Reset & Thiết lập chung --- */
+        /* --- Reset & 基礎設定 --- */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'PingFang TC', 'Microsoft JhengHei', sans-serif;
         }
 
         body {
@@ -20,7 +20,7 @@
             padding: 40px 20px;
         }
 
-        /* --- Tiêu đề chính --- */
+        /* --- 網頁主標題 --- */
         .header {
             text-align: center;
             margin-bottom: 30px;
@@ -31,7 +31,6 @@
             font-size: 2.5rem;
             color: #0c4a60;
             margin-bottom: 10px;
-            text-transform: uppercase;
             letter-spacing: 1px;
         }
 
@@ -40,7 +39,7 @@
             color: #666;
         }
 
-        /* --- Nút Giỏ Hàng Cố Định --- */
+        /* --- 購物車懸浮按鈕 --- */
         .cart-icon-btn {
             position: fixed;
             top: 30px;
@@ -62,7 +61,7 @@
         .cart-icon-btn:hover { transform: scale(1.05); }
         .cart-count { background: white; color: #ff5722; border-radius: 50%; padding: 2px 8px; font-size: 0.9rem; }
 
-        /* --- Thanh Công Cụ & Bộ Lọc --- */
+        /* --- 搜尋與篩選工具列 --- */
         .filter-container {
             max-width: 1200px;
             margin: 0 auto 40px auto;
@@ -80,7 +79,6 @@
         .search-box {
             flex: 1;
             min-width: 280px;
-            position: relative;
         }
         .search-box input {
             width: 100%;
@@ -123,7 +121,7 @@
             cursor: pointer;
         }
 
-        /* --- Grid hiển thị 9 sản phẩm --- */
+        /* --- 旅遊套裝卡片 Grid 布局 --- */
         .combo-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -147,15 +145,15 @@
 
         .combo-image { height: 210px; background-size: cover; background-position: center; position: relative; }
         
-        /* Hình ảnh 9 địa điểm */
+        /* 9個景點的背景圖片預設 */
         .img-taybac { background-image: url('https://images.unsplash.com/photo-1508672019048-805c876b67e2?auto=format&fit=crop&w=600&q=80'); }
         .img-halong { background-image: url('https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=600&q=80'); }
+        .img-hanoi { background-image: url('https://images.unsplash.com/photo-1559592413-7ece35936503?auto=format&fit=crop&w=600&q=80'); }
         .img-hoian { background-image: url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=600&q=80'); }
         .img-phongnha { background-image: url('https://images.unsplash.com/photo-1596701062351-df5f8a42f3c7?auto=format&fit=crop&w=600&q=80'); }
+        .img-hue { background-image: url('https://images.unsplash.com/photo-1571406252241-db0280db36cd?auto=format&fit=crop&w=600&q=80'); }
         .img-nhatrang { background-image: url('https://images.unsplash.com/photo-1542856391-010fb87dcfed?auto=format&fit=crop&w=600&q=80'); }
         .img-phuquoc { background-image: url('https://images.unsplash.com/photo-1583212292454-1fe6229603b7?auto=format&fit=crop&w=600&q=80'); }
-        .img-hanoi { background-image: url('https://images.unsplash.com/photo-1559592413-7ece35936503?auto=format&fit=crop&w=600&q=80'); }
-        .img-hue { background-image: url('https://images.unsplash.com/photo-1571406252241-db0280db36cd?auto=format&fit=crop&w=600&q=80'); }
         .img-saigon { background-image: url('https://images.unsplash.com/photo-1509060464153-44667396260f?auto=format&fit=crop&w=600&q=80'); }
 
         .badge {
@@ -175,31 +173,50 @@
 
         .combo-footer { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #eee; padding-top: 15px; }
         .price-old { font-size: 0.85rem; color: #aaa; text-decoration: line-through; }
-        .price-new { font-size: 1.3rem; color: #ff5722; font-weight: bold; }
+        .price-new { font-size: 1.3rem; color: #ff5722; font-weight: bold; margin-bottom: 5px; }
 
+        .action-btns { display: flex; flex-direction: column; gap: 8px; width: 45%; }
         .btn-booking {
-            background-color: #0c4a60; color: white; padding: 10px 18px; border: none;
-            border-radius: 8px; font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: background 0.2s;
+            background-color: #0c4a60; color: white; padding: 8px; border: none;
+            border-radius: 6px; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: background 0.2s; text-align: center;
         }
         .btn-booking:hover { background-color: #146e8f; }
+        .btn-detail {
+            background-color: #fff; color: #0c4a60; border: 1px solid #0c4a60; padding: 6px;
+            border-radius: 6px; font-size: 0.85rem; font-weight: 600; cursor: pointer; text-align: center;
+        }
+        .btn-detail:hover { background-color: #f4f7f6; }
 
         .no-result { text-align: center; grid-column: 1 / -1; padding: 40px; color: #888; font-size: 1.2rem; display: none; }
 
-        /* --- Giao diện Giỏ Hàng (Modal Popup) --- */
-        .cart-modal {
+        /* --- 彈窗通用設定 (Modal) --- */
+        .modal {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.5); display: flex; justify-content: center;
+            background-color: rgba(0,0,0,0.6); display: flex; justify-content: center;
             align-items: center; z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
         }
-        .cart-modal.show { opacity: 1; pointer-events: auto; }
-        .cart-content {
-            background: white; padding: 30px; border-radius: 16px; width: 90%; max-width: 600px;
-            max-height: 80vh; overflow-y: auto; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        .modal.show { opacity: 1; pointer-events: auto; }
+        .modal-content {
+            background: white; padding: 30px; border-radius: 16px; width: 90%; max-width: 650px;
+            max-height: 85vh; overflow-y: auto; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
-        .close-cart { position: absolute; top: 15px; right: 20px; font-size: 1.8rem; cursor: pointer; color: #aaa; }
-        .close-cart:hover { color: #333; }
-        .cart-title { color: #0c4a60; margin-bottom: 20px; font-size: 1.6rem; border-bottom: 2px solid #0c4a60; padding-bottom: 10px; }
+        .close-btn { position: absolute; top: 15px; right: 20px; font-size: 1.8rem; cursor: pointer; color: #aaa; }
+        .close-btn:hover { color: #333; }
+
+        /* --- 詳情彈窗專屬樣式 --- */
+        .detail-img { width: 100%; height: 250px; background-size: cover; background-position: center; border-radius: 8px; margin-bottom: 20px; }
+        .detail-title { color: #0c4a60; margin-bottom: 10px; font-size: 1.6rem; }
+        .detail-desc { font-size: 0.95rem; color: #555; margin-bottom: 20px; text-align: justify; }
         
+        /* 訂房指南區塊 */
+        .guide-section { background-color: #f0f7f6; padding: 15px; border-radius: 8px; border-left: 4px solid #10b981; margin-top: 20px; }
+        .guide-section h4 { color: #0c4a60; margin-bottom: 10px; font-size: 1.05rem; display: flex; align-items: center; gap: 5px; }
+        .guide-list { list-style: none; font-size: 0.9rem; color: #444; }
+        .guide-list li { margin-bottom: 8px; padding-left: 15px; position: relative; }
+        .guide-list li::before { content: "•"; color: #10b981; font-weight: bold; position: absolute; left: 0; }
+
+        /* --- 購物車列表樣式 --- */
+        .cart-title { color: #0c4a60; margin-bottom: 20px; font-size: 1.6rem; border-bottom: 2px solid #0c4a60; padding-bottom: 10px; }
         .cart-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #eee; }
         .cart-item-info h4 { color: #333; font-size: 1rem; margin-bottom: 5px; }
         .cart-item-info p { color: #ff5722; font-weight: bold; font-size: 0.95rem; }
@@ -207,7 +224,6 @@
         .btn-qty { width: 25px; height: 25px; background: #eee; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
         .btn-qty:hover { background: #ddd; }
         .btn-delete { background: none; border: none; color: #ff3b30; cursor: pointer; font-size: 0.9rem; margin-left: 10px; }
-
         .cart-summary { margin-top: 20px; text-align: right; font-size: 1.2rem; font-weight: bold; color: #0c4a60; }
         .btn-checkout { background-color: #10b981; color: white; border: none; width: 100%; padding: 12px; border-radius: 8px; font-size: 1rem; font-weight: bold; cursor: pointer; margin-top: 15px; }
         .btn-checkout:hover { background-color: #059669; }
@@ -216,223 +232,362 @@
 </head>
 <body>
 
-    <!-- Nút Giỏ Hàng Cố Định -->
+    <!-- 購物車懸浮按鈕 -->
     <button class="cart-icon-btn" id="openCartBtn">
-        🛒 Giỏ Hàng <span class="cart-count" id="cartCount">0</span>
+        🛒 預訂清單 <span class="cart-count" id="cartCount">0</span>
     </button>
 
-    <!-- Tiêu đề trang -->
+    <!-- 網頁頁首 -->
     <div class="header">
-        <h1>Hệ Thống Đặt Combo Du Lịch Việt Nam</h1>
-        <p>Tìm kiếm, lựa chọn và lên kế hoạch cho chuyến đi mơ ước của bạn</p>
+        <h1>越南熱門旅遊套裝行程</h1>
+        <p>探索豐富的文化底蘊與無限美景，即刻規劃您的夢幻旅程</p>
     </div>
 
-    <!-- Thanh Tìm Kiếm & Bộ Lọc Nâng Cao -->
+    <!-- 搜尋與篩選工具列 -->
     <div class="filter-container">
         <div class="search-box">
-            <input type="text" id="searchInput" placeholder="🔍 Nhập tên địa danh hoặc từ khóa cần tìm (Ví dụ: Sa Pa, Hà Nội...)...">
+            <input type="text" id="searchInput" placeholder="🔍 輸入關鍵字搜尋（例如：沙壩、河內、峴港...）">
         </div>
         <div class="filter-group">
-            <span class="filter-label">Khu vực:</span>
-            <button class="btn-filter active" data-region="all">Tất cả</button>
-            <button class="btn-filter" data-region="north">Miền Bắc</button>
-            <button class="btn-filter" data-region="central">Miền Trung</button>
-            <button class="btn-filter" data-region="south">Miền Nam</button>
+            <span class="filter-label">區域篩選：</span>
+            <button class="btn-filter active" data-region="all">全部</button>
+            <button class="btn-filter" data-region="north">北越</button>
+            <button class="btn-filter" data-region="central">中越</button>
+            <button class="btn-filter" data-region="south">南越</button>
         </div>
         <div class="filter-group">
-            <span class="filter-label">Mức giá:</span>
+            <span class="filter-label">預算範圍：</span>
             <select class="select-filter" id="priceFilter">
-                <option value="all">Tất cả mức giá</option>
-                <option value="under3.5">Dưới 3.500.000 đ</option>
-                <option value="above3.5">Từ 3.500.000 đ trở lên</option>
+                <option value="all">不限金額</option>
+                <option value="under3.5">NT$ 4,500 以下（小資）</option>
+                <option value="above3.5">NT$ 4,500 以上（豪華）</option>
             </select>
         </div>
     </div>
 
-    <!-- Danh sách 9 Gói Combo -->
+    <!-- 景點套裝列表（共 9 個景點） -->
     <div class="combo-container" id="comboContainer">
 
-        <!-- 1. TÂY BẮC -->
-        <div class="combo-card" data-region="north" data-price="2890000">
-            <div class="combo-image img-taybac"><span class="badge">Bán chạy</span></div>
+        <!-- 1. 西北沙壩 -->
+        <div class="combo-card" data-region="north" data-price="3800">
+            <div class="combo-image img-taybac"><span class="badge">最熱門</span></div>
             <div class="combo-content">
-                <h2 class="combo-title">Tây Bắc - Đánh Thức Mọi Giác Quan</h2>
-                <div class="combo-duration">🕒 4 Ngày 3 Đêm</div>
+                <h2 class="combo-title">北越西北部：沙壩梯田感官之旅</h2>
+                <div class="combo-duration">🕒 4天3夜</div>
                 <ul class="combo-features">
-                    <li>Vé xe giường nằm chất lượng cao khứ hồi</li>
-                    <li>Homestay chuẩn bản địa tại Sa Pa / Mộc Châu</li>
-                    <li>Trải nghiệm hái trà tại đồi chè trái tim</li>
+                    <li>往返高級臥鋪巴士接送</li>
+                    <li>入住山景網美特色民宿 / 精選飯店</li>
+                    <li>體驗心形茶園採茶與少數民族村落</li>
                 </ul>
                 <div class="combo-footer">
-                    <div><p class="price-old">3.500.000 đ</p><p class="price-new">2.890.000 đ</p></div>
-                    <button class="btn-booking" onclick="addToCart('Tây Bắc - Đánh Thức Mọi Giác Quan', 2890000)">Đặt Ngay</button>
+                    <div><p class="price-old">NT$ 4,500</p><p class="price-new">NT$ 3,800</p></div>
+                    <div class="action-btns">
+                        <button class="btn-booking" onclick="addToCart('西北沙壩梯田感官之旅', 3800)">立即預訂</button>
+                        <button class="btn-detail" onclick="openDetail('taybac')">查看詳情</button>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- 2. HẠ LONG -->
-        <div class="combo-card" data-region="north" data-price="4150000">
-            <div class="combo-image img-halong"><span class="badge">Ưu đãi</span></div>
+        <!-- 2. 下龍灣 -->
+        <div class="combo-card" data-region="north" data-price="5500">
+            <div class="combo-image img-halong"><span class="badge">限時特惠</span></div>
             <div class="combo-content">
-                <h2 class="combo-title">Kỳ Quan Hạ Long - Du Thuyền 5 Sao</h2>
-                <div class="combo-duration">🕒 3 Ngày 2 Đêm</div>
+                <h2 class="combo-title">下龍灣：奢華五星遊船過夜之旅</h2>
+                <div class="combo-duration">🕒 3天2夜</div>
                 <ul class="combo-features">
-                    <li>Hải trình tham quan Vịnh Hạ Long cao cấp</li>
-                    <li>Phòng nghỉ ban công hướng biển sang trọng</li>
-                    <li>Trọn gói meals chất lượng trên du thuyền</li>
+                    <li>下龍灣 - 蘭哈灣頂級巡航航線</li>
+                    <li>入住海景獨立陽台頂級豪華客艙</li>
+                    <li>含遊船上全套高級法越融合料理</li>
                 </ul>
                 <div class="combo-footer">
-                    <div><p class="price-old">5.200.000 đ</p><p class="price-new">4.150.000 đ</p></div>
-                    <button class="btn-booking" onclick="addToCart('Kỳ Quan Hạ Long - Du Thuyền 5 Sao', 4150000)">Đặt Ngay</button>
+                    <div><p class="price-old">NT$ 6,800</p><p class="price-new">NT$ 5,500</p></div>
+                    <div class="action-btns">
+                        <button class="btn-booking" onclick="addToCart('下龍灣五星遊船過夜之旅', 5500)">立即預訂</button>
+                        <button class="btn-detail" onclick="openDetail('halong')">查看詳情</button>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- 3. HÀ NỘI (MỚI) -->
-        <div class="combo-card" data-region="north" data-price="2200000">
+        <!-- 3. 河內 -->
+        <div class="combo-card" data-region="north" data-price="2900">
             <div class="combo-image img-hanoi"></div>
             <div class="combo-content">
-                <h2 class="combo-title">Hà Nội - Ký Ức 36 Phố Phường</h2>
-                <div class="combo-duration">🕒 3 Ngày 2 Đêm</div>
+                <h2 class="combo-title">千年古都：河內三十六古街漫遊</h2>
+                <div class="combo-duration">🕒 3天2夜</div>
                 <ul class="combo-features">
-                    <li>Khách sạn Boutique trung tâm Phố Cổ</li>
-                    <li>Vé xe buýt 2 tầng City Tour ngắm thủ đô</li>
-                    <li>Food tour thưởng thức Phở, Bún Chả cổ truyền</li>
+                    <li>古街區精品設計飯店客房</li>
+                    <li>贈雙層觀光巴士市區導覽券</li>
+                    <li>道地越式河粉與傳統蛋咖啡品嚐</li>
                 </ul>
                 <div class="combo-footer">
-                    <div><p class="price-old">2.900.000 đ</p><p class="price-new">2.200.000 đ</p></div>
-                    <button class="btn-booking" onclick="addToCart('Hà Nội - Ký Ức 36 Phố Phường', 2200000)">Đặt Ngay</button>
+                    <div><p class="price-old">NT$ 3,800</p><p class="price-new">NT$ 2,900</p></div>
+                    <div class="action-btns">
+                        <button class="btn-booking" onclick="addToCart('河內三十六古街漫遊', 2900)">立即預訂</button>
+                        <button class="btn-detail" onclick="openDetail('hanoi')">查看詳情</button>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- 4. HỘI AN -->
-        <div class="combo-card" data-region="central" data-price="3690000">
-            <div class="combo-image img-hoian"><span class="badge blue">Di sản</span></div>
+        <!-- 4. 會安 -->
+        <div class="combo-card" data-region="central" data-price="4800">
+            <div class="combo-image img-hoian"><span class="badge blue">文化遺產</span></div>
             <div class="combo-content">
-                <h2 class="combo-title">Hồn Thơ Di Sản - Ký Ức Hội An</h2>
-                <div class="combo-duration">🕒 3 Ngày 2 Đêm</div>
+                <h2 class="combo-title">中越會安：古鎮燈籠與歷史詩篇</h2>
+                <div class="combo-duration">🕒 3天2夜</div>
                 <ul class="combo-features">
-                    <li>Vé máy bay khứ hồi (Bao gồm hành lý)</li>
-                    <li>Khách sạn 4 sao ngay gần trung tâm Phố Cổ</li>
-                    <li>Vé xem show diễn thực cảnh "Ký ức Hội An"</li>
+                    <li>含往返機票與機場接送服務</li>
+                    <li>步行即可抵達古鎮的四星級飯店</li>
+                    <li>贈送震撼人心「會安回憶」實景秀門票</li>
                 </ul>
                 <div class="combo-footer">
-                    <div><p class="price-old">4.800.000 đ</p><p class="price-new">3.690.000 đ</p></div>
-                    <button class="btn-booking" onclick="addToCart('Hồn Thơ Di Sản - Ký Ức Hội An', 3690000)">Đặt Ngay</button>
+                    <div><p class="price-old">NT$ 6,000</p><p class="price-new">NT$ 4,800</p></div>
+                    <div class="action-btns">
+                        <button class="btn-booking" onclick="addToCart('會安古鎮燈籠與歷史詩篇', 4800)">立即預訂</button>
+                        <button class="btn-detail" onclick="openDetail('hoian')">查看詳情</button>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- 5. PHONG NHA KẺ BÀNG -->
-        <div class="combo-card" data-region="central" data-price="3150000">
-            <div class="combo-image img-phongnha"><span class="badge purple">Thám hiểm</span></div>
+        <!-- 5. 峰牙己榜 -->
+        <div class="combo-card" data-region="central" data-price="4200">
+            <div class="combo-image img-phongnha"><span class="badge purple">探險首選</span></div>
             <div class="combo-content">
-                <h2 class="combo-title">Khám Phá Hang Động Phong Nha</h2>
-                <div class="combo-duration">🕒 3 Ngày 2 Đêm</div>
+                <h2 class="combo-title">峰牙己榜：國家公園神祕地底探險</h2>
+                <div class="combo-duration">🕒 3天2夜</div>
                 <ul class="combo-features">
-                    <li>Khám phá Động Phong Nha & Động Thiên Đường</li>
-                    <li>Trải nghiệm đu dây zipline tại Sông Chày</li>
-                    <li>Bao gồm tất cả vé vào cửa tham quan</li>
+                    <li>全程舒適商務車全程接送隨行</li>
+                    <li>探索峰牙洞與地底天堂洞奇景</li>
+                    <li>體驗黑洞高空滑索與高空探險</li>
                 </ul>
                 <div class="combo-footer">
-                    <div><p class="price-old">3.900.000 đ</p><p class="price-new">3.150.000 đ</p></div>
-                    <button class="btn-booking" onclick="addToCart('Khám Phá Hang Động Phong Nha', 3150000)">Đặt Ngay</button>
+                    <div><p class="price-old">NT$ 5,200</p><p class="price-new">NT$ 4,200</p></div>
+                    <div class="action-btns">
+                        <button class="btn-booking" onclick="addToCart('峰牙己榜地底探險之旅', 4200)">立即預訂</button>
+                        <button class="btn-detail" onclick="openDetail('phongnha')">查看詳情</button>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- 6. CỐ ĐÔ HUẾ (MỚI) -->
-        <div class="combo-card" data-region="central" data-price="2600000">
+        <!-- 6. 順化 -->
+        <div class="combo-card" data-region="central" data-price="3400">
             <div class="combo-image img-hue"></div>
             <div class="combo-content">
-                <h2 class="combo-title">Cố Đô Huế - Vẻ Đẹp Thần Kinh</h2>
-                <div class="combo-duration">🕒 3 Ngày 2 Đêm</div>
+                <h2 class="combo-title">皇者氣度：順化古都宮廷遺韻</h2>
+                <div class="combo-duration">🕒 3天2夜</div>
                 <ul class="combo-features">
-                    <li>Resort nghỉ dưỡng bên dòng sông Hương thơ mộng</li>
-                    <li>Vé tham quan Đại Nội và các Lăng tẩm triều Nguyễn</li>
-                    <li>Trải nghiệm nghe Ca Huế trên thuyền rồng</li>
+                    <li>香江畔景觀度假村奢華住宿</li>
+                    <li>順化皇城與阮朝皇家陵墓深度導覽</li>
+                    <li>體驗仿古龍舟夜遊香江聆聽順化民歌</li>
                 </ul>
                 <div class="combo-footer">
-                    <div><p class="price-old">3.400.000 đ</p><p class="price-new">2.600.000 đ</p></div>
-                    <button class="btn-booking" onclick="addToCart('Cố Đô Huế - Vẻ Đẹp Thần Kinh', 2600000)">Đặt Ngay</button>
+                    <div><p class="price-old">NT$ 4,300</p><p class="price-new">NT$ 3,400</p></div>
+                    <div class="action-btns">
+                        <button class="btn-booking" onclick="addToCart('順化古都宮廷遺韻', 3400)">立即預訂</button>
+                        <button class="btn-detail" onclick="openDetail('hue')">查看詳情</button>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- 7. NHA TRANG -->
-        <div class="combo-card" data-region="central" data-price="3490000">
+        <!-- 7. 芽莊 -->
+        <div class="combo-card" data-region="central" data-price="4500">
             <div class="combo-image img-nhatrang"></div>
             <div class="combo-content">
-                <h2 class="combo-title">Nha Trang - Thiên Đường Biển Gọi</h2>
-                <div class="combo-duration">🕒 4 Ngày 3 Đêm</div>
+                <h2 class="combo-title">南中越芽莊：東方馬爾地夫度假</h2>
+                <div class="combo-duration">🕒 4天3夜</div>
                 <ul class="combo-features">
-                    <li>Khách sạn đường Trần Phú sát biển</li>
-                    <li>Tour cano cao tốc tham quan các đảo VIP</li>
-                    <li>Thưởng thức tiệc BBQ hải sản cao cấp</li>
+                    <li>緊鄰黃金海岸線的頂級海景飯店</li>
+                    <li>搭乘豪華快艇暢遊VIP跳島行程</li>
+                    <li>享用沙灘龍蝦海鮮大餐</li>
                 </ul>
                 <div class="combo-footer">
-                    <div><p class="price-old">4.500.000 đ</p><p class="price-new">3.490.000 đ</p></div>
-                    <button class="btn-booking" onclick="addToCart('Nha Trang - Thiên Đường Biển Gọi', 3490000)">Đặt Ngay</button>
+                    <div><p class="price-old">NT$ 5,800</p><p class="price-new">NT$ 4,500</p></div>
+                    <div class="action-btns">
+                        <button class="btn-booking" onclick="addToCart('芽莊東方馬爾地夫度假', 4500)">立即預訂</button>
+                        <button class="btn-detail" onclick="openDetail('nhatrang')">查看詳情</button>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- 8. PHÚ QUỐC -->
-        <div class="combo-card" data-region="south" data-price="4990000">
-            <div class="combo-image img-phuquoc"><span class="badge">Hot</span></div>
+        <!-- 8. 富國島 -->
+        <div class="combo-card" data-region="south" data-price="6500">
+            <div class="combo-image img-phuquoc"><span class="badge">新品上市</span></div>
             <div class="combo-content">
-                <h2 class="combo-title">Phú Quốc - Nắng Vàng Đảo Ngọc</h2>
-                <div class="combo-duration">🕒 3 Ngày 2 Đêm</div>
+                <h2 class="combo-title">南越富國島：免簽放鬆渡假天堂</h2>
+                <div class="combo-duration">🕒 3天2夜</div>
                 <ul class="combo-features">
-                    <li>Vé máy bay khứ hồi + Resort có hồ bơi cực chill</li>
-                    <li>Vé tham quan Grand World - Thành phố không ngủ</li>
-                    <li>Tour ngắm hoàng hôn và câu mực đêm</li>
+                    <li>網美無邊際泳池海制度假村別墅</li>
+                    <li>造訪「不夜城」富國大世界與野生動物園</li>
+                    <li>海上豪華夕陽巡航與夜釣墨魚體驗</li>
                 </ul>
                 <div class="combo-footer">
-                    <div><p class="price-old">6.100.000 đ</p><p class="price-new">4.990.000 đ</p></div>
-                    <button class="btn-booking" onclick="addToCart('Phú Quốc - Nắng Vàng Đảo Ngọc', 4990000)">Đặt Ngay</button>
+                    <div><p class="price-old">NT$ 8,000</p><p class="price-new">NT$ 6,500</p></div>
+                    <div class="action-btns">
+                        <button class="btn-booking" onclick="addToCart('富國島放鬆渡假天堂', 6500)">立即預訂</button>
+                        <button class="btn-detail" onclick="openDetail('phuquoc')">查看詳情</button>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- 9. SÀI GÒN (MỚI) -->
-        <div class="combo-card" data-region="south" data-price="2450000">
+        <!-- 9. 胡志明市 -->
+        <div class="combo-card" data-region="south" data-price="3200">
             <div class="combo-image img-saigon"></div>
             <div class="combo-content">
-                <h2 class="combo-title">Sài Gòn - Hoa Lệ Năng Động</h2>
-                <div class="combo-duration">🕒 3 Days 2 Nights</div>
+                <h2 class="combo-title">東方巴黎：胡志明市法式風情</h2>
+                <div class="combo-duration">🕒 3天2夜</div>
                 <ul class="combo-features">
-                    <li>Khách sạn trung tâm Quận 1 thuận tiện đi lại</li>
-                    <li>Vé du thuyền ăn tối lãng mạn trên Sông Sài Gòn</li>
-                    <li>Vé ngắm toàn cảnh thành phố tại Saigon Skydeck</li>
+                    <li>第一郡市中心指標性星級住宿</li>
+                    <li>西貢河奢華晚餐遊船，盡賞都市夜景</li>
+                    <li>摩天大樓展望台門票，俯瞰繁華市景</li>
                 </ul>
                 <div class="combo-footer">
-                    <div><p class="price-old">3.200.000 đ</p><p class="price-new">2.450.000 đ</p></div>
-                    <button class="btn-booking" onclick="addToCart('Sài Gòn - Hoa Lệ Năng Động', 2450000)">Đặt Ngay</button>
+                    <div><p class="price-old">NT$ 4,200</p><p class="price-new">NT$ 3,200</p></div>
+                    <div class="action-btns">
+                        <button class="btn-booking" onclick="addToCart('胡志明市法式風情之旅', 3200)">立即預訂</button>
+                        <button class="btn-detail" onclick="openDetail('saigon')">查看詳情</button>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="no-result" id="noResult">Không tìm thấy gói combo phù hợp với tiêu chí của bạn.</div>
+        <div class="no-result" id="noResult">沒有找到符合條件的套裝行程。</div>
     </div>
 
-    <!-- Cửa Sổ Giỏ Hàng (Modal) -->
-    <div class="cart-modal" id="cartModal">
-        <div class="cart-content">
-            <span class="close-cart" id="closeCartBtn">&times;</span>
-            <h3 class="cart-title">Giỏ Hàng Của Bạn</h3>
-            <div id="cartItemsContainer">
-                <!-- Vật phẩm giỏ hàng sẽ tự động sinh ra ở đây -->
+    <!-- 彈窗 1：景點詳細資訊與訂房流程指南 -->
+    <div class="modal" id="detailModal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeDetailBtn">&times;</span>
+            <div class="detail-img" id="modalImg"></div>
+            <h3 class="detail-title" id="modalTitle">景點標題</h3>
+            <p class="detail-desc" id="modalDesc">詳細介紹內文...</p>
+            
+            <!-- 訂房指引功能 -->
+            <div class="guide-section">
+                <h4>🏨 本套裝行程專屬：訂房與預訂操作指南</h4>
+                <ul class="guide-list" id="modalGuide">
+                    <!-- 指南步驟會動態填入 -->
+                </ul>
             </div>
-            <div class="cart-summary">Tổng cộng: <span id="cartTotalPrice">0 đ</span></div>
-            <button class="btn-checkout" onclick="alert('Cảm ơn bạn đã đặt tour! Chúng tôi sẽ liên hệ sớm nhất.')">Tiến Hành Đặt Hàng</button>
         </div>
     </div>
 
-    <!-- SCRIPT XỬ LÝ TOÀN BỘ TÍNH NĂNG (JS) -->
+    <!-- 彈窗 2：預訂清單（購物車） -->
+    <div class="modal" id="cartModal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeCartBtn">&times;</span>
+            <h3 class="cart-title">您的預訂清單</h3>
+            <div id="cartItemsContainer">
+                <!-- 購物車項目由 JS 動態渲染 -->
+            </div>
+            <div class="cart-summary">總計金額: <span id="cartTotalPrice">NT$ 0</span></div>
+            <button class="btn-checkout" onclick="alert('預訂單已送出！客服人員將在24小時內聯繫您確認房型與機位。')">送出訂單並前往付款</button>
+        </div>
+    </div>
+
+    <!-- JavaScript 互動處理系統 -->
     <script>
-        // --- KHAI BÁO BIẾN TOÀN CỤC ---
+        // --- 景點詳情資料庫（含照片、描述與訂房指引） ---
+        const detailData = {
+            taybac: {
+                title: "北越西北部：沙壩梯田感官之旅",
+                img: "https://images.unsplash.com/photo-1508672019048-805c876b67e2?auto=format&fit=crop&w=600&q=80",
+                desc: "沙壩（Sa Pa）位於越南西北部高山區，以宏偉的黃連山脈、層層疊疊的黃金梯田以及豐富的少數民族文化聞名。來到這裡可以呼吸到純淨的山林空氣，並跟著當地響導深入走訪雲霧繚繞的黑苗族、紅瑤族村落，體驗最純粹的越式山城風情。",
+                guide: [
+                    "【房型選擇】預設提供當地高評價山景特色民宿雙人房。可補差額升級為五星級竹林索菲特飯店。",
+                    "【訂房步驟】點擊首頁「立即預訂」將行程加入清單，送出後系統會跳出房間規格確認單。",
+                    "【入住須知】山區早晚溫差較大，民宿備有電熱毯，入住時間為下午14:00後，退房為隔日中午12:00前。"
+                ]
+            },
+            halong: {
+                title: "下龍灣：奢華五星遊船過夜之旅",
+                img: "https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=600&q=80",
+                desc: "世界自然遺產下龍灣以矗立在海面上的數千座奇特石灰岩島嶼著稱。本行程帶您避開擁擠人潮，航向更純淨的蘭哈灣，在移動的五星級頂級海上Villa（遊船）上度過璀璨夜晚，清晨在甲板上做太極拳，看日出破曉。",
+                guide: [
+                    "【艙房選擇】費用已含「豪華海景露台艙」（一樓）。可加價升級頂樓「總統套房客艙」。",
+                    "【預訂規範】由於郵輪房間數量有限，建議至少提前30天完成清單預訂以確保保留船艙。",
+                    "【特別提醒】登船當天請務必攜帶護照正本，船費已包含船上4餐全套精緻餐點。"
+                ]
+            },
+            hanoi: {
+                title: "千年古都：河內三十六古街漫遊",
+                img: "https://images.unsplash.com/photo-1559592413-7ece35936503?auto=format&fit=crop&w=600&q=80",
+                desc: "河內是越南的首都，充滿法式殖民建築與東方古老廟宇的衝突美感。三十六古街各條街道皆以販售的傳統行業命名，穿梭在充滿活力的街道中，品嚐路邊的世界級美食，感受古老與現代交織的西貢脈搏。",
+                guide: [
+                    "【飯店配置】安排入住古街中心具有法式復古典雅風格的 Boutique 精品飯店，出門即是鬧區。",
+                    "【雙人房升級】預設提供標準大床房，若需改為兩張單人床（Twin Bed）請在送出訂單時備註。",
+                    "【訂房政策】出發日前7天可免費取消或變更入住日期。"
+                ]
+            },
+            hoian: {
+                title: "中越會安：古鎮燈籠與歷史詩篇",
+                img: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=600&q=80",
+                desc: "會安古鎮是16世紀以來東南亞保存最完美的國際貿易港口遺址。入夜後，整座古城會關閉現代電燈，點亮成千上萬盞手工燈籠，在秋盆河上放水燈祈福，景色如夢似幻，彷彿回到了數百年前的繁華時空。",
+                guide: [
+                    "【度假村選定】此套裝包含古鎮週邊四星級泳池度假村。房型升級為直通泳池客房需加價 NT$800/晚。",
+                    "【看秀保留席】預訂完成後，系統會同步發送「會安回憶」實景秀的 VIP A區座位電子票券至電子信箱。",
+                    "【接送安排】訂房成功後，請提供您的航班編號，飯店將安排專車在峴港機場接機。"
+                ]
+            },
+            phongnha: {
+                title: "峰牙己榜：國家公園神祕地底探險",
+                img: "https://images.unsplash.com/photo-1596701062351-df5f8a42f3c7?auto=format&fit=crop&w=600&q=80",
+                desc: "峰牙己榜國家公園擁有世界上最古老的大型石灰岩地形及數個世界級巨大地底溶洞。我們將搭乘小木船深入長達數公里的地底河流探秘，欣賞燈光打在鐘乳石上反射出的璀璨光芒，是熱愛大自然的玩家一生必去一次的聖地。",
+                guide: [
+                    "【探險基地客房】入住國家公園周邊生態友好的渡假木屋，與自然環境完美融合。",
+                    "【預訂機制】本行程含專業探險教練與全套安全裝備費，訂房時會依據人數自動配對所需床位數。",
+                    "【入住限制】因有戶外體能行程，本房型暫不接受6歲以下兒童單獨使用獨立床位。"
+                ]
+            },
+            hue: {
+                title: "皇者氣度：順化古都宮廷遺韻",
+                img: "https://images.unsplash.com/photo-1571406252241-db0280db36cd?auto=format&fit=crop&w=600&q=80",
+                desc: "順化是越南最後一個封建王朝——阮朝的京城。保留完整的順化皇城（仿北京紫禁城建造）及歷代皇帝陵寢，展現了極高的建築藝術與宮廷美學。漫步在古老的紅牆綠瓦間，聆聽香江上的絲竹樂聲，最適合深度文化愛好者。",
+                guide: [
+                    "【宮廷風客房】本行程特別指定入住具有順化傳統庭園風格的渡假村別墅，享受古時王公貴族的待遇。",
+                    "【預訂指南】在訂單內選擇您的出發日期，系統將自動實時媒合渡假村空房狀態並完成鎖房。",
+                    "【加值服務】訂房成功的旅客，可以享有宮廷傳統服飾（奧黛）免費體驗租借2小時。"
+                ]
+            },
+            nhatrang: {
+                title: "南中越芽莊：東方馬爾地夫度假",
+                img: "https://images.unsplash.com/photo-1542856391-010fb87dcfed?auto=format&fit=crop&w=600&q=80",
+                desc: "芽莊擁有全越南最美麗的面海新月形沙灘，海水清澈見底。白天可以出海浮潛、造訪美麗群島，傍晚在著名的沙灘酒吧點一杯調酒，伴隨海風與樂團演奏，是個充滿海島海灘度假氣氛的享樂天堂。",
+                guide: [
+                    "【海景房保證】本套裝保證入住海景第一排五星級飯店，躺在床上睜開眼就能看見蔚藍的大海。",
+                    "【訂房延伸】標準預訂為雙人房，三人同行可選擇免費加床（Rollaway Bed）或升級為家庭三人房。",
+                    "【延遲退房】預訂本行程享有獨家福利：可視當日房況免費延遲退房至下午14:00。"
+                ]
+            },
+            phuquoc: {
+                title: "南越富國島：免簽放鬆渡假天堂",
+                img: "https://images.unsplash.com/photo-1583212292454-1fe6229603b7?auto=format&fit=crop&w=600&q=80",
+                desc: "富國島是越南唯一的免簽證特別經濟區，擁有無污染的白沙灘與絕美的日落。島上打造了許多大型娛樂設施，包含跨海纜車、威尼斯風格的不夜城。不論是家庭出遊還是情侶蜜月，都能在這裡找到最放鬆的度假節奏。",
+                guide: [
+                    "【Villa別墅客房】基本房型為國際五星連鎖品牌度假村高級客房。四人以上出發可補差額升級為獨立私人泳池別墅（Pool Villa）。",
+                    "【訂房流程】將套裝加入清單後，勾選所需的飯店品牌（如洲際、萬豪等），系統會自動計算價差。",
+                    "【接駁須知】度假村提供免費的機場巴士往返接送，預訂成功後請提前向飯店櫃檯預約班次。"
+                ]
+            },
+            saigon: {
+                title: "東方巴黎：胡志明市法式風情",
+                img: "https://images.unsplash.com/photo-1509060464153-44667396260f?auto=format&fit=crop&w=600&q=80",
+                desc: "胡志明市（舊稱西貢）是越南最繁華的經濟中心，街頭隨處可見聖母大教堂、百年郵局等法式殖民時期的華麗建築。這裡咖啡館林立，夜生活極其精彩，西貢河上的點點燈火與地面上的車水馬龍，構築成這座永不落幕的魔幻寫照。",
+                guide: [
+                    "【地理位置】精選位於胡志明市核心第一郡（District 1）飯店，步行即可抵達各大法式古蹟景點。",
+                    "【預訂限制】因為都市飯店寸土寸金，標準房型不提供加床服務。三人以上建議直接預訂兩間雙人房。",
+                    "【商務升級】預訂清單備註「商務出行」，飯店將盡量為您安排高樓層且備有辦公桌椅的客房。"
+                ]
+            }
+        };
+
+        // --- 全域變數定義 ---
         const filterButtons = document.querySelectorAll('.btn-filter');
         const priceSelect = document.getElementById('priceFilter');
         const searchInput = document.getElementById('searchInput');
@@ -442,10 +597,9 @@
         let currentRegion = 'all';
         let currentPriceRange = 'all';
         let searchQuery = '';
-
         let cart = [];
 
-        // --- CHỨC NĂNG 1: BỘ LỌC VÀ TÌM KIẾM ---
+        // --- 功能 1：聯動即時篩選與搜尋 ---
         filterButtons.forEach(button => {
             button.addEventListener('click', () => {
                 filterButtons.forEach(btn => btn.classList.remove('active'));
@@ -470,8 +624,9 @@
                 
                 let matchPrice = false;
                 if (currentPriceRange === 'all') matchPrice = true;
-                else if (currentPriceRange === 'under3.5') matchPrice = (price < 3500000);
-                else if (currentPriceRange === 'above3.5') matchPrice = (price >= 3500000);
+                // 用越南盾對應的台幣概算區分高低價位
+                else if (currentPriceRange === 'under3.5') matchPrice = (price <= 4000);
+                else if (currentPriceRange === 'above3.5') matchPrice = (price > 4000);
 
                 if (matchSearch && matchRegion && matchPrice) {
                     card.classList.remove('hide');
@@ -483,11 +638,41 @@
             noResult.style.display = (visibleCount === 0) ? 'block' : 'none';
         }
 
-        // --- CHỨC NĂNG 2: GIỎ HÀNG XỬ LÝ (CART LOGIC) ---
+        // --- 功能 2：詳情視窗與訂房指南控制 ---
+        const detailModal = document.getElementById('detailModal');
+        const closeDetailBtn = document.getElementById('closeDetailBtn');
+
+        function openDetail(key) {
+            const data = detailData[key];
+            if (!data) return;
+
+            document.getElementById('modalImg').style.backgroundImage = `url('${data.img}')`;
+            document.getElementById('modalTitle').innerText = data.title;
+            document.getElementById('modalDesc').innerText = data.desc;
+
+            const guideContainer = document.getElementById('modalGuide');
+            guideContainer.innerHTML = '';
+            data.guide.forEach(step => {
+                const li = document.createElement('li');
+                li.innerText = step;
+                guideContainer.appendChild(li);
+            });
+
+            detailModal.classList.add('show');
+        }
+
+        closeDetailBtn.addEventListener('click', () => detailModal.classList.remove('show'));
+
+        // --- 功能 3：購物車（預訂清單）處理邏輯 ---
         const cartModal = document.getElementById('cartModal');
         document.getElementById('openCartBtn').addEventListener('click', () => cartModal.classList.add('show'));
         document.getElementById('closeCartBtn').addEventListener('click', () => cartModal.classList.remove('show'));
-        window.addEventListener('click', (e) => { if(e.target == cartModal) cartModal.classList.remove('show'); });
+
+        // 點擊視窗外部自動關閉彈窗
+        window.addEventListener('click', (e) => { 
+            if(e.target == cartModal) cartModal.classList.remove('show'); 
+            if(e.target == detailModal) detailModal.classList.remove('show'); 
+        });
 
         function addToCart(name, price) {
             const existingItem = cart.find(item => item.name === name);
@@ -497,6 +682,7 @@
                 cart.push({ name: name, price: price, quantity: 1 });
             }
             updateCartUI();
+            alert(`已成功將「${name}」加入預訂清單！`);
         }
 
         function changeQuantity(name, change) {
@@ -525,7 +711,7 @@
             let totalPrice = 0;
 
             if (cart.length === 0) {
-                container.innerHTML = '<div class="empty-msg">Giỏ hàng trống rỗng. Hãy chọn combo của bạn!</div>';
+                container.innerHTML = '<div class="empty-msg">您的清單目前是空的，快去物色想去的越南景點吧！</div>';
             } else {
                 cart.forEach(item => {
                     totalCount += item.quantity;
@@ -536,13 +722,13 @@
                     div.innerHTML = `
                         <div class="cart-item-info">
                             <h4>${item.name}</h4>
-                            <p>${(item.price).toLocaleString('vi-VN')} đ</p>
+                            <p>NT$ ${(item.price).toLocaleString('zh-TW')}</p>
                         </div>
                         <div class="cart-item-qty">
                             <button class="btn-qty" onclick="changeQuantity('${item.name}', -1)">-</button>
-                            <span>${item.quantity}</span>
+                            <span>${item.quantity} 人份</span>
                             <button class="btn-qty" onclick="changeQuantity('${item.name}', 1)">+</button>
-                            <button class="btn-delete" onclick="deleteItem('${item.name}')">Xóa</button>
+                            <button class="btn-delete" onclick="deleteItem('${item.name}')">刪除</button>
                         </div>
                     `;
                     container.appendChild(div);
@@ -550,7 +736,7 @@
             }
 
             totalCountEl.innerText = totalCount;
-            totalPriceEl.innerText = totalPrice.toLocaleString('vi-VN') + ' đ';
+            totalPriceEl.innerText = 'NT$ ' + totalPrice.toLocaleString('zh-TW');
         }
     </script>
 </body>
