@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Combo Du Lịch Việt Nam</title>
+    <title>Combo Du Lịch Việt Nam - Bộ Lọc Thông Minh</title>
     <style>
         /* --- Reset & Thiết lập chung --- */
         * {
@@ -23,7 +23,7 @@
         /* --- Tiêu đề chính --- */
         .header {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 30px;
         }
 
         .header h1 {
@@ -39,7 +39,63 @@
             color: #666;
         }
 
-        /* --- Khu vực hiển thị các gói (Grid) --- */
+        /* --- Thanh Bộ Lọc (Filter Bar) --- */
+        .filter-container {
+            max-width: 1200px;
+            margin: 0 auto 40px auto;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .filter-label {
+            font-weight: 600;
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .btn-filter {
+            background-color: #f0f2f5;
+            color: #4e5d6c;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+        }
+
+        .btn-filter:hover, .btn-filter.active {
+            background-color: #0c4a60;
+            color: white;
+        }
+
+        .select-filter {
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            outline: none;
+            font-size: 0.9rem;
+            color: #333;
+            background-color: #fff;
+            cursor: pointer;
+        }
+
+        /* --- Khu vực hiển thị các gói (Grid 3 cột) --- */
         .combo-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -54,10 +110,14 @@
             border-radius: 16px;
             overflow: hidden;
             box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
             display: flex;
             flex-direction: column;
             position: relative;
+        }
+
+        .combo-card.hide {
+            display: none;
         }
 
         .combo-card:hover {
@@ -73,10 +133,13 @@
             background-position: center;
         }
 
-        /* Giả lập hình ảnh bằng màu sắc gradient nếu chưa có link ảnh thật */
+        /* Hình ảnh các địa danh */
         .img-taybac { background-image: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1508672019048-805c876b67e2?auto=format&fit=crop&w=600&q=80'); }
         .img-halong { background-image: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=600&q=80'); }
         .img-hoian { background-image: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=600&q=80'); }
+        .img-phongnha { background-image: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1596701062351-df5f8a42f3c7?auto=format&fit=crop&w=600&q=80'); }
+        .img-nhatrang { background-image: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1542856391-010fb87dcfed?auto=format&fit=crop&w=600&q=80'); }
+        .img-phuquoc { background-image: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1583212292454-1fe6229603b7?auto=format&fit=crop&w=600&q=80'); }
 
         .badge {
             position: absolute;
@@ -90,6 +153,8 @@
             border-radius: 20px;
             text-transform: uppercase;
         }
+        .badge.blue { background-color: #007bff; }
+        .badge.purple { background-color: #6f42c1; }
 
         /* Nội dung chữ */
         .combo-content {
@@ -174,6 +239,16 @@
         .btn-booking:hover {
             background-color: #146e8f;
         }
+
+        /* Thông báo khi không tìm thấy kết quả */
+        .no-result {
+            text-align: center;
+            grid-column: 1 / -1;
+            padding: 40px;
+            color: #888;
+            font-size: 1.2rem;
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -184,11 +259,30 @@
         <p>Khám phá trọn vẹn bản sắc văn hóa và vẻ đẹp bất tận của dải đất hình chữ S</p>
     </div>
 
+    <!-- Thanh Bộ Lọc Thông Minh -->
+    <div class="filter-container">
+        <div class="filter-group">
+            <span class="filter-label">Khu vực:</span>
+            <button class="btn-filter active" data-region="all">Tất cả</button>
+            <button class="btn-filter" data-region="north">Miền Bắc</button>
+            <button class="btn-filter" data-region="central">Miền Trung</button>
+            <button class="btn-filter" data-region="south">Miền Nam</button>
+        </div>
+        <div class="filter-group">
+            <span class="filter-label">Mức giá:</span>
+            <select class="select-filter" id="priceFilter">
+                <option value="all">Tất cả mức giá</option>
+                <option value="under3.5">Dưới 3.500.000 đ</option>
+                <option value="above3.5">Từ 3.500.000 đ trở lên</option>
+            </select>
+        </div>
+    </div>
+
     <!-- Danh sách các Gói Combo -->
-    <div class="combo-container">
+    <div class="combo-container" id="comboContainer">
 
         <!-- COMBO 1: TÂY BẮC -->
-        <div class="combo-card">
+        <div class="combo-card" data-region="north" data-price="2890000">
             <div class="combo-image img-taybac">
                 <span class="badge">Bán chạy</span>
             </div>
@@ -212,7 +306,7 @@
         </div>
 
         <!-- COMBO 2: HẠ LONG -->
-        <div class="combo-card">
+        <div class="combo-card" data-region="north" data-price="4150000">
             <div class="combo-image img-halong">
                 <span class="badge">Ưu đãi</span>
             </div>
@@ -236,15 +330,16 @@
         </div>
 
         <!-- COMBO 3: HỘI AN -->
-        <div class="combo-card">
+        <div class="combo-card" data-region="central" data-price="3690000">
             <div class="combo-image img-hoian">
+                <span class="badge blue">Di sản</span>
             </div>
             <div class="combo-content">
                 <h2 class="combo-title">Hồn Thơ Di Sản - Ký Ức Hội An</h2>
                 <div class="combo-duration">🕒 3 Ngày 2 Đêm</div>
                 <ul class="combo-features">
-                    <li>Vé máy bay khứ hồi (Bao gồm 7kg hành lý)</li>
-                    <li>Khách sạn 4 sao ngay gần Phố Cổ</li>
+                    <li>Vé máy bay khứ hồi (Bao gồm hành lý)</li>
+                    <li>Khách sạn 4 sao ngay gần trung tâm Phố Cổ</li>
                     <li>Vé xem show diễn thực cảnh "Ký ức Hội An"</li>
                     <li>Tặng buffet sáng và nước đón phòng</li>
                 </ul>
@@ -258,7 +353,148 @@
             </div>
         </div>
 
+        <!-- COMBO 4: PHONG NHA KẺ BÀNG -->
+        <div class="combo-card" data-region="central" data-price="3150000">
+            <div class="combo-image img-phongnha">
+                <span class="badge purple">Thám hiểm</span>
+            </div>
+            <div class="combo-content">
+                <h2 class="combo-title">Khám Phá Hang Động Phong Nha</h2>
+                <div class="combo-duration">🕒 3 Ngày 2 Đêm</div>
+                <ul class="combo-features">
+                    <li>Xe du lịch đời mới đưa đón suốt tuyến</li>
+                    <li>Khám phá Động Phong Nha & Động Thiên Đường</li>
+                    <li>Trải nghiệm đu dây zipline tại Sông Chày Hang Tối</li>
+                    <li>Bao gồm tất cả vé tham quan và bảo hiểm</li>
+                </ul>
+                <div class="combo-footer">
+                    <div class="price-box">
+                        <span class="price-old">3.900.000 đ</span>
+                        <span class="price-new">3.150.000 đ</span>
+                    </div>
+                    <button class="btn-booking">Đặt Ngay</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- COMBO 5: NHA TRANG -->
+        <div class="combo-card" data-region="central" data-price="3490000">
+            <div class="combo-image img-nhatrang">
+            </div>
+            <div class="combo-content">
+                <h2 class="combo-title">Nha Trang - Thiên Đường Biển Gọi</h2>
+                <div class="combo-duration">🕒 4 Ngày 3 Đêm</div>
+                <ul class="combo-features">
+                    <li>Khách sạn mặt đường Trần Phú sát biển</li>
+                    <li>Tour cano cao tốc tham quan 3 đảo VIP</li>
+                    <li>Lặn ngắm san hô tại Vịnh San Hô</li>
+                    <li>Thưởng thức tiệc BBQ hải sản tôm hùm</li>
+                </ul>
+                <div class="combo-footer">
+                    <div class="price-box">
+                        <span class="price-old">4.500.000 đ</span>
+                        <span class="price-new">3.490.000 đ</span>
+                    </div>
+                    <button class="btn-booking">Đặt Ngay</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- COMBO 6: PHÚ QUỐC -->
+        <div class="combo-card" data-region="south" data-price="4990000">
+            <div class="combo-image img-phuquoc">
+                <span class="badge">Hot</span>
+            </div>
+            <div class="combo-content">
+                <h2 class="combo-title">Phú Quốc - Nắng Vàng Đảo Ngọc</h2>
+                <div class="combo-duration">🕒 3 Ngày 2 Đêm</div>
+                <ul class="combo-features">
+                    <li>Vé máy bay khứ hồi + Resort có hồ bơi cực chill</li>
+                    <li>Vé tham quan Grand World - Thành phố không ngủ</li>
+                    <li>Tour ngắm hoàng hôn và câu mực đêm trên tàu</li>
+                    <li>Xe đưa đón sân bay miễn phí</li>
+                </ul>
+                <div class="combo-footer">
+                    <div class="price-box">
+                        <span class="price-old">6.100.000 đ</span>
+                        <span class="price-new">4.990.000 đ</span>
+                    </div>
+                    <button class="btn-booking">Đặt Ngay</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Thông báo ẩn khi không có kết quả phù hợp -->
+        <div class="no-result" id="noResult">Không tìm thấy gói combo phù hợp với tiêu chí lọc của bạn.</div>
+
     </div>
+
+    <!-- Đoạn xử lý Logic Bộ Lọc (JavaScript) -->
+    <script>
+        const filterButtons = document.querySelectorAll('.btn-filter');
+        const priceSelect = document.getElementById('priceFilter');
+        const cards = document.querySelectorAll('.combo-card');
+        const noResult = document.getElementById('noResult');
+
+        let currentRegion = 'all';
+        let currentPriceRange = 'all';
+
+        // Lắng nghe sự kiện click trên các nút chọn Khu vực
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Đổi trạng thái hiển thị nút Active
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                currentRegion = button.getAttribute('data-region');
+                filterCombos();
+            });
+        });
+
+        // Lắng nghe sự kiện thay đổi trên bộ chọn Mức giá
+        priceSelect.addEventListener('change', (e) => {
+            currentPriceRange = e.target.value;
+            filterCombos();
+        });
+
+        // Hàm xử lý lọc tổng hợp
+        function filterCombos() {
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                const cardRegion = card.getAttribute('data-region');
+                const cardPrice = parseInt(card.getAttribute('data-price'), 10);
+
+                // 1. Kiểm tra điều kiện Khu vực
+                const matchRegion = (currentRegion === 'all' || cardRegion === currentRegion);
+
+                // 2. Kiểm tra điều kiện Mức giá
+                let matchPrice = false;
+                if (currentPriceRange === 'all') {
+                    matchPrice = true;
+                } else if (currentPriceRange === 'under3.5') {
+                    matchPrice = (cardPrice < 3500000);
+                } else if (currentPriceRange === 'above3.5') {
+                    matchPrice = (cardPrice >= 3500000);
+                }
+
+                // Kết hợp cả 2 điều kiện để ẩn/hiện trang
+                if (matchRegion && matchPrice) {
+                    card.classList.remove('hide');
+                    visibleCount++;
+                } else {
+                    card.classList.add('hide');
+                }
+            });
+
+            // Hiển thị thông báo nếu không có combo nào thỏa mãn
+            if (visibleCount === 0) {
+                noResult.style.display = 'block';
+            } else {
+                noResult.style.display = 'none';
+            }
+        }
+    </script>
 
 </body>
 </html>
