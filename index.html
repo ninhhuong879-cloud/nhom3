@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Combo Du Lịch Việt Nam - Bộ Lọc Thông Minh</title>
+    <title>Hệ Thống Đặt Combo Du Lịch Việt Nam</title>
     <style>
         /* --- Reset & Thiết lập chung --- */
         * {
@@ -24,6 +24,7 @@
         .header {
             text-align: center;
             margin-bottom: 30px;
+            position: relative;
         }
 
         .header h1 {
@@ -39,7 +40,29 @@
             color: #666;
         }
 
-        /* --- Thanh Bộ Lọc (Filter Bar) --- */
+        /* --- Nút Giỏ Hàng Cố Định --- */
+        .cart-icon-btn {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background-color: #ff5722;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.2s;
+        }
+        .cart-icon-btn:hover { transform: scale(1.05); }
+        .cart-count { background: white; color: #ff5722; border-radius: 50%; padding: 2px 8px; font-size: 0.9rem; }
+
+        /* --- Thanh Công Cụ & Bộ Lọc --- */
         .filter-container {
             max-width: 1200px;
             margin: 0 auto 40px auto;
@@ -51,7 +74,21 @@
             flex-wrap: wrap;
             align-items: center;
             justify-content: space-between;
-            gap: 15px;
+            gap: 20px;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 280px;
+            position: relative;
+        }
+        .search-box input {
+            width: 100%;
+            padding: 10px 15px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            outline: none;
+            font-size: 0.95rem;
         }
 
         .filter-group {
@@ -61,11 +98,7 @@
             flex-wrap: wrap;
         }
 
-        .filter-label {
-            font-weight: 600;
-            color: #555;
-            font-size: 0.95rem;
-        }
+        .filter-label { font-weight: 600; color: #555; font-size: 0.95rem; }
 
         .btn-filter {
             background-color: #f0f2f5;
@@ -78,11 +111,7 @@
             font-size: 0.9rem;
             transition: all 0.2s ease;
         }
-
-        .btn-filter:hover, .btn-filter.active {
-            background-color: #0c4a60;
-            color: white;
-        }
+        .btn-filter:hover, .btn-filter.active { background-color: #0c4a60; color: white; }
 
         .select-filter {
             padding: 8px 12px;
@@ -90,12 +119,11 @@
             border: 1px solid #ccc;
             outline: none;
             font-size: 0.9rem;
-            color: #333;
             background-color: #fff;
             cursor: pointer;
         }
 
-        /* --- Khu vực hiển thị các gói (Grid 3 cột) --- */
+        /* --- Grid hiển thị 9 sản phẩm --- */
         .combo-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -104,163 +132,106 @@
             gap: 30px;
         }
 
-        /* --- Thẻ Combo (Card) --- */
         .combo-card {
             background: #ffffff;
             border-radius: 16px;
             overflow: hidden;
             box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+            transition: transform 0.3s, box-shadow 0.3s;
             display: flex;
             flex-direction: column;
             position: relative;
         }
+        .combo-card.hide { display: none; }
+        .combo-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.12); }
 
-        .combo-card.hide {
-            display: none;
-        }
-
-        .combo-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.12);
-        }
-
-        /* Hình ảnh đại diện */
-        .combo-image {
-            height: 220px;
-            position: relative;
-            background-size: cover;
-            background-position: center;
-        }
-
-        /* Hình ảnh các địa danh */
-        .img-taybac { background-image: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1508672019048-805c876b67e2?auto=format&fit=crop&w=600&q=80'); }
-        .img-halong { background-image: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=600&q=80'); }
-        .img-hoian { background-image: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=600&q=80'); }
-        .img-phongnha { background-image: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1596701062351-df5f8a42f3c7?auto=format&fit=crop&w=600&q=80'); }
-        .img-nhatrang { background-image: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1542856391-010fb87dcfed?auto=format&fit=crop&w=600&q=80'); }
-        .img-phuquoc { background-image: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1583212292454-1fe6229603b7?auto=format&fit=crop&w=600&q=80'); }
+        .combo-image { height: 210px; background-size: cover; background-position: center; position: relative; }
+        
+        /* Hình ảnh 9 địa điểm */
+        .img-taybac { background-image: url('https://images.unsplash.com/photo-1508672019048-805c876b67e2?auto=format&fit=crop&w=600&q=80'); }
+        .img-halong { background-image: url('https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=600&q=80'); }
+        .img-hoian { background-image: url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=600&q=80'); }
+        .img-phongnha { background-image: url('https://images.unsplash.com/photo-1596701062351-df5f8a42f3c7?auto=format&fit=crop&w=600&q=80'); }
+        .img-nhatrang { background-image: url('https://images.unsplash.com/photo-1542856391-010fb87dcfed?auto=format&fit=crop&w=600&q=80'); }
+        .img-phuquoc { background-image: url('https://images.unsplash.com/photo-1583212292454-1fe6229603b7?auto=format&fit=crop&w=600&q=80'); }
+        .img-hanoi { background-image: url('https://images.unsplash.com/photo-1559592413-7ece35936503?auto=format&fit=crop&w=600&q=80'); }
+        .img-hue { background-image: url('https://images.unsplash.com/photo-1571406252241-db0280db36cd?auto=format&fit=crop&w=600&q=80'); }
+        .img-saigon { background-image: url('https://images.unsplash.com/photo-1509060464153-44667396260f?auto=format&fit=crop&w=600&q=80'); }
 
         .badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background-color: #ff5722;
-            color: white;
-            padding: 6px 12px;
-            font-size: 0.8rem;
-            font-weight: bold;
-            border-radius: 20px;
-            text-transform: uppercase;
+            position: absolute; top: 15px; right: 15px; background-color: #ff5722; color: white;
+            padding: 6px 12px; font-size: 0.8rem; font-weight: bold; border-radius: 20px; text-transform: uppercase;
         }
         .badge.blue { background-color: #007bff; }
         .badge.purple { background-color: #6f42c1; }
 
-        /* Nội dung chữ */
-        .combo-content {
-            padding: 25px;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-        }
+        .combo-content { padding: 25px; display: flex; flex-direction: column; flex-grow: 1; }
+        .combo-title { font-size: 1.3rem; color: #0c4a60; margin-bottom: 8px; }
+        .combo-duration { font-size: 0.9rem; color: #10b981; font-weight: 600; margin-bottom: 15px; }
+        
+        .combo-features { list-style: none; margin-bottom: 20px; flex-grow: 1; }
+        .combo-features li { font-size: 0.9rem; color: #555; margin-bottom: 6px; display: flex; align-items: center; }
+        .combo-features li::before { content: "✓"; color: #10b981; font-weight: bold; margin-right: 8px; }
 
-        .combo-title {
-            font-size: 1.4rem;
-            color: #0c4a60;
-            margin-bottom: 10px;
-        }
-
-        .combo-duration {
-            font-size: 0.9rem;
-            color: #10b981;
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-
-        .combo-features {
-            list-style: none;
-            margin-bottom: 25px;
-            flex-grow: 1;
-        }
-
-        .combo-features li {
-            font-size: 0.95rem;
-            color: #555;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-        }
-
-        .combo-features li::before {
-            content: "✓";
-            color: #10b981;
-            font-weight: bold;
-            margin-right: 8px;
-        }
-
-        /* Khu vực giá và nút bấm */
-        .combo-footer {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-top: 1px solid #eee;
-            padding-top: 20px;
-        }
-
-        .price-box {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .price-old {
-            font-size: 0.85rem;
-            color: #aaa;
-            text-decoration: line-through;
-        }
-
-        .price-new {
-            font-size: 1.4rem;
-            color: #ff5722;
-            font-weight: bold;
-        }
+        .combo-footer { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #eee; padding-top: 15px; }
+        .price-old { font-size: 0.85rem; color: #aaa; text-decoration: line-through; }
+        .price-new { font-size: 1.3rem; color: #ff5722; font-weight: bold; }
 
         .btn-booking {
-            background-color: #0c4a60;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 8px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.2s ease;
+            background-color: #0c4a60; color: white; padding: 10px 18px; border: none;
+            border-radius: 8px; font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: background 0.2s;
         }
+        .btn-booking:hover { background-color: #146e8f; }
 
-        .btn-booking:hover {
-            background-color: #146e8f;
-        }
+        .no-result { text-align: center; grid-column: 1 / -1; padding: 40px; color: #888; font-size: 1.2rem; display: none; }
 
-        /* Thông báo khi không tìm thấy kết quả */
-        .no-result {
-            text-align: center;
-            grid-column: 1 / -1;
-            padding: 40px;
-            color: #888;
-            font-size: 1.2rem;
-            display: none;
+        /* --- Giao diện Giỏ Hàng (Modal Popup) --- */
+        .cart-modal {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.5); display: flex; justify-content: center;
+            align-items: center; z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
         }
+        .cart-modal.show { opacity: 1; pointer-events: auto; }
+        .cart-content {
+            background: white; padding: 30px; border-radius: 16px; width: 90%; max-width: 600px;
+            max-height: 80vh; overflow-y: auto; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .close-cart { position: absolute; top: 15px; right: 20px; font-size: 1.8rem; cursor: pointer; color: #aaa; }
+        .close-cart:hover { color: #333; }
+        .cart-title { color: #0c4a60; margin-bottom: 20px; font-size: 1.6rem; border-bottom: 2px solid #0c4a60; padding-bottom: 10px; }
+        
+        .cart-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #eee; }
+        .cart-item-info h4 { color: #333; font-size: 1rem; margin-bottom: 5px; }
+        .cart-item-info p { color: #ff5722; font-weight: bold; font-size: 0.95rem; }
+        .cart-item-qty { display: flex; align-items: center; gap: 8px; }
+        .btn-qty { width: 25px; height: 25px; background: #eee; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        .btn-qty:hover { background: #ddd; }
+        .btn-delete { background: none; border: none; color: #ff3b30; cursor: pointer; font-size: 0.9rem; margin-left: 10px; }
+
+        .cart-summary { margin-top: 20px; text-align: right; font-size: 1.2rem; font-weight: bold; color: #0c4a60; }
+        .btn-checkout { background-color: #10b981; color: white; border: none; width: 100%; padding: 12px; border-radius: 8px; font-size: 1rem; font-weight: bold; cursor: pointer; margin-top: 15px; }
+        .btn-checkout:hover { background-color: #059669; }
+        .empty-msg { text-align: center; color: #888; padding: 20px 0; }
     </style>
 </head>
 <body>
 
+    <!-- Nút Giỏ Hàng Cố Định -->
+    <button class="cart-icon-btn" id="openCartBtn">
+        🛒 Giỏ Hàng <span class="cart-count" id="cartCount">0</span>
+    </button>
+
     <!-- Tiêu đề trang -->
     <div class="header">
-        <h1>Combo Du Lịch Việt Nam</h1>
-        <p>Khám phá trọn vẹn bản sắc văn hóa và vẻ đẹp bất tận của dải đất hình chữ S</p>
+        <h1>Hệ Thống Đặt Combo Du Lịch Việt Nam</h1>
+        <p>Tìm kiếm, lựa chọn và lên kế hoạch cho chuyến đi mơ ước của bạn</p>
     </div>
 
-    <!-- Thanh Bộ Lọc Thông Minh -->
+    <!-- Thanh Tìm Kiếm & Bộ Lọc Nâng Cao -->
     <div class="filter-container">
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="🔍 Nhập tên địa danh hoặc từ khóa cần tìm (Ví dụ: Sa Pa, Hà Nội...)...">
+        </div>
         <div class="filter-group">
             <span class="filter-label">Khu vực:</span>
             <button class="btn-filter active" data-region="all">Tất cả</button>
@@ -278,14 +249,12 @@
         </div>
     </div>
 
-    <!-- Danh sách các Gói Combo -->
+    <!-- Danh sách 9 Gói Combo -->
     <div class="combo-container" id="comboContainer">
 
-        <!-- COMBO 1: TÂY BẮC -->
+        <!-- 1. TÂY BẮC -->
         <div class="combo-card" data-region="north" data-price="2890000">
-            <div class="combo-image img-taybac">
-                <span class="badge">Bán chạy</span>
-            </div>
+            <div class="combo-image img-taybac"><span class="badge">Bán chạy</span></div>
             <div class="combo-content">
                 <h2 class="combo-title">Tây Bắc - Đánh Thức Mọi Giác Quan</h2>
                 <div class="combo-duration">🕒 4 Ngày 3 Đêm</div>
@@ -293,47 +262,53 @@
                     <li>Vé xe giường nằm chất lượng cao khứ hồi</li>
                     <li>Homestay chuẩn bản địa tại Sa Pa / Mộc Châu</li>
                     <li>Trải nghiệm hái trà tại đồi chè trái tim</li>
-                    <li>Thưởng thức ẩm thực thắng cố, cá suối nướng</li>
                 </ul>
                 <div class="combo-footer">
-                    <div class="price-box">
-                        <span class="price-old">3.500.000 đ</span>
-                        <span class="price-new">2.890.000 đ</span>
-                    </div>
-                    <button class="btn-booking">Đặt Ngay</button>
+                    <div><p class="price-old">3.500.000 đ</p><p class="price-new">2.890.000 đ</p></div>
+                    <button class="btn-booking" onclick="addToCart('Tây Bắc - Đánh Thức Mọi Giác Quan', 2890000)">Đặt Ngay</button>
                 </div>
             </div>
         </div>
 
-        <!-- COMBO 2: HẠ LONG -->
+        <!-- 2. HẠ LONG -->
         <div class="combo-card" data-region="north" data-price="4150000">
-            <div class="combo-image img-halong">
-                <span class="badge">Ưu đãi</span>
-            </div>
+            <div class="combo-image img-halong"><span class="badge">Ưu đãi</span></div>
             <div class="combo-content">
                 <h2 class="combo-title">Kỳ Quan Hạ Long - Du Thuyền 5 Sao</h2>
                 <div class="combo-duration">🕒 3 Ngày 2 Đêm</div>
                 <ul class="combo-features">
-                    <li>Hải trình tham quan Vịnh Hạ Long - Vịnh Lan Hạ</li>
+                    <li>Hải trình tham quan Vịnh Hạ Long cao cấp</li>
                     <li>Phòng nghỉ ban công hướng biển sang trọng</li>
-                    <li>Trọn gói 4 bữa ăn cao cấp trên du thuyền</li>
-                    <li>Chèo thuyền kayak, tham quan hang động</li>
+                    <li>Trọn gói meals chất lượng trên du thuyền</li>
                 </ul>
                 <div class="combo-footer">
-                    <div class="price-box">
-                        <span class="price-old">5.200.000 đ</span>
-                        <span class="price-new">4.150.000 đ</span>
-                    </div>
-                    <button class="btn-booking">Đặt Ngay</button>
+                    <div><p class="price-old">5.200.000 đ</p><p class="price-new">4.150.000 đ</p></div>
+                    <button class="btn-booking" onclick="addToCart('Kỳ Quan Hạ Long - Du Thuyền 5 Sao', 4150000)">Đặt Ngay</button>
                 </div>
             </div>
         </div>
 
-        <!-- COMBO 3: HỘI AN -->
-        <div class="combo-card" data-region="central" data-price="3690000">
-            <div class="combo-image img-hoian">
-                <span class="badge blue">Di sản</span>
+        <!-- 3. HÀ NỘI (MỚI) -->
+        <div class="combo-card" data-region="north" data-price="2200000">
+            <div class="combo-image img-hanoi"></div>
+            <div class="combo-content">
+                <h2 class="combo-title">Hà Nội - Ký Ức 36 Phố Phường</h2>
+                <div class="combo-duration">🕒 3 Ngày 2 Đêm</div>
+                <ul class="combo-features">
+                    <li>Khách sạn Boutique trung tâm Phố Cổ</li>
+                    <li>Vé xe buýt 2 tầng City Tour ngắm thủ đô</li>
+                    <li>Food tour thưởng thức Phở, Bún Chả cổ truyền</li>
+                </ul>
+                <div class="combo-footer">
+                    <div><p class="price-old">2.900.000 đ</p><p class="price-new">2.200.000 đ</p></div>
+                    <button class="btn-booking" onclick="addToCart('Hà Nội - Ký Ức 36 Phố Phường', 2200000)">Đặt Ngay</button>
+                </div>
             </div>
+        </div>
+
+        <!-- 4. HỘI AN -->
+        <div class="combo-card" data-region="central" data-price="3690000">
+            <div class="combo-image img-hoian"><span class="badge blue">Di sản</span></div>
             <div class="combo-content">
                 <h2 class="combo-title">Hồn Thơ Di Sản - Ký Ức Hội An</h2>
                 <div class="combo-duration">🕒 3 Ngày 2 Đêm</div>
@@ -341,160 +316,242 @@
                     <li>Vé máy bay khứ hồi (Bao gồm hành lý)</li>
                     <li>Khách sạn 4 sao ngay gần trung tâm Phố Cổ</li>
                     <li>Vé xem show diễn thực cảnh "Ký ức Hội An"</li>
-                    <li>Tặng buffet sáng và nước đón phòng</li>
                 </ul>
                 <div class="combo-footer">
-                    <div class="price-box">
-                        <span class="price-old">4.800.000 đ</span>
-                        <span class="price-new">3.690.000 đ</span>
-                    </div>
-                    <button class="btn-booking">Đặt Ngay</button>
+                    <div><p class="price-old">4.800.000 đ</p><p class="price-new">3.690.000 đ</p></div>
+                    <button class="btn-booking" onclick="addToCart('Hồn Thơ Di Sản - Ký Ức Hội An', 3690000)">Đặt Ngay</button>
                 </div>
             </div>
         </div>
 
-        <!-- COMBO 4: PHONG NHA KẺ BÀNG -->
+        <!-- 5. PHONG NHA KẺ BÀNG -->
         <div class="combo-card" data-region="central" data-price="3150000">
-            <div class="combo-image img-phongnha">
-                <span class="badge purple">Thám hiểm</span>
-            </div>
+            <div class="combo-image img-phongnha"><span class="badge purple">Thám hiểm</span></div>
             <div class="combo-content">
                 <h2 class="combo-title">Khám Phá Hang Động Phong Nha</h2>
                 <div class="combo-duration">🕒 3 Ngày 2 Đêm</div>
                 <ul class="combo-features">
-                    <li>Xe du lịch đời mới đưa đón suốt tuyến</li>
                     <li>Khám phá Động Phong Nha & Động Thiên Đường</li>
-                    <li>Trải nghiệm đu dây zipline tại Sông Chày Hang Tối</li>
-                    <li>Bao gồm tất cả vé tham quan và bảo hiểm</li>
+                    <li>Trải nghiệm đu dây zipline tại Sông Chày</li>
+                    <li>Bao gồm tất cả vé vào cửa tham quan</li>
                 </ul>
                 <div class="combo-footer">
-                    <div class="price-box">
-                        <span class="price-old">3.900.000 đ</span>
-                        <span class="price-new">3.150.000 đ</span>
-                    </div>
-                    <button class="btn-booking">Đặt Ngay</button>
+                    <div><p class="price-old">3.900.000 đ</p><p class="price-new">3.150.000 đ</p></div>
+                    <button class="btn-booking" onclick="addToCart('Khám Phá Hang Động Phong Nha', 3150000)">Đặt Ngay</button>
                 </div>
             </div>
         </div>
 
-        <!-- COMBO 5: NHA TRANG -->
-        <div class="combo-card" data-region="central" data-price="3490000">
-            <div class="combo-image img-nhatrang">
+        <!-- 6. CỐ ĐÔ HUẾ (MỚI) -->
+        <div class="combo-card" data-region="central" data-price="2600000">
+            <div class="combo-image img-hue"></div>
+            <div class="combo-content">
+                <h2 class="combo-title">Cố Đô Huế - Vẻ Đẹp Thần Kinh</h2>
+                <div class="combo-duration">🕒 3 Ngày 2 Đêm</div>
+                <ul class="combo-features">
+                    <li>Resort nghỉ dưỡng bên dòng sông Hương thơ mộng</li>
+                    <li>Vé tham quan Đại Nội và các Lăng tẩm triều Nguyễn</li>
+                    <li>Trải nghiệm nghe Ca Huế trên thuyền rồng</li>
+                </ul>
+                <div class="combo-footer">
+                    <div><p class="price-old">3.400.000 đ</p><p class="price-new">2.600.000 đ</p></div>
+                    <button class="btn-booking" onclick="addToCart('Cố Đô Huế - Vẻ Đẹp Thần Kinh', 2600000)">Đặt Ngay</button>
+                </div>
             </div>
+        </div>
+
+        <!-- 7. NHA TRANG -->
+        <div class="combo-card" data-region="central" data-price="3490000">
+            <div class="combo-image img-nhatrang"></div>
             <div class="combo-content">
                 <h2 class="combo-title">Nha Trang - Thiên Đường Biển Gọi</h2>
                 <div class="combo-duration">🕒 4 Ngày 3 Đêm</div>
                 <ul class="combo-features">
-                    <li>Khách sạn mặt đường Trần Phú sát biển</li>
-                    <li>Tour cano cao tốc tham quan 3 đảo VIP</li>
-                    <li>Lặn ngắm san hô tại Vịnh San Hô</li>
-                    <li>Thưởng thức tiệc BBQ hải sản tôm hùm</li>
+                    <li>Khách sạn đường Trần Phú sát biển</li>
+                    <li>Tour cano cao tốc tham quan các đảo VIP</li>
+                    <li>Thưởng thức tiệc BBQ hải sản cao cấp</li>
                 </ul>
                 <div class="combo-footer">
-                    <div class="price-box">
-                        <span class="price-old">4.500.000 đ</span>
-                        <span class="price-new">3.490.000 đ</span>
-                    </div>
-                    <button class="btn-booking">Đặt Ngay</button>
+                    <div><p class="price-old">4.500.000 đ</p><p class="price-new">3.490.000 đ</p></div>
+                    <button class="btn-booking" onclick="addToCart('Nha Trang - Thiên Đường Biển Gọi', 3490000)">Đặt Ngay</button>
                 </div>
             </div>
         </div>
 
-        <!-- COMBO 6: PHÚ QUỐC -->
+        <!-- 8. PHÚ QUỐC -->
         <div class="combo-card" data-region="south" data-price="4990000">
-            <div class="combo-image img-phuquoc">
-                <span class="badge">Hot</span>
-            </div>
+            <div class="combo-image img-phuquoc"><span class="badge">Hot</span></div>
             <div class="combo-content">
                 <h2 class="combo-title">Phú Quốc - Nắng Vàng Đảo Ngọc</h2>
                 <div class="combo-duration">🕒 3 Ngày 2 Đêm</div>
                 <ul class="combo-features">
                     <li>Vé máy bay khứ hồi + Resort có hồ bơi cực chill</li>
                     <li>Vé tham quan Grand World - Thành phố không ngủ</li>
-                    <li>Tour ngắm hoàng hôn và câu mực đêm trên tàu</li>
-                    <li>Xe đưa đón sân bay miễn phí</li>
+                    <li>Tour ngắm hoàng hôn và câu mực đêm</li>
                 </ul>
                 <div class="combo-footer">
-                    <div class="price-box">
-                        <span class="price-old">6.100.000 đ</span>
-                        <span class="price-new">4.990.000 đ</span>
-                    </div>
-                    <button class="btn-booking">Đặt Ngay</button>
+                    <div><p class="price-old">6.100.000 đ</p><p class="price-new">4.990.000 đ</p></div>
+                    <button class="btn-booking" onclick="addToCart('Phú Quốc - Nắng Vàng Đảo Ngọc', 4990000)">Đặt Ngay</button>
                 </div>
             </div>
         </div>
 
-        <!-- Thông báo ẩn khi không có kết quả phù hợp -->
-        <div class="no-result" id="noResult">Không tìm thấy gói combo phù hợp với tiêu chí lọc của bạn.</div>
+        <!-- 9. SÀI GÒN (MỚI) -->
+        <div class="combo-card" data-region="south" data-price="2450000">
+            <div class="combo-image img-saigon"></div>
+            <div class="combo-content">
+                <h2 class="combo-title">Sài Gòn - Hoa Lệ Năng Động</h2>
+                <div class="combo-duration">🕒 3 Days 2 Nights</div>
+                <ul class="combo-features">
+                    <li>Khách sạn trung tâm Quận 1 thuận tiện đi lại</li>
+                    <li>Vé du thuyền ăn tối lãng mạn trên Sông Sài Gòn</li>
+                    <li>Vé ngắm toàn cảnh thành phố tại Saigon Skydeck</li>
+                </ul>
+                <div class="combo-footer">
+                    <div><p class="price-old">3.200.000 đ</p><p class="price-new">2.450.000 đ</p></div>
+                    <button class="btn-booking" onclick="addToCart('Sài Gòn - Hoa Lệ Năng Động', 2450000)">Đặt Ngay</button>
+                </div>
+            </div>
+        </div>
 
+        <div class="no-result" id="noResult">Không tìm thấy gói combo phù hợp với tiêu chí của bạn.</div>
     </div>
 
-    <!-- Đoạn xử lý Logic Bộ Lọc (JavaScript) -->
+    <!-- Cửa Sổ Giỏ Hàng (Modal) -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-content">
+            <span class="close-cart" id="closeCartBtn">&times;</span>
+            <h3 class="cart-title">Giỏ Hàng Của Bạn</h3>
+            <div id="cartItemsContainer">
+                <!-- Vật phẩm giỏ hàng sẽ tự động sinh ra ở đây -->
+            </div>
+            <div class="cart-summary">Tổng cộng: <span id="cartTotalPrice">0 đ</span></div>
+            <button class="btn-checkout" onclick="alert('Cảm ơn bạn đã đặt tour! Chúng tôi sẽ liên hệ sớm nhất.')">Tiến Hành Đặt Hàng</button>
+        </div>
+    </div>
+
+    <!-- SCRIPT XỬ LÝ TOÀN BỘ TÍNH NĂNG (JS) -->
     <script>
+        // --- KHAI BÁO BIẾN TOÀN CỤC ---
         const filterButtons = document.querySelectorAll('.btn-filter');
         const priceSelect = document.getElementById('priceFilter');
+        const searchInput = document.getElementById('searchInput');
         const cards = document.querySelectorAll('.combo-card');
         const noResult = document.getElementById('noResult');
 
         let currentRegion = 'all';
         let currentPriceRange = 'all';
+        let searchQuery = '';
 
-        // Lắng nghe sự kiện click trên các nút chọn Khu vực
+        let cart = [];
+
+        // --- CHỨC NĂNG 1: BỘ LỌC VÀ TÌM KIẾM ---
         filterButtons.forEach(button => {
             button.addEventListener('click', () => {
-                // Đổi trạng thái hiển thị nút Active
                 filterButtons.forEach(btn => btn.classList.remove('active'));
                 button.classList.add('active');
-
                 currentRegion = button.getAttribute('data-region');
                 filterCombos();
             });
         });
 
-        // Lắng nghe sự kiện thay đổi trên bộ chọn Mức giá
-        priceSelect.addEventListener('change', (e) => {
-            currentPriceRange = e.target.value;
-            filterCombos();
-        });
+        priceSelect.addEventListener('change', (e) => { currentPriceRange = e.target.value; filterCombos(); });
+        searchInput.addEventListener('input', (e) => { searchQuery = e.target.value.toLowerCase().trim(); filterCombos(); });
 
-        // Hàm xử lý lọc tổng hợp
         function filterCombos() {
             let visibleCount = 0;
-
             cards.forEach(card => {
-                const cardRegion = card.getAttribute('data-region');
-                const cardPrice = parseInt(card.getAttribute('data-price'), 10);
+                const title = card.querySelector('.combo-title').innerText.toLowerCase();
+                const region = card.getAttribute('data-region');
+                const price = parseInt(card.getAttribute('data-price'), 10);
 
-                // 1. Kiểm tra điều kiện Khu vực
-                const matchRegion = (currentRegion === 'all' || cardRegion === currentRegion);
-
-                // 2. Kiểm tra điều kiện Mức giá
+                const matchSearch = title.includes(searchQuery);
+                const matchRegion = (currentRegion === 'all' || region === currentRegion);
+                
                 let matchPrice = false;
-                if (currentPriceRange === 'all') {
-                    matchPrice = true;
-                } else if (currentPriceRange === 'under3.5') {
-                    matchPrice = (cardPrice < 3500000);
-                } else if (currentPriceRange === 'above3.5') {
-                    matchPrice = (cardPrice >= 3500000);
-                }
+                if (currentPriceRange === 'all') matchPrice = true;
+                else if (currentPriceRange === 'under3.5') matchPrice = (price < 3500000);
+                else if (currentPriceRange === 'above3.5') matchPrice = (price >= 3500000);
 
-                // Kết hợp cả 2 điều kiện để ẩn/hiện trang
-                if (matchRegion && matchPrice) {
+                if (matchSearch && matchRegion && matchPrice) {
                     card.classList.remove('hide');
                     visibleCount++;
                 } else {
                     card.classList.add('hide');
                 }
             });
+            noResult.style.display = (visibleCount === 0) ? 'block' : 'none';
+        }
 
-            // Hiển thị thông báo nếu không có combo nào thỏa mãn
-            if (visibleCount === 0) {
-                noResult.style.display = 'block';
+        // --- CHỨC NĂNG 2: GIỎ HÀNG XỬ LÝ (CART LOGIC) ---
+        const cartModal = document.getElementById('cartModal');
+        document.getElementById('openCartBtn').addEventListener('click', () => cartModal.classList.add('show'));
+        document.getElementById('closeCartBtn').addEventListener('click', () => cartModal.classList.remove('show'));
+        window.addEventListener('click', (e) => { if(e.target == cartModal) cartModal.classList.remove('show'); });
+
+        function addToCart(name, price) {
+            const existingItem = cart.find(item => item.name === name);
+            if (existingItem) {
+                existingItem.quantity++;
             } else {
-                noResult.style.display = 'none';
+                cart.push({ name: name, price: price, quantity: 1 });
             }
+            updateCartUI();
+        }
+
+        function changeQuantity(name, change) {
+            const item = cart.find(item => item.name === name);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    cart = cart.filter(i => i.name !== name);
+                }
+            }
+            updateCartUI();
+        }
+
+        function deleteItem(name) {
+            cart = cart.filter(item => item.name !== name);
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const container = document.getElementById('cartItemsContainer');
+            const totalCountEl = document.getElementById('cartCount');
+            const totalPriceEl = document.getElementById('cartTotalPrice');
+            
+            container.innerHTML = '';
+            let totalCount = 0;
+            let totalPrice = 0;
+
+            if (cart.length === 0) {
+                container.innerHTML = '<div class="empty-msg">Giỏ hàng trống rỗng. Hãy chọn combo của bạn!</div>';
+            } else {
+                cart.forEach(item => {
+                    totalCount += item.quantity;
+                    totalPrice += item.price * item.quantity;
+
+                    const div = document.createElement('div');
+                    div.className = 'cart-item';
+                    div.innerHTML = `
+                        <div class="cart-item-info">
+                            <h4>${item.name}</h4>
+                            <p>${(item.price).toLocaleString('vi-VN')} đ</p>
+                        </div>
+                        <div class="cart-item-qty">
+                            <button class="btn-qty" onclick="changeQuantity('${item.name}', -1)">-</button>
+                            <span>${item.quantity}</span>
+                            <button class="btn-qty" onclick="changeQuantity('${item.name}', 1)">+</button>
+                            <button class="btn-delete" onclick="deleteItem('${item.name}')">Xóa</button>
+                        </div>
+                    `;
+                    container.appendChild(div);
+                });
+            }
+
+            totalCountEl.innerText = totalCount;
+            totalPriceEl.innerText = totalPrice.toLocaleString('vi-VN') + ' đ';
         }
     </script>
-
 </body>
 </html>
