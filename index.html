@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hệ Thống Đặt Tour Du Lịch Việt Nam Trực Tuyến</title>
+    <title>越南旅遊行程線上預訂系統</title>
     <style>
         /* --- Reset & Base Styles --- */
         * {
@@ -226,33 +226,33 @@
 
     <!-- Floating Cart Button -->
     <button class="cart-icon-btn" id="openCartBtn">
-        🛒 Danh Sách Đặt Tour <span class="cart-count" id="cartCount">0</span>
+        🛒 行程預訂清單 <span class="cart-count" id="cartCount">0</span>
     </button>
 
     <!-- Header -->
     <div class="header">
-        <h1>Khám Phá Tuyệt Tác Du Lịch Việt Nam</h1>
-        <p>Hệ thống đặt lịch trình trọn gói cao cấp - Trải nghiệm trọn vẹn từng khoảnh khắc</p>
+        <h1>探索越南絕美旅遊勝地</h1>
+        <p>頂級全包式行程預訂系統 - 完美珍藏您的每一刻體驗</p>
     </div>
 
     <!-- Filter Toolbar -->
     <div class="filter-container">
         <div class="search-box">
-            <input type="text" id="searchInput" placeholder="🔍 Nhập từ khóa (Ví dụ: Sapa, Hạ Long, Phú Quốc, Quy Nhơn...)">
+            <input type="text" id="searchInput" placeholder="🔍 輸入關鍵字（例如：沙壩、下龍灣、富國島、歸仁...）">
         </div>
         <div class="filter-group">
-            <span class="filter-label">Khu vực:</span>
-            <button class="btn-filter active" data-region="all">Tất cả</button>
-            <button class="btn-filter" data-region="north">Miền Bắc</button>
-            <button class="btn-filter" data-region="central">Miền Trung</button>
-            <button class="btn-filter" data-region="south">Miền Nam</button>
+            <span class="filter-label">地區：</span>
+            <button class="btn-filter active" data-region="all">全部地區</button>
+            <button class="btn-filter" data-region="north">北越</button>
+            <button class="btn-filter" data-region="central">中越</button>
+            <button class="btn-filter" data-region="south">南越</button>
         </div>
         <div class="filter-group">
-            <span class="filter-label">Mức giá:</span>
+            <span class="filter-label">預算區間：</span>
             <select class="select-filter" id="priceFilter">
-                <option value="all">Tất cả ngân sách</option>
-                <option value="under4.0">Dưới 4.000.000 VNĐ</option>
-                <option value="above4.0">Trên 4.000.000 VNĐ</option>
+                <option value="all">所有預算</option>
+                <option value="under4.0">4,000,000 VNĐ 以下</option>
+                <option value="above4.0">4,000,000 VNĐ 以上</option>
             </select>
         </div>
     </div>
@@ -262,20 +262,20 @@
 
         <!-- 1. Sapa -->
         <div class="combo-card" data-region="north" data-price="3800000">
-            <div class="combo-image" style="background-image: url('https://images.unsplash.com/photo-1508873696983-2df5199e4009?auto=format&fit=crop&w=600&q=80')"><span class="badge">Bán Chạy</span></div>
+            <div class="combo-image" style="background-image: url('https://images.unsplash.com/photo-1508873696983-2df5199e4009?auto=format&fit=crop&w=600&q=80')"><span class="badge">熱門暢銷</span></div>
             <div class="combo-content">
-                <h2 class="combo-title">Tây Bắc: Hành Trình Đánh Thức Sapa</h2>
-                <div class="combo-duration">🕒 4 Ngày 3 Đêm</div>
+                <h2 class="combo-title">西北山城：喚醒沙壩深度之旅</h2>
+                <div class="combo-duration">🕒 4 天 3 夜</div>
                 <ul class="combo-features">
-                    <li>Xe giường nằm Limousine khứ hồi đời mới</li>
-                    <li>Khách sạn 4 sao view thung lũng Mường Hoa</li>
-                    <li>Vé cáp treo Fansipan & Fansipan Legend</li>
+                    <li>新版豪華豪華豪華臥鋪巴士來回接送</li>
+                    <li>入住四星級酒店，坐擁芒街山谷絕美景致</li>
+                    <li>包含番西邦傳奇纜車來回門票</li>
                 </ul>
                 <div class="combo-footer">
-                    <div class="price-container"><span class="price-old">4.500.000đ</span><span class="price-new">3.800.000đ</span></div>
+                    <div class="price-container"><span class="price-old">4,500,000đ</span><span class="price-new">3,800,000đ</span></div>
                     <div class="action-btns">
-                        <button class="btn-booking" onclick="addToCart('Tây Bắc: Hành Trình Đánh Thức Sapa', 3800000)">Đặt Ngay</button>
-                        <button class="btn-detail" onclick="openDetail('taybac')">Chi Tiết</button>
+                        <button class="btn-booking" onclick="addToCart('西北山城：喚醒沙壩深度之旅', 3800000)">立即預訂</button>
+                        <button class="btn-detail" onclick="openDetail('taybac')">詳細資料</button>
                     </div>
                 </div>
             </div>
@@ -283,20 +283,20 @@
 
         <!-- 2. Hạ Long -->
         <div class="combo-card" data-region="north" data-price="5500000">
-            <div class="combo-image" style="background-image: url('https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=600&q=80')"><span class="badge purple">5 Sao Đẳng Cấp</span></div>
+            <div class="combo-image" style="background-image: url('https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=600&q=80')"><span class="badge purple">五星頂級</span></div>
             <div class="combo-content">
-                <h2 class="combo-title">Vịnh Hạ Long: Du Thuyền 5 Sao Khám Phá Kỳ Quan</h2>
-                <div class="combo-duration">🕒 3 Ngày 2 Đêm</div>
+                <h2 class="combo-title">下龍灣：五星級奢華遊船探索世界奇景</h2>
+                <div class="combo-duration">🕒 3 天 2 夜</div>
                 <ul class="combo-features">
-                    <li>Hải trình độc quyền qua Vịnh Hạ Long - Lan Hạ</li>
-                    <li>Phòng ngủ Executive có ban công riêng sát biển</li>
-                    <li>Trọn gói 4 bữa ăn cao cấp chuẩn Michelin</li>
+                    <li>獨家航線巡遊下龍灣與蘭夏灣</li>
+                    <li>入住尊爵行政艙房，配備獨立私人海景陽台</li>
+                    <li>全包式四餐精緻料理（米其林星級標準）</li>
                 </ul>
                 <div class="combo-footer">
                     <div class="price-container"><span class="price-old">6.800.000đ</span><span class="price-new">5.500.000đ</span></div>
                     <div class="action-btns">
-                        <button class="btn-booking" onclick="addToCart('Vịnh Hạ Long: Du Thuyền 5 Sao Khám Phá Kỳ Quan', 5500000)">Đặt Ngay</button>
-                        <button class="btn-detail" onclick="openDetail('halong')">Chi Tiết</button>
+                        <button class="btn-booking" onclick="addToCart('下龍灣：五星級奢華遊船探索世界奇景', 5500000)">立即預訂</button>
+                        <button class="btn-detail" onclick="openDetail('halong')">詳細資料</button>
                     </div>
                 </div>
             </div>
@@ -306,18 +306,18 @@
         <div class="combo-card" data-region="north" data-price="2900000">
             <div class="combo-image" style="background-image: url('https://images.unsplash.com/photo-1509060464153-44667396260f?auto=format&fit=crop&w=600&q=80')"></div>
             <div class="combo-content">
-                <h2 class="combo-title">Hà Nội: Nghìn Năm Văn Hiến & 36 Phố Phường</h2>
-                <div class="combo-duration">🕒 3 Ngày 2 Đêm</div>
+                <h2 class="combo-title">河內：千年文藝古城與三十六古街巡禮</h2>
+                <div class="combo-duration">🕒 3 天 2 夜</div>
                 <ul class="combo-features">
-                    <li>Khách sạn Boutique cổ điển ngay trung tâm phố cổ</li>
-                    <li>Vé xe buýt 2 tầng City Tour quanh Hà Nội</li>
-                    <li>Thưởng thức đặc sản Phở Thìn & Cà phê trứng</li>
+                    <li>入住位於老城區中心的經典精品酒店</li>
+                    <li>贈送雙層觀光巴士 City Tour 城市體驗券</li>
+                    <li>品嚐正宗 Thìn 牛肉河粉與特色雞蛋咖啡</li>
                 </ul>
                 <div class="combo-footer">
                     <div class="price-container"><span class="price-old">3.500.000đ</span><span class="price-new">2.900.000đ</span></div>
                     <div class="action-btns">
-                        <button class="btn-booking" onclick="addToCart('Hà Nội: Nghìn Năm Văn Hiến & 36 Phố Phường', 2900000)">Đặt Ngay</button>
-                        <button class="btn-detail" onclick="openDetail('hanoi')">Chi Tiết</button>
+                        <button class="btn-booking" onclick="addToCart('河內：千年文藝古城與三十六古街巡禮', 2900000)">立即預訂</button>
+                        <button class="btn-detail" onclick="openDetail('hanoi')">詳細資料</button>
                     </div>
                 </div>
             </div>
@@ -325,20 +325,20 @@
 
         <!-- 4. Hội An -->
         <div class="combo-card" data-region="central" data-price="4800000">
-            <div class="combo-image" style="background-image: url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=600&q=80')"><span class="badge blue">Di Sản Hoài Cổ</span></div>
+            <div class="combo-image" style="background-image: url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=600&q=80')"><span class="badge blue">文化遺產</span></div>
             <div class="combo-content">
-                <h2 class="combo-title">Hội An: Phố Cổ Hoa Đăng & Ký Ức Đêm Thu Bồn</h2>
-                <div class="combo-duration">🕒 3 Ngày 2 Đêm</div>
+                <h2 class="combo-title">會安：古鎮漫夜燈船與秋盆河記憶</h2>
+                <div class="combo-duration">🕒 3 天 2 夜</div>
                 <ul class="combo-features">
-                    <li>Resort 4 sao có hồ bơi lớn sát phố cổ</li>
-                    <li>Vé xem show diễn thực cảnh "Ký Ức Hội An" hạng High</li>
-                    <li>Trải nghiệm chèo thuyền thúng rừng dừa Bảy Mẫu</li>
+                    <li>入住鄰近古鎮的四星級精選度假村（含大型泳池）</li>
+                    <li>包含越南最大實景秀《會安記憶》High 區門票</li>
+                    <li>體驗七畝椰子林竹籃船（簸箕船）趣味搖擺</li>
                 </ul>
                 <div class="combo-footer">
                     <div class="price-container"><span class="price-old">5.800.000đ</span><span class="price-new">4.800.000đ</span></div>
                     <div class="action-btns">
-                        <button class="btn-booking" onclick="addToCart('Hội An: Phố Cổ Hoa Đăng & Ký Ức Đêm Thu Bồn', 4800000)">Đặt Ngay</button>
-                        <button class="btn-detail" onclick="openDetail('hoian')">Chi Tiết</button>
+                        <button class="btn-booking" onclick="addToCart('會安：古鎮漫夜燈船與秋盆河記憶', 4800000)">立即預訂</button>
+                        <button class="btn-detail" onclick="openDetail('hoian')">詳細資料</button>
                     </div>
                 </div>
             </div>
@@ -348,18 +348,18 @@
         <div class="combo-card" data-region="central" data-price="3400000">
             <div class="combo-image" style="background-image: url('https://images.unsplash.com/photo-1599708153386-62bf3f035e7b?auto=format&fit=crop&w=600&q=80')"></div>
             <div class="combo-content">
-                <h2 class="combo-title">Cố Đô Huế: Vẻ Đẹp Cổ Kính Thần Kinh</h2>
-                <div class="combo-duration">🕒 3 Ngày 2 Đêm</div>
+                <h2 class="combo-title">順化古都：皇城古韻與宮廷文化遺風</h2>
+                <div class="combo-duration">🕒 3 天 2 夜</div>
                 <ul class="combo-features">
-                    <li>Khách sạn 4 sao view sông Hương thơ mộng</li>
-                    <li>Tour Đại Nội, Lăng Tự Đức, Khải Định</li>
-                    <li>Nghe Ca Huế trên thuyền rồng lung linh về đêm</li>
+                    <li>入住面朝浪漫香江的精選四星級酒店</li>
+                    <li>暢遊順化皇城、嗣德皇陵及啟定皇陵</li>
+                    <li>夜間搭乘仿古龍船欣賞傳統順化民歌夜總會</li>
                 </ul>
                 <div class="combo-footer">
                     <div class="price-container"><span class="price-old">4.100.000đ</span><span class="price-new">3.400.000đ</span></div>
                     <div class="action-btns">
-                        <button class="btn-booking" onclick="addToCart('Cố Đô Huế: Vẻ Đẹp Cổ Kính Thần Kinh', 3400000)">Đặt Ngay</button>
-                        <button class="btn-detail" onclick="openDetail('hue')">Chi Tiết</button>
+                        <button class="btn-booking" onclick="addToCart('順化古都：皇城古韻與宮廷文化遺風', 3400000)">立即預訂</button>
+                        <button class="btn-detail" onclick="openDetail('hue')">詳細資料</button>
                     </div>
                 </div>
             </div>
@@ -369,18 +369,18 @@
         <div class="combo-card" data-region="central" data-price="4500000">
             <div class="combo-image" style="background-image: url('https://images.unsplash.com/photo-1542856391-010fb87dcfed?auto=format&fit=crop&w=600&q=80')"></div>
             <div class="combo-content">
-                <h2 class="combo-title">Nha Trang: Biển Xanh Vẫy Gọi & Tour 3 Đảo VIP</h2>
-                <div class="combo-duration">🕒 4 Ngày 3 Đêm</div>
+                <h2 class="combo-title">芽莊：蔚藍海岸假期與 VIP 精選三島遊</h2>
+                <div class="combo-duration">🕒 4 天 3 夜</div>
                 <ul class="combo-features">
-                    <li>Khách sạn 5 sao mặt đường Trần Phú biển</li>
-                    <li>Cano cao tốc tham quan Hòn Mun, Hòn Tằm</li>
-                    <li>Trọn gói vé vui chơi giải trí VinWonders</li>
+                    <li>入住陳富沿海大道首排五星級海景酒店</li>
+                    <li>搭乘豪華快艇暢遊黑島、蠶島等純淨島嶼</li>
+                    <li>包含 VinWonders 珍珠島主題樂園全日通票</li>
                 </ul>
                 <div class="combo-footer">
                     <div class="price-container"><span class="price-old">5.500.000đ</span><span class="price-new">4.500.000đ</span></div>
                     <div class="action-btns">
-                        <button class="btn-booking" onclick="addToCart('Nha Trang: Biển Xanh Vẫy Gọi & Tour 3 Đảo VIP', 4500000)">Đặt Ngay</button>
-                        <button class="btn-detail" onclick="openDetail('nhatrang')">Chi Tiết</button>
+                        <button class="btn-booking" onclick="addToCart('芽莊：蔚藍海岸假期與 VIP 精選三島遊', 4500000)">立即預訂</button>
+                        <button class="btn-detail" onclick="openDetail('nhatrang')">詳細資料</button>
                     </div>
                 </div>
             </div>
@@ -388,20 +388,20 @@
 
         <!-- 7. Phú Quốc -->
         <div class="combo-card" data-region="south" data-price="6500000">
-            <div class="combo-image" style="background-image: url('https://images.unsplash.com/photo-1583212292454-1fe6229603b7?auto=format&fit=crop&w=600&q=80')"><span class="badge">Thiên Đường Biển</span></div>
+            <div class="combo-image" style="background-image: url('https://images.unsplash.com/photo-1583212292454-1fe6229603b7?auto=format&fit=crop&w=600&q=80')"><span class="badge">海島天堂</span></div>
             <div class="combo-content">
-                <h2 class="combo-title">Đảo Ngọc Phú Quốc: Địa Trung Hải Thu Nhỏ</h2>
-                <div class="combo-duration">🕒 3 Ngày 2 Đêm</div>
+                <h2 class="combo-title">富國島：夢幻珍珠島與異國風情地中海小鎮</h2>
+                <div class="combo-duration">🕒 3 天 2 夜</div>
                 <ul class="combo-features">
-                    <li>Resort 5 sao Sunset Sanato có bãi biển riêng</li>
-                    <li>Vé cáp treo Hòn Thơm dài nhất thế giới</li>
-                    <li>Khám phá Grand World - Thành phố không ngủ</li>
+                    <li>入住 Sunset Sanato 五星級度假村，享私人沙灘</li>
+                    <li>搭乘世界最長跨海纜車直達香島</li>
+                    <li>探索不夜城 Grand World 威尼斯水上小鎮</li>
                 </ul>
                 <div class="combo-footer">
                     <div class="price-container"><span class="price-old">7.800.000đ</span><span class="price-new">6.500.000đ</span></div>
                     <div class="action-btns">
-                        <button class="btn-booking" onclick="addToCart('Đảo Ngọc Phú Quốc: Địa Trung Hải Thu Nhỏ', 6500000)">Đặt Ngay</button>
-                        <button class="btn-detail" onclick="openDetail('phuquoc')">Chi Tiết</button>
+                        <button class="btn-booking" onclick="addToCart('富國島：夢幻珍珠島與異國風情地中海小鎮', 6500000)">立即預訂</button>
+                        <button class="btn-detail" onclick="openDetail('phuquoc')">詳細資料</button>
                     </div>
                 </div>
             </div>
@@ -411,18 +411,18 @@
         <div class="combo-card" data-region="south" data-price="3200000">
             <div class="combo-image" style="background-image: url('https://images.unsplash.com/photo-1543968332-f99478b1ebdc?auto=format&fit=crop&w=600&q=80')"></div>
             <div class="combo-content">
-                <h2 class="combo-title">Sài Gòn: Hòn Ngọc Viễn Đông & Nhịp Sống Hiện Đại</h2>
-                <div class="combo-duration">🕒 3 Ngày 2 Đêm</div>
+                <h2 class="combo-title">西貢：東方明珠魅力與現代都市夜生活</h2>
+                <div class="combo-duration">🕒 3 天 2 夜</div>
                 <ul class="combo-features">
-                    <li>Khách sạn 4 sao ngay Quận 1 sầm uất</li>
-                    <li>Ăn tối sang trọng trên du thuyền Sông Sài Gòn</li>
-                    <li>Vé Landmark 81 Skyview ngắm toàn cảnh thành phố</li>
+                    <li>入住鬧區第一郡四星級優質商務酒店</li>
+                    <li>在西貢河豪華遊船上享用浪漫尊榮晚餐</li>
+                    <li>包含 Landmark 81 觀景台門票俯瞰全城</li>
                 </ul>
                 <div class="combo-footer">
                     <div class="price-container"><span class="price-old">3.900.000đ</span><span class="price-new">3.200.000đ</span></div>
                     <div class="action-btns">
-                        <button class="btn-booking" onclick="addToCart('Sài Gòn: Hòn Ngọc Viễn Đông & Nhịp Sống Hiện Đại', 3200000)">Đặt Ngay</button>
-                        <button class="btn-detail" onclick="openDetail('saigon')">Chi Tiết</button>
+                        <button class="btn-booking" onclick="addToCart('西貢：東方明珠魅力與現代都市夜生活', 3200000)">立即預訂</button>
+                        <button class="btn-detail" onclick="openDetail('saigon')">詳細資料</button>
                     </div>
                 </div>
             </div>
@@ -432,150 +432,150 @@
         <div class="combo-card" data-region="south" data-price="1900000">
             <div class="combo-image" style="background-image: url('https://images.unsplash.com/photo-1596422846543-75c6fc1f7f67?auto=format&fit=crop&w=600&q=80')"></div>
             <div class="combo-content">
-                <h2 class="combo-title">Vũng Tàu: Sóng Biển Rầm Rộ & Kỳ Nghỉ Cuối Tuần</h2>
-                <div class="combo-duration">🕒 2 Ngày 1 Đêm</div>
+                <h2 class="combo-title">頭頓：陽光海浪與輕旅行週末度假趣</h2>
+                <div class="combo-duration">🕒 2 天 1 夜</div>
                 <ul class="combo-features">
-                    <li>Xe limousine đưa đón tận nơi từ TP.HCM</li>
-                    <li>Khách sạn 3 sao sát biển bãi sau</li>
-                    <li>Check-in ngọn hải đăng cổ kính và Tượng Chúa Kito</li>
+                    <li>胡志明市區出發豪華 Limousine 商務車接送</li>
+                    <li>入住後灘（Back Beach）沿海三星級精選酒店</li>
+                    <li>造訪百年頭頓燈塔與巨大耶穌像熱門地標</li>
                 </ul>
                 <div class="combo-footer">
                     <div class="price-container"><span class="price-old">2.400.000đ</span><span class="price-new">1.900.000đ</span></div>
                     <div class="action-btns">
-                        <button class="btn-booking" onclick="addToCart('Vũng Tàu: Sóng Biển Rầm Rộ & Kỳ Nghỉ Cuối Tuần', 1900000)">Đặt Ngay</button>
-                        <button class="btn-detail" onclick="openDetail('vungtau')">Chi Tiết</button>
+                        <button class="btn-booking" onclick="addToCart('頭頓：陽光海浪與輕旅行週末度假趣', 1900000)">立即預訂</button>
+                        <button class="btn-detail" onclick="openDetail('vungtau')">詳細資料</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- 10. Lý Sơn (MỚI THÊM) -->
+        <!-- 10. Lý Sơn -->
         <div class="combo-card" data-region="central" data-price="3900000">
-            <div class="combo-image" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80')"><span class="badge blue">Đảo Biển hoang sơ</span></div>
+            <div class="combo-image" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80')"><span class="badge blue">純淨海島</span></div>
             <div class="combo-content">
-                <h2 class="combo-title">Đảo Lý Sơn: Vương Quốc Tỏi & Tuyệt Tác Núi Lửa Cổ</h2>
-                <div class="combo-duration">🕒 3 Ngày 2 Đêm</div>
+                <h2 class="combo-title">李山島：大蒜王國與千年古火山地質奇景</h2>
+                <div class="combo-duration">🕒 3 天 2 夜</div>
                 <ul class="combo-features">
-                    <li>Vé tàu cao tốc khứ hồi Sa Kỳ - Lý Sơn</li>
-                    <li>Khách sạn sát biển, ngắm hoàng hôn đỉnh Thới Lới</li>
-                    <li>Khám phá Đảo Bé - Maldives thu nhỏ của Việt Nam</li>
+                    <li>包含沙奇港（Sa Kỳ）至李山島來回高速客輪船票</li>
+                    <li>入住海景酒店，在泰來山頂（Thới Lới）靜賞日落</li>
+                    <li>探索「小島」——被譽為越南版馬爾地夫的祕境</li>
                 </ul>
                 <div class="combo-footer">
                     <div class="price-container"><span class="price-old">4.600.000đ</span><span class="price-new">3.900.000đ</span></div>
                     <div class="action-btns">
-                        <button class="btn-booking" onclick="addToCart('Đảo Lý Sơn: Vương Quốc Tỏi & Tuyệt Tác Núi Lửa Cổ', 3900000)">Đặt Ngay</button>
-                        <button class="btn-detail" onclick="openDetail('lyson')">Chi Tiết</button>
+                        <button class="btn-booking" onclick="addToCart('李山島：大蒜王國與千年古火山地質奇景', 3900000)">立即預訂</button>
+                        <button class="btn-detail" onclick="openDetail('lyson')">詳細資料</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- 11. Quy Nhơn (MỚI THÊM) -->
+        <!-- 11. Quy Nhơn -->
         <div class="combo-card" data-region="central" data-price="4300000">
             <div class="combo-image" style="background-image: url('https://images.unsplash.com/photo-1538964173425-93884d739596?auto=format&fit=crop&w=600&q=80')"></div>
             <div class="combo-content">
-                <h2 class="combo-title">Quy Nhơn: Thiên Đường Kỳ Co - Eo Gió Vĩ Đại</h2>
-                <div class="combo-duration">🕒 4 Ngày 3 Đêm</div>
+                <h2 class="combo-title">歸仁：蔚藍奇柯海灘與風之角絕美海岸</h2>
+                <div class="combo-duration">🕒 4 天 3 夜</div>
                 <ul class="combo-features">
-                    <li>Khách sạn 4 sao view trọn biển trung tâm</li>
-                    <li>Cano đi đảo Kỳ Co, lặn ngắm san hô Bãi Dứa</li>
-                    <li>Check-in Eo Gió - Nơi ngắm hoàng hôn đẹp nhất Việt Nam</li>
+                    <li>入住市中心四星級酒店，盡享海景視野</li>
+                    <li>搭乘快艇前往 Kỳ Co 奇柯海灘，並在鳳梨灣浮潛</li>
+                    <li>打卡 Eo Gió（風之角）——越南最美日落觀賞地</li>
                 </ul>
                 <div class="combo-footer">
                     <div class="price-container"><span class="price-old">5.200.000đ</span><span class="price-new">4.300.000đ</span></div>
                     <div class="action-btns">
-                        <button class="btn-booking" onclick="addToCart('Quy Nhơn: Thiên Đường Kỳ Co - Eo Gió Vĩ Đại', 4300000)">Đặt Ngay</button>
-                        <button class="btn-detail" onclick="openDetail('quynhon')">Chi Tiết</button>
+                        <button class="btn-booking" onclick="addToCart('歸仁：蔚藍奇柯海灘與風之角絕美海岸', 4300000)">立即預訂</button>
+                        <button class="btn-detail" onclick="openDetail('quynhon')">詳細資料</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- 12. Phú Yên (MỚI THÊM) -->
+        <!-- 12. Phú Yên -->
         <div class="combo-card" data-region="central" data-price="3500000">
             <div class="combo-image" style="background-image: url('https://images.unsplash.com/photo-1506929562872-bb421503ef21?auto=format&fit=crop&w=600&q=80')"></div>
             <div class="combo-content">
-                <h2 class="combo-title">Phú Yên: Hoa Vàng Cỏ Xanh & Gành Đá Đĩa</h2>
-                <div class="combo-duration">🕒 3 Ngày 2 Đêm</div>
+                <h2 class="combo-title">富安：綠草黃花初戀地與神祕巨石陣</h2>
+                <div class="combo-duration">🕒 3 天 2 夜</div>
                 <ul class="combo-features">
-                    <li>Xe đời mới đón tiễn sân bay Tuy Hòa</li>
-                    <li>Tham quan Tháp Nghinh Phong, Bãi Xép kỳ vĩ</li>
-                    <li>Khám phá cấu trúc đá độc bản tại danh thắng Gành Đá Đĩa</li>
+                    <li>提供綏和（Tuy Hòa）機場至酒店新車接送</li>
+                    <li>暢遊迎風塔（Nghinh Phong）、Xép 海灘等電影取景地</li>
+                    <li>探索全越獨一無二的地質奇觀——澎湖同款石柱「石碟江」</li>
                 </ul>
                 <div class="combo-footer">
                     <div class="price-container"><span class="price-old">4.200.000đ</span><span class="price-new">3.500.000đ</span></div>
                     <div class="action-btns">
-                        <button class="btn-booking" onclick="addToCart('Phú Yên: Hoa Vàng Cỏ Xanh & Gành Đá Đĩa', 3500000)">Đặt Ngay</button>
-                        <button class="btn-detail" onclick="openDetail('phuyen')">Chi Tiết</button>
+                        <button class="btn-booking" onclick="addToCart('富安：綠草黃花初戀地與神祕巨石陣', 3500000)">立即預訂</button>
+                        <button class="btn-detail" onclick="openDetail('phuyen')">詳細資料</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- 13. Mũi Né (MỚI THÊM) -->
+        <!-- 13. Mũi Né -->
         <div class="combo-card" data-region="south" data-price="2750000">
             <div class="combo-image" style="background-image: url('https://images.unsplash.com/photo-1570737385202-bca4f6f8740c?auto=format&fit=crop&w=600&q=80')"></div>
             <div class="combo-content">
-                <h2 class="combo-title">Mũi Né: Phan Thiết Thiên Đường Cát Trắng</h2>
-                <div class="combo-duration">🕒 2 Ngày 1 Đêm</div>
+                <h2 class="combo-title">美奈：潘切紅沙丘與白沙細浪異國風情</h2>
+                <div class="combo-duration">🕒 2 天 1 夜</div>
                 <ul class="combo-features">
-                    <li>Xe giường nằm cao cấp khứ hồi từ Sài Gòn</li>
-                    <li>Nghỉ dưỡng tại Resort sát biển view hoàng hôn</li>
-                    <li>Tour xe Jeep địa hình khám phá Đồi Cát Trắng - Bàu Trắng</li>
+                    <li>包含胡志明市出發的高級臥鋪巴士來回車票</li>
+                    <li>入住沿海度假村，靜享椰林海浪與晚霞</li>
+                    <li>安排美式吉普車飆沙體驗，暢遊白沙丘與仙女溪</li>
                 </ul>
                 <div class="combo-footer">
                     <div class="price-container"><span class="price-old">3.400.000đ</span><span class="price-new">2.750.000đ</span></div>
                     <div class="action-btns">
-                        <button class="btn-booking" onclick="addToCart('Mũi Né: Phan Thiết Thiên Đường Cát Trắng', 2750000)">Đặt Ngay</button>
-                        <button class="btn-detail" onclick="openDetail('muine')">Chi Tiết</button>
+                        <button class="btn-booking" onclick="addToCart('美奈：潘切紅沙丘與白沙細浪異國風情', 2750000)">立即預訂</button>
+                        <button class="btn-detail" onclick="openDetail('muine')">詳細資料</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- 14. Đà Lạt (MỚI THÊM) -->
+        <!-- 14. Đà Lạt -->
         <div class="combo-card" data-region="central" data-price="3600000">
-            <div class="combo-image" style="background-image: url('https://images.unsplash.com/photo-1589146522513-bd9b6e6c7dc8?auto=format&fit=crop&w=600&q=80')"><span class="badge green">Lãng Mạn</span></div>
+            <div class="combo-image" style="background-image: url('https://images.unsplash.com/photo-1589146522513-bd9b6e6c7dc8?auto=format&fit=crop&w=600&q=80')"><span class="badge green">浪漫山城</span></div>
             <div class="combo-content">
-                <h2 class="combo-title">Đà Lạt: Thành Phố Ngàn Hoa & Săn Mây Đại Ngàn</h2>
-                <div class="combo-duration">🕒 3 Ngày 2 Đêm</div>
+                <h2 class="combo-title">大勒：花之都迷霧森林與雲海日出仙境</h2>
+                <div class="combo-duration">🕒 3 天 2 夜</div>
                 <ul class="combo-features">
-                    <li>Xe giường nằm phòng đôi cao cấp khứ hồi</li>
-                    <li>Hotel phong cách châu Âu ngay Hồ Xuân Hương</li>
-                    <li>Tour săn mây sớm, check-in Langbiang, Thác Datanla</li>
+                    <li>提供雙人商務獨立車廂臥鋪巴士，隱私舒適</li>
+                    <li>入住鄰近春香湖的經典歐風設計旅宿</li>
+                    <li>特別安排清晨專車追雲海、登浪平山、玩達坦拉瀑布過山車</li>
                 </ul>
                 <div class="combo-footer">
                     <div class="price-container"><span class="price-old">4.300.000đ</span><span class="price-new">3.600.000đ</span></div>
                     <div class="action-btns">
-                        <button class="btn-booking" onclick="addToCart('Đà Lạt: Thành Phố Ngàn Hoa & Săn Mây Đại Ngàn', 3600000)">Đặt Ngay</button>
-                        <button class="btn-detail" onclick="openDetail('dalat')">Chi Tiết</button>
+                        <button class="btn-booking" onclick="addToCart('大勒：花之都迷霧森林與雲海日出仙境', 3600000)">立即預訂</button>
+                        <button class="btn-detail" onclick="openDetail('dalat')">詳細資料</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- 15. Cần Thơ (MỚI THÊM) -->
+        <!-- 15. Cần Thơ -->
         <div class="combo-card" data-region="south" data-price="2450000">
-            <div class="combo-image" style="background-image: url('https://images.unsplash.com/photo-1549693578-d683be217e58?auto=format&fit=crop&w=600&q=80')"><span class="badge green">Miền Tây</span></div>
+            <div class="combo-image" style="background-image: url('https://images.unsplash.com/photo-1549693578-d683be217e58?auto=format&fit=crop&w=600&q=80')"><span class="badge green">水鄉澤國</span></div>
             <div class="combo-content">
-                <h2 class="combo-title">Cần Thơ: Sông Nước Miền Tây & Chợ Nổi Cái Răng</h2>
-                <div class="combo-duration">🕒 2 Ngày 1 Đêm</div>
+                <h2 class="combo-title">芹苴：湄公河水鄉風情與丐皮（Cái Răng）水上市場</h2>
+                <div class="combo-duration">🕒 2 天 1 夜</div>
                 <ul class="combo-features">
-                    <li>Xe khách giường nằm chất lượng cao suốt hành trình</li>
-                    <li>Khách sạn 4 sao ngay bến Ninh Kiều</li>
-                    <li>Thuyền tham quan chợ nổi lúc bình minh & vườn trái cây</li>
+                    <li>全程搭乘高優質空調長途巴士，隨車配備導乘</li>
+                    <li>入住寧橋碼頭（Bến Ninh Kiều）旁精選四星級飯店</li>
+                    <li>清晨乘觀光船體驗水上市場晨光交易、現煮河粉與果園暢吃</li>
                 </ul>
                 <div class="combo-footer">
                     <div class="price-container"><span class="price-old">3.100.000đ</span><span class="price-new">2.450.000đ</span></div>
                     <div class="action-btns">
-                        <button class="btn-booking" onclick="addToCart('Cần Thơ: Sông Nước Miền Tây & Chợ Nổi Cái Răng', 2450000)">Đặt Ngay</button>
-                        <button class="btn-detail" onclick="openDetail('cantho')">Chi Tiết</button>
+                        <button class="btn-booking" onclick="addToCart('芹苴：湄公河水鄉風情與丐皮（Cái Răng）水上市場', 2450000)">立即預訂</button>
+                        <button class="btn-detail" onclick="openDetail('cantho')">詳細資料</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="no-result" id="noResult">Không tìm thấy tour phù hợp với điều kiện của bạn.</div>
+        <div class="no-result" id="noResult">找不到符合您搜尋條件的行程。</div>
     </div>
 
     <!-- Modal 1: Tour Detail -->
@@ -583,11 +583,11 @@
         <div class="modal-content">
             <span class="close-btn" id="closeDetailBtn">&times;</span>
             <div class="detail-img" id="modalImg"></div>
-            <h3 class="detail-title" id="modalTitle">Tên Điểm Đến</h3>
-            <p class="detail-desc" id="modalDesc">Mô tả chi tiết...</p>
+            <h3 class="detail-title" id="modalTitle">景點名稱</h3>
+            <p class="detail-desc" id="modalDesc">詳細描述...</p>
             
             <div class="guide-section">
-                <h4>🏨 Hướng Dẫn Đặt Phòng & Vận Hành Tour</h4>
+                <h4>🏨 訂房須知與行程安排指引</h4>
                 <ul class="guide-list" id="modalGuide">
                     <!-- Dynamic Steps via JS -->
                 </ul>
@@ -599,12 +599,12 @@
     <div class="modal" id="cartModal">
         <div class="modal-content">
             <span class="close-btn" id="closeCartBtn">&times;</span>
-            <h3 class="cart-title">Danh Sách Đặt Tour Của Bạn</h3>
+            <h3 class="cart-title">您的預訂清單</h3>
             <div id="cartItemsContainer">
                 <!-- Dynamic Cart Items via JS -->
             </div>
-            <div class="cart-summary">Tổng cộng: <span id="cartTotalPrice">0đ</span></div>
-            <button class="btn-checkout" onclick="alert('Đơn hàng đã được gửi! Nhân viên CSKH của chúng tôi sẽ liên hệ với bạn trong vòng 24 giờ để xác nhận loại phòng và vé xe.')">Xác Nhận Gửi Đơn Đặt Tour</button>
+            <div class="cart-summary">總計金額：<span id="cartTotalPrice">0đ</span></div>
+            <button class="btn-checkout" onclick="alert('預訂資料已成功送出！我們的客服專員將於 24 小時內與您聯繫，協助確認房型細節與交通班次安排。')">確認送出預訂單</button>
         </div>
     </div>
 
@@ -613,94 +613,94 @@
         // --- Database details ---
         const detailData = {
             taybac: {
-                title: "Tây Bắc: Hành Trình Đánh Thức Sapa",
+                title: "西北山城：喚醒沙壩深度之旅",
                 img: "https://images.unsplash.com/photo-1508873696983-2df5199e4009?auto=format&fit=crop&w=800&q=80",
-                desc: "Sapa nằm ở vùng núi Tây Bắc, nổi tiếng với những thửa ruộng bậc thang vàng óng mùa lúa chín, đỉnh Fansipan hùng vĩ quanh năm mây phủ và nền văn hóa bản địa độc đáo của người H'Mông, Dao đỏ.",
-                guide: ["Cung cấp phòng khách sạn view núi cao cấp.", "Giá vé đã bao gồm vé cáp treo khứ hồi Fansipan.", "Nên mang theo áo ấm do nhiệt độ vùng núi xuống thấp vào ban đêm."]
+                desc: "沙壩位於越南西北部山區，以秋季金黃色的層疊梯田、常年雲霧繚繞的番西邦峰，以及黑苗族、紅瑤族等少數民族獨特的在地文化與熱情而聞名遐邇。",
+                guide: ["全面升級提供高山景觀客房。", "團費已包含番西邦傳奇來回雙程纜車票。", "山區夜間氣溫較低，建議旅客隨身攜帶保暖衣物。"]
             },
             halong: {
-                title: "Vịnh Hạ Long: Du Thuyền 5 Sao Khám Phá Kỳ Quan",
+                title: "下龍灣：五星級奢華遊船探索世界奇景",
                 img: "https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=800&q=80",
-                desc: "Kỳ quan thiên nhiên thế giới Vịnh Hạ Long sở hữu hàng ngàn đảo đá vôi nhô lên từ làn nước xanh ngọc bích. Tour du thuyền 5 sao sẽ đưa bạn len lỏi vào các hang động huyền bí và tận hưởng dịch vụ thượng lưu.",
-                guide: ["Nghỉ đêm trên tàu hạng sang (Phòng ban công riêng).", "Bao gồm dịch vụ chèo thuyền Kayak miễn phí tại Hang Luồn.", "Vui lòng cung cấp thông tin CCCD/Hộ chiếu trước 3 ngày khởi hành để làm thủ tục cảng vụ."]
+                desc: "世界自然遺產下龍灣擁有數千座突兀於碧綠海水中的石灰岩島嶼。搭乘五星級豪華遊船，您將能穿梭於神祕穿洞之中，享受至高無上的尊榮服務。",
+                guide: ["入住頂級海上移動飯店（每間皆配備私人景觀陽台）。", "免費提供蘭夏灣高檔獨木舟（Kayak）划行體驗。", "請於出發前 3 天提供身分證件/護照影本，以便辦理港務局登船手續。"]
             },
             hanoi: {
-                title: "Hà Nội: Nghìn Năm Văn Hiến & 36 Phố Phường",
+                title: "河內：千年文藝古城與三十六古街巡禮",
                 img: "https://images.unsplash.com/photo-1509060464153-44667396260f?auto=format&fit=crop&w=800&q=80",
-                desc: "Thủ đô Hà Nội trầm mặc, rêu phong với 36 phố phường nhộn nhịp, Tháp Rùa Hồ Gươm cổ kính và nét văn hóa ẩm thực đường phố được vinh danh trên bản đồ thế giới.",
-                guide: ["Khách sạn nằm tại trung tâm phố cổ thuận tiện đi lại.", "Tặng voucher xe buýt 2 tầng mui trần ngắm phố phường.", "Tour khởi hành linh hoạt mỗi ngày."]
+                desc: "越南首都河內帶著迷人的歲月沉澱感，這裡有熱鬧非凡的 36 條古街老巷、古樸的還劍湖龜塔，以及曾榮登全球美食地圖的街頭咖啡與越式河粉文化。",
+                guide: ["飯店精選老城區核心地帶，步行即可輕鬆逛街。", "獨家加碼贈送雙層露天觀光巴士全景市區遊覽券。", "天天出團，行程彈性高可隨時出發。"]
             },
             hoian: {
-                title: "Hội An: Phố Cổ Hoa Đăng & Ký Ức Đêm Thu Bồn",
+                title: "會安：古鎮漫夜燈船與秋盆河記憶",
                 img: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80",
-                desc: "Hội An mang vẻ đẹp thời gian tĩnh lặng với những dãy nhà vàng cổ, đèn lồng rực rỡ soi bóng xuống dòng sông Thu Bồn lãng mạn.",
-                guide: ["Đã gồm vé xem show biểu diễn thực cảnh lớn nhất Việt Nam Ký Ức Hội An.", "Khách sạn có buffet sáng phong phú.", "Miễn phí xe đạp tại resort để dạo quanh phố cổ."]
+                desc: "會安展現了靜謐的時間之美，古老的水黃色建築群與色彩斑斕的手工燈籠交織，倒映在波光粼粼的秋盆河上，浪漫至極。",
+                guide: ["費用已內含越南頂級戶外大型實景秀《會安記憶》門票（High 區）。", "度假村享用高規格精緻自助早餐。", "免費提供度假村自行車，供您自在騎行穿梭會安巷弄。"]
             },
             hue: {
-                title: "Cố Đô Huế: Vẻ Đẹp Cổ Kính Thần Kinh",
+                title: "順化古都：皇城古韻與宮廷文化遺風",
                 img: "https://images.unsplash.com/photo-1599708153386-62bf3f035e7b?auto=format&fit=crop&w=800&q=80",
-                desc: "Mảnh đất thần kinh cố đô Huế lưu giữ các di sản cung đình triều Nguyễn, lăng tẩm uy nghiêm và dòng sông Hương thơ mộng gắn liền với điệu hò xứ Huế.",
-                guide: ["Hỗ trợ thuê cổ phục Áo Dài chụp ảnh tại Đại Nội giá ưu đãi.", "Thuyền rồng nghe ca Huế được đặt chỗ trước, ghế ngồi VIP.", "Phòng khách sạn nâng cấp miễn phí nếu còn trống."]
+                desc: "作為阮朝十三代皇室的帝王之都，順化完整保留了宮殿古蹟、莊嚴的皇家陵寢，搭配緩緩流經的香江，編織出濃濃的詩意古風。",
+                guide: ["提供精美奧黛（Ao Dai）宮廷服飾租借與皇城內拍照指導專屬優惠。", "香江龍船民歌演出皆為 VIP 保留座，尊享極佳觀賞視野。", "若房型有空缺，飯店將提供免費房型升等服務。"]
             },
             nhatrang: {
-                title: "Nha Trang: Biển Xanh Vẫy Gọi & Tour 3 Đảo VIP",
+                title: "芽莊：蔚藍海岸假期與 VIP 精選三島遊",
                 img: "https://images.unsplash.com/photo-1542856391-010fb87dcfed?auto=format&fit=crop&w=800&q=80",
-                desc: "Thành phố biển Nha Trang sở hữu vịnh biển đẹp top thế giới với dải cát trắng mịn, công viên giải trí đỉnh cao VinWonders và những hòn đảo san hô hoang sơ.",
-                guide: ["Tour đảo di chuyển bằng Cano cao tốc đời mới chống lật.", "Bao gồm vé tắm bùn khoáng nóng thư giãn cơ thể.", "Vui lòng mang theo kem chống nắng vì các hoạt động ngoài trời trên biển khá nhiều."]
+                desc: "沿海城市芽莊名列全球最美海灣之一，綿延不絕的白沙灘、國際級珍珠島樂園以及海水能見度極高的浮潛聖地，是玩水愛好者的天堂。",
+                guide: ["海島接駁全程採用新式安全快艇，平穩舒適防浪衝擊。", "特別包含天然溫泉泥漿浴尊榮體驗，消除旅途疲勞。", "海洋活動豐富，提醒您備妥防曬用品及泳裝。"]
             },
             phuquoc: {
-                title: "Đảo Ngọc Phú Quốc: Địa Trung Hải Thu Nhỏ",
+                title: "富國島：夢幻珍珠島與異國風情地中海小鎮",
                 img: "https://images.unsplash.com/photo-1583212292454-1fe6229603b7?auto=format&fit=crop&w=800&q=80",
-                desc: "Đảo ngọc Phú Quốc cuốn hút với các tổ hợp nghỉ dưỡng đẳng cấp quốc tế, bãi Sao cát trắng như kem và thế giới giải trí Grand World hoạt động xuyên đêm.",
-                guide: ["Bao gồm xe đưa đón sân bay Phú Quốc theo lịch trình của khách.", "Vé cáp treo Hòn Thơm đã bao gồm vé vào cửa công viên nước Aquatopia.", "Nâng cấp lên phòng hướng biển chỉ từ 400.000đ/đêm."]
+                desc: "免簽海島天堂富國島，雲集了眾多世界級連鎖度假村，這裡有如白麵粉般細緻的星星沙灘，以及精彩熱鬧的大世界不夜城。",
+                guide: ["包含富國島國際機場至飯店的專車來回接送服務。", "香島跨海纜車門票已自動包含 Aquatopia 水上樂園入場券。", "每晚加價 400,000đ 起即可直升全海景客房。"]
             },
             saigon: {
-                title: "Sài Gòn: Hòn Ngọc Viễn Đông & Nhịp Sống Hiện Đại",
+                title: "西貢：東方明珠魅力與現代都市夜生活",
                 img: "https://images.unsplash.com/photo-1543968332-f99478b1ebdc?auto=format&fit=crop&w=800&q=80",
-                desc: "Thành phố Hồ Chí Minh năng động, không ngủ với những tòa nhà chọc trời, những công trình kiến trúc Pháp cổ kính xen lẫn các tụ điểm giải trí thời thượng.",
-                guide: ["Vị trí khách sạn ngay Quận 1, dễ dàng đi bộ ra Chợ Bến Thành, Phố đi bộ.", "Du thuyền sông Sài Gòn khởi hành lúc 19:00 hàng tối.", "Hỗ trợ đặt chỗ trước tại các nhà hàng, bar nổi tiếng."]
+                desc: "胡志明市（舊稱西貢）是一座充滿活力、徹夜不眠的都市。高聳入雲的摩天大樓與古典法式建築錯落有致，展現無與倫比的都會風情。",
+                guide: ["飯店精選第一郡正核心，漫步即可抵達濱城市場與咖啡公寓。", "西貢河豪華豪華郵輪晚餐於每晚 19:00 定時準時啟航。", "可免費代辦市區熱門高空酒吧或景觀餐廳的優先訂位。"]
             },
             vungtau: {
-                title: "Vũng Tàu: Sóng Biển Rầm Rộ & Kỳ Nghỉ Cuối Tuần",
+                title: "頭頓：陽光海浪與輕旅行週末度假趣",
                 img: "https://images.unsplash.com/photo-1596422846543-75c6fc1f7f67?auto=format&fit=crop&w=800&q=80",
-                desc: "Địa điểm xả stress cuối tuần lý tưởng nhất cạnh Sài Gòn với những con đường ven biển tuyệt đẹp, ngọn hải đăng lộng gió và hải sản tươi ngon giá rẻ.",
-                guide: ["Khách sạn nằm tại Bãi Sau - khu vực tắm biển đẹp nhất Vũng Tàu.", "Hỗ trợ đặt tiệc hải sản tươi sống tại nhà hàng uy tín.", "Khởi hành hàng ngày từ TP.HCM bằng dòng xe Limousine VIP."]
+                desc: "這是距離西貢最近的度假避暑勝地。沿海公路視野寬闊，山上微風徐徐，還有豐盛且價格親民的當季現撈海鮮饗宴。",
+                guide: ["飯店坐落於後灘（Back Beach）區域，下樓即是精華玩水沙灘。", "提供在地知名海鮮餐廳的獨家專屬折扣團體套餐代訂。", "由胡志明市出發，每日多班豪華豪華 Limousine 商務專車往返。"]
             },
             lyson: {
-                title: "Đảo Lý Sơn: Vương Quốc Tỏi & Tuyệt Tác Núi Lửa Cổ",
+                title: "李山島：大蒜王國與千年古火山地質奇景",
                 img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
-                desc: "Hòn đảo núi lửa cổ Lý Sơn sở hữu làn nước trong vắt như ngọc, những rặng đá trầm tích nghìn năm tuyệt đẹp và văn hóa gắn liền với đội hùng binh Hoàng Sa.",
-                guide: ["Đã bao gồm toàn bộ vé tàu cao tốc khứ hồi từ cảng Sa Kỳ.", "Hỗ trợ cano di chuyển sang tham quan Đảo Bé trong ngày.", "Nên đặt tour sớm vào mùa hè để đảm bảo giữ được vé tàu giờ đẹp."]
+                desc: "李山島由古老火山噴發堆積而成，島上擁有如玻璃般透明的澄淨海水，驚人的千年火山玄武岩壁，以及沉澱著黃沙守衛歷史的深厚底蘊。",
+                guide: ["團費已全額包含沙奇港往返李山島的雙向高速快輪船票。", "特別安排一日登陸「小島」行程，船資已全包無需自費。", "夏季為客運旺季，建議提早鎖定此行程以確保保留精華船班。"]
             },
             quynhon: {
-                title: "Quy Nhơn: Thiên Đường Kỳ Co - Eo Gió Vĩ Đại",
+                title: "歸仁：蔚藍奇柯海灘與風之角絕美海岸",
                 img: "https://images.unsplash.com/photo-1538964173425-93884d739596?auto=format&fit=crop&w=800&q=80",
-                desc: "Quy Nhơn mang vẻ đẹp hoang sơ thơ mộng với bãi cát Kỳ Co trải dài dưới vách đá lộng gió của Eo Gió và nền ẩm thực hải sản xứ Nẫu phong phú.",
-                guide: ["Bao gồm cano khứ hồi ra đảo Kỳ Co và vé ngắm san hô.", "Khách sạn trung tâm thành phố thuận tiện thưởng thức ẩm thực đêm.", "Đã bao gồm hướng dẫn viên bản địa suốt tuyến."]
+                desc: "歸仁完美保留了未受污染的純樸之美。奇柯沙灘綿長迷人，兩側緊鄰峭壁；而風之角則擁有壯麗的岬角岩岸，蔚為大觀。",
+                guide: ["包含前往奇柯島的來回接駁快艇門票與珊瑚礁區浮潛活動。", "飯店鄰近歸仁市區夜市，方便旅客夜晚自由探索在地平民美食。", "全程配備專業資深中文/法語在地專業導遊隨團隨行服務。"]
             },
             phuyen: {
-                title: "Phú Yên: Hoa Vàng Cỏ Xanh & Gành Đá Đĩa",
+                title: "富安：綠草黃花初戀地與神祕巨石陣",
                 img: "https://images.unsplash.com/photo-1506929562872-bb421503ef21?auto=format&fit=crop&w=800&q=80",
-                desc: "Vùng đất 'Hoa vàng trên cỏ xanh' Phú Yên nổi tiếng với Gành Đá Đĩa độc nhất vô nhị, hải đăng Đại Lãnh nơi đón bình minh đầu tiên trên đất liền Việt Nam.",
-                guide: ["Bao gồm tất cả vé vào cổng các điểm tham quan theo lịch trình.", "Thưởng thức đặc sản mắt cá ngừ đại dương trứ danh.", "Lịch trình di chuyển nhẹ nhàng, thích hợp nghỉ dưỡng gia đình."]
+                desc: "因著名文藝電影取景而聲名大噪的富安，擁有宛如世界盡頭的大海岬角，以及全球極罕見、整齊排列如同人工堆疊的火山玄武岩奇觀「石碟江」。",
+                guide: ["行程已包含沿途所有知名風景名勝區的一手門票費用。", "晚餐安排品嚐富安極富盛名的特色料理——野生金槍魚眼睛（魚眼盅）。", "整体步調安逸休閒，特別適合家庭度假或銀髮旅行避暑。"]
             },
             muine: {
-                title: "Mũi Né: Phan Thiết Thiên Đường Cát Trắng",
+                title: "美奈：潘切紅沙丘與白沙細浪異國風情",
                 img: "https://images.unsplash.com/photo-1570737385202-bca4f6f8740c?auto=format&fit=crop&w=800&q=80",
-                desc: "Mũi Né nổi tiếng với những đồi cát trải dài như tiểu sa mạc, những bờ biển lộng gió thích hợp cho môn thể thao lướt ván diều và các resort nghỉ dưỡng yên bình.",
-                guide: ["Tour xe Jeep ngắm bình minh hoặc hoàng hôn tại đồi cát trắng.", "Miễn phí tham quan Suối Tiên Mũi Né.", "Resort chuẩn 3-4 sao sát biển có hồ bơi lớn."]
+                desc: "美奈以半沙漠半海洋的獨特奇景聞名。巨大的白沙丘如同置身撒哈拉沙漠，而沿海則是全球風帆運動愛好者的天堂風浪聖地。",
+                guide: ["特別贈送美式越野吉普車行程，可選清晨看日出或傍晚看日落。", "免費包含經典生態秘境「美奈仙女溪」徒步涉水景點導覽。", "合作酒店皆為 3-4 星一線沿海度假村，皆附設大型海景泳池。"]
             },
             dalat: {
-                title: "Đà Lạt: Thành Phố Ngàn Hoa & Sâm Mây Đại Ngàn",
+                title: "大勒：花之都迷霧森林與雲海日出仙境",
                 img: "https://images.unsplash.com/photo-1589146522513-bd9b6e6c7dc8?auto=format&fit=crop&w=800&q=80",
-                desc: "Đà Lạt mát mẻ quanh năm, là xứ sở của ngàn hoa, đồi thông thơ mộng cùng những quán cà phê view thung lũng săn mây tuyệt đẹp.",
-                guide: ["Xe Limousine cabin đôi riêng tư cho các cặp đôi.", "Xe đưa đón săn mây từ 4:00 sáng tại khách sạn.", "Bao gồm vé máng trượt tại Thác Datanla."]
+                desc: "大勒坐落於中部高原，四季氣候如春，松林遍布。這裡充滿了濃郁的法式浪漫別墅群，以及近年風靡全網的高空山谷追雲海咖啡廳。",
+                guide: ["長途車特別升級獨立雙人VIP包廂艙，尊享完美私密空間與睡眠。", "追雲海行程需於清晨 4:00 由專車至飯店接送，請旅客留意作息。", "團費內含達坦拉瀑布（Datanla）高空新版森林過山車來回體驗票。"]
             },
             cantho: {
-                title: "Cần Thơ: Sông Nước Miền Tây & Chợ Nổi Cái Răng",
+                title: "芹苴：湄公河水鄉風情與丐皮（Cái Răng）水上市場",
                 img: "https://images.unsplash.com/photo-1549693578-d683be217e58?auto=format&fit=crop&w=800&q=80",
-                desc: "Về với thủ phủ miền Tây Cần Thơ để trải nghiệm nét văn hóa sông nước đặc trưng tại chợ nổi Cái Răng, thưởng thức hủ tiếu ngay trên ghe và tham quan vườn cây ăn trái trĩu quả.",
-                guide: ["Thuyền tham quan chợ nổi khởi hành từ bến Ninh Kiều lúc 5:30 sáng.", "Bao gồm chi phí thưởng thức trái cây bao bụng tại nhà vườn.", "Khách sạn trung tâm thuận tiện đi dạo chợ đêm Cần Thơ."]
+                desc: "來到湄公河三角洲的首府芹苴，深度體驗最具代表性的丐皮水上市場文化。坐在木船上，吃一碗在水上現煮冒煙的熱河粉，別有一番風情。",
+                guide: ["水上市場專屬觀光機動船將於清晨 5:30 自寧橋碼頭準時開航。", "團費已包含前往熱帶水果園內部的入場及時令水果吃到飽費用。", "飯店地理位置極佳，夜間出門即是芹苴寧橋夜市與步行街。"]
             }
         };
 
@@ -797,7 +797,7 @@
                 cart.push({ name: name, price: price, quantity: 1 });
             }
             updateCartUI();
-            alert(`Đã thêm thành công tour:\n"${name}" vào danh sách!`);
+            alert(`已成功將行程：\n"${name}" 加入預訂清單！`);
         }
 
         function changeQuantity(name, change) {
@@ -826,7 +826,7 @@
             cartCount.innerText = totalCount;
 
             if (cart.length === 0) {
-                cartItemsContainer.innerHTML = '<p class="empty-msg">Chưa có hành trình nào được chọn...</p>';
+                cartItemsContainer.innerHTML = '<p class="empty-msg">預訂清單內目前空空如也...</p>';
                 cartTotalPrice.innerText = '0đ';
                 return;
             }
@@ -845,9 +845,9 @@
                         </div>
                         <div class="cart-item-qty">
                             <button class="btn-qty" onclick="changeQuantity('${item.name}', -1)">-</button>
-                            <span><strong>${item.quantity}</strong> người</span>
+                            <span><strong>${item.quantity}</strong> 人</span>
                             <button class="btn-qty" onclick="changeQuantity('${item.name}', 1)">+</button>
-                            <button class="btn-delete" onclick="deleteItem('${item.name}')">Xóa</button>
+                            <button class="btn-delete" onclick="deleteItem('${item.name}')">刪除</button>
                         </div>
                     </div>
                 `;
