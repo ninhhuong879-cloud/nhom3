@@ -1,17 +1,14 @@
-Dưới đây là toàn bộ mã nguồn HTML/CSS/JS đã được giữ nguyên cấu trúc gốc của bạn, đồng thời **mở rộng quy mô đáng kể**. Tôi đã thêm vào hàng loạt địa điểm du lịch nổi tiếng từ Bắc vào Nam (tổng cộng **21 địa điểm**) được chia theo các vùng miền rõ rệt để trang web chuyên nghiệp và dễ theo dõi hơn.
 
-Tất cả các liên kết ảnh ở phần CSS và phần JavaScript Pop-up đều đã được đồng bộ hóa hoàn hảo với nhau.
 
-```html
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Khám Phá Việt Nam - Cẩm Nang Du Lịch Toàn Diện</title>
+    <title>探索越南 - 全方位旅遊指南</title>
     <style>
         /* --- FONTS & ROOT VARIABLES --- */
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
         
         :root {
             --primary: #14b8a6;
@@ -28,7 +25,7 @@ Tất cả các liên kết ảnh ở phần CSS và phần JavaScript Pop-up đ
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Noto Sans TC', 'Montserrat', sans-serif;
         }
 
         body {
@@ -163,8 +160,8 @@ Tất cả các liên kết ảnh ở phần CSS và phần JavaScript Pop-up đ
             background-color: var(--primary-dark);
         }
 
-        /* --- BACKGROUND IMAGES FOR CARDS (CSS AS REQUESTED) --- */
-        /* MIỀN BẮC */
+        /* --- BACKGROUND IMAGES FOR CARDS --- */
+        /* 北越 */
         .img-taybac { background-image: url('https://namthientravel.com.vn/wp-content/uploads/2024/05/Sun.jpg'); }
         .img-halong { background-image: url('https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=800&q=80'); }
         .img-hanoi { background-image: url('https://res.klook.com/image/upload/q_85/c_fill,w_750/v1706172921/cbpzdtxqxjztadwrw8zg.jpg'); }
@@ -173,7 +170,7 @@ Tất cả các liên kết ảnh ở phần CSS và phần JavaScript Pop-up đ
         .img-haigiang { background-image: url('https://pystravel.vn/uploads/posts/avatar/1684319409.jpg'); }
         .img-mocchau { background-image: url('https://mocchautourism.com/media/k2/items/cache/097e3a9fa937bc2c00a74d2df46e0ca1_XL.jpg'); }
 
-        /* MIỀN TRUNG */
+        /* 中越 */
         .img-hoian { background-image: url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80'); }
         .img-phongnha { background-image: url('https://dulich9.com/wp-content/uploads/2019/05/Kinh-nghiem-du-lich-Phong-Nha-Ke-Bang-07.jpg'); }
         .img-hue { background-image: url('https://bio.hnue.edu.vn/Portals/0/hinh%201_11.jpg?ver=PR60POR5EOue_3eLQKGDEw%3D%3D'); }
@@ -182,7 +179,7 @@ Tất cả các liên kết ảnh ở phần CSS và phần JavaScript Pop-up đ
         .img-dalat { background-image: url('https://images.unsplash.com/photo-1589308078059-be1415eab4c3?auto=format&fit=crop&w=800&q=80'); }
         .img-muyen { background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80'); }
 
-        /* MIỀN NAM */
+        /* 南越 */
         .img-nhatrang { background-image: url('https://images.unsplash.com/photo-1542856391-010fb87dcfed?auto=format&fit=crop&w=800&q=80'); }
         .img-phuquoc { background-image: url('https://images.unsplash.com/photo-1583212292454-1fe6229603b7?auto=format&fit=crop&w=800&q=80'); }
         .img-saigon { background-image: url('https://images.unsplash.com/photo-1543968332-f99478b1ebdc?auto=format&fit=crop&w=800&q=80'); }
@@ -295,6 +292,7 @@ Tất cả các liên kết ảnh ở phần CSS và phần JavaScript Pop-up đ
             border-left: 4px solid var(--primary);
             padding: 15px 20px;
             border-radius: 0 12px 12px 0;
+            margin-bottom: 20px;
         }
 
         .highlight-box h4 {
@@ -305,6 +303,68 @@ Tất cả các liên kết ảnh ở phần CSS và phần JavaScript Pop-up đ
         .highlight-box p {
             font-size: 0.9rem;
             color: var(--gray);
+        }
+
+        /* --- SCHEDULE BUTTON & DROPDOWN --- */
+        .btn-toggle-schedule {
+            background: #e2e8f0;
+            color: var(--dark);
+            padding: 12px 20px;
+            border: none;
+            border-radius: 12px;
+            width: 100%;
+            text-align: left;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+            margin-top: 15px;
+        }
+
+        .btn-toggle-schedule:hover {
+            background: #cbd5e1;
+        }
+
+        .schedule-container {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: #fdfdfd;
+            border-radius: 0 0 12px 12px;
+        }
+
+        .schedule-container.open {
+            max-height: 500px;
+            overflow-y: auto;
+            border: 1px solid #e2e8f0;
+            border-top: none;
+            padding: 15px;
+        }
+
+        .schedule-item {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 15px;
+        }
+
+        .schedule-item::before {
+            content: "📍";
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .schedule-item strong {
+            color: var(--primary-dark);
+            display: block;
+            font-size: 0.95rem;
+        }
+
+        .schedule-item p {
+            font-size: 0.9rem;
+            color: #475569;
         }
 
         /* --- RESPONSIVE --- */
@@ -319,192 +379,192 @@ Tất cả các liên kết ảnh ở phần CSS và phần JavaScript Pop-up đ
 
     <!-- HERO HEADER -->
     <div class="hero">
-        <h1>Khám Phá Việt Nam</h1>
-        <p>Hành trình tìm về vẻ đẹp bất tận của thiên nhiên, văn hóa và con người Việt Nam trải dài qua ba miền đất nước.</p>
+        <h1>探索越南</h1>
+        <p>橫跨北中南三地，追尋自然景觀、深厚文化與人文之美的無盡旅程。</p>
     </div>
 
     <!-- MAIN CONTAINER -->
     <div class="container">
 
-        <!-- ================= MIỀN BẮC ================= -->
-        <h2 class="region-title">Hành Trình Miền Bắc</h2>
+        <!-- ================= 北越 ================= -->
+        <h2 class="region-title">北越之旅</h2>
         <div class="tour-grid">
             <div class="tour-card">
                 <div class="card-img img-taybac"></div>
                 <div class="card-content">
-                    <h3>Tây Bắc Đại Ngàn</h3>
-                    <p>Khám phá cung đường đèo hùng vĩ, ruộng bậc thang chín vàng quyến rũ.</p>
-                    <button class="btn-view" onclick="openModal('taybac')">Xem chi tiết</button>
+                    <h3>壯麗西北</h3>
+                    <p>探索雄偉的山路與金黃迷人的梯田景致。</p>
+                    <button class="btn-view" onclick="openModal('taybac')">查看詳情</button>
                 </div>
             </div>
             <div class="tour-card">
                 <div class="card-img img-halong"></div>
                 <div class="card-content">
-                    <h3>Vịnh Hạ Long</h3>
-                    <p>Kỳ quan thiên nhiên thế giới với hàng ngàn hòn đảo đá vôi kỳ vĩ.</p>
-                    <button class="btn-view" onclick="openModal('halong')">Xem chi tiết</button>
+                    <h3>下龍灣</h3>
+                    <p>世界自然奇景，擁有數千座雄偉的石灰岩島嶼。</p>
+                    <button class="btn-view" onclick="openModal('halong')">查看詳情</button>
                 </div>
             </div>
             <div class="tour-card">
                 <div class="card-img img-hanoi"></div>
                 <div class="card-content">
-                    <h3>Hà Nội Nghìn Năm</h3>
-                    <p>Nét đẹp cổ kính của 36 phố phường và chiều sâu văn hóa Thăng Long.</p>
-                    <button class="btn-view" onclick="openModal('hanoi')">Xem chi tiết</button>
+                    <h3>千年河內</h3>
+                    <p>三十六古街的古樸風貌與昇龍文化的歷史底蘊。</p>
+                    <button class="btn-view" onclick="openModal('hanoi')">查看詳情</button>
                 </div>
             </div>
             <div class="tour-card">
                 <div class="card-img img-sapa"></div>
                 <div class="card-content">
-                    <h3>Sa Pa Mờ Sương</h3>
-                    <p>Thị trấn trong mây với đỉnh Fansipan huyền thoại và bản làng bình yên.</p>
-                    <button class="btn-view" onclick="openModal('sapa')">Xem chi tiết</button>
+                    <h3>霧嶺沙壩 (Sa Pa)</h3>
+                    <p>雲 technical山城、傳奇番西邦峰與寧靜的少數民族村落。</p>
+                    <button class="btn-view" onclick="openModal('sapa')">查看詳情</button>
                 </div>
             </div>
             <div class="tour-card">
                 <div class="card-img img-ninhbinh"></div>
                 <div class="card-content">
-                    <h3>Ninh Bình Cố Đô</h3>
-                    <p>Vịnh Hạ Long trên cạn với Quần thể danh thắng Tràng An - Bái Đính.</p>
-                    <button class="btn-view" onclick="openModal('ninhbinh')">Xem chi tiết</button>
+                    <h3>寧平古都</h3>
+                    <p>陸上下龍灣，包含長安名勝群與拜頂寺。</p>
+                    <button class="btn-view" onclick="openModal('ninhbinh')">查看詳情</button>
                 </div>
             </div>
             <div class="tour-card">
                 <div class="card-img img-haigiang"></div>
                 <div class="card-content">
-                    <h3>Hà Giang Kỳ Vĩ</h3>
-                    <p>Cao nguyên đá Đồng Văn hùng vĩ và cung đường đèo Mã Pí Lèng thử thách.</p>
-                    <button class="btn-view" onclick="openModal('haigiang')">Xem chi tiết</button>
+                    <h3>河江秘境 (Ha Giang)</h3>
+                    <p>雄偉的同文岩石高原與極具挑戰性的馬皮涼岬。</p>
+                    <button class="btn-view" onclick="openModal('haigiang')">查看詳情</button>
                 </div>
             </div>
             <div class="tour-card">
                 <div class="card-img img-mocchau"></div>
                 <div class="card-content">
-                    <h3>Mộc Châu Xanh Mướt</h3>
-                    <p>Thiên đường của những đồi chè xanh ngát và mùa hoa cải trắng trời.</p>
-                    <button class="btn-view" onclick="openModal('mocchau')">Xem chi tiết</button>
+                    <h3>木州茶鄉 (Moc Chau)</h3>
+                    <p>綠意盎然的茶園天堂與漫山遍野的白色油菜花季。</p>
+                    <button class="btn-view" onclick="openModal('mocchau')">查看詳情</button>
                 </div>
             </div>
         </div>
 
-        <!-- ================= MIỀN TRUNG ================= -->
-        <h2 class="region-title">Hành Trình Miền Trung</h2>
+        <!-- ================= 中越 ================= -->
+        <h2 class="region-title">中越之旅</h2>
         <div class="tour-grid">
             <div class="tour-card">
                 <div class="card-img img-hoian"></div>
                 <div class="card-content">
-                    <h3>Phố Cổ Hội An</h3>
-                    <p>Thương cảng cổ kính rực rỡ sắc đèn lồng soi bóng bên dòng sông Hoài.</p>
-                    <button class="btn-view" onclick="openModal('hoian')">Xem chi tiết</button>
+                    <h3>會安古鎮</h3>
+                    <p>古老商港的燈籠夜色，倒映在詩意盎然的秋盆河畔。</p>
+                    <button class="btn-view" onclick="openModal('hoian')">查看詳情</button>
                 </div>
             </div>
             <div class="tour-card">
                 <div class="card-img img-phongnha"></div>
                 <div class="card-content">
-                    <h3>Phong Nha - Kẻ Bàng</h3>
-                    <p>Vương quốc hang động thế giới ẩn chứa những tuyệt tác thạch nhũ.</p>
-                    <button class="btn-view" onclick="openModal('phongnha')">Xem chi tiết</button>
+                    <h3>風牙者榜 (Phong Nha)</h3>
+                    <p>世界級岩洞王國，隱藏著無數大自然的鐘乳石傑作。</p>
+                    <button class="btn-view" onclick="openModal('phongnha')">查看詳情</button>
                 </div>
             </div>
             <div class="tour-card">
                 <div class="card-img img-hue"></div>
                 <div class="card-content">
-                    <h3>Cố Đô Huế</h3>
-                    <p>Vẻ đẹp trầm mặc, thơ mộng của Kinh thành và lăng tẩm triều Nguyễn.</p>
-                    <button class="btn-view" onclick="openModal('hue')">Xem chi tiết</button>
+                    <h3>順化古都</h3>
+                    <p>阮朝皇城與皇家陵墓的沉靜古典與浪漫氛圍。</p>
+                    <button class="btn-view" onclick="openModal('hue')">查看詳情</button>
                 </div>
             </div>
             <div class="tour-card">
                 <div class="card-img img-danang"></div>
                 <div class="card-content">
-                    <h3>Đà Nẵng Đáng Sống</h3>
-                    <p>Thành phố của những cây cầu, Bà Nà Hills và bãi biển Mỹ Khê tuyệt đẹp.</p>
-                    <button class="btn-view" onclick="openModal('danang')">Xem chi tiết</button>
+                    <h3>峴港樂活城</h3>
+                    <p>橋樑之城、巴拿山與絕美的美溪沙灘。</p>
+                    <button class="btn-view" onclick="openModal('danang')">查看詳情</button>
                 </div>
             </div>
             <div class="tour-card">
                 <div class="card-img img-quynhon"></div>
                 <div class="card-content">
-                    <h3>Quy Nhơn Hoang Sơ</h3>
-                    <p>Bờ biển ngọc xanh trong thơ mộng với Eo Gió và Kỳ Co kỳ vĩ.</p>
-                    <button class="btn-view" onclick="openModal('quynhon')">Xem chi tiết</button>
+                    <h3>歸仁秘境 (Quy Nhon)</h3>
+                    <p>清澈蔚藍的純淨海岸，擁有風岬與奇哥海灘的壯麗風光。</p>
+                    <button class="btn-view" onclick="openModal('quynhon')">查看詳情</button>
                 </div>
             </div>
             <div class="tour-card">
                 <div class="card-img img-dalat"></div>
                 <div class="card-content">
-                    <h3>Đà Lạt Ngàn Hoa</h3>
-                    <p>Thành phố sương mù lãng mạn với thông reo và khí hậu quanh năm mát mẻ.</p>
-                    <button class="btn-view" onclick="openModal('dalat')">Xem chi tiết</button>
+                    <h3>大叻花城</h3>
+                    <p>氣候四季如春、松林圍繞的浪漫霧都。</p>
+                    <button class="btn-view" onclick="openModal('dalat')">查看詳情</button>
                 </div>
             </div>
             <div class="tour-card">
                 <div class="card-img img-muyen"></div>
                 <div class="card-content">
-                    <h3>Mũi Né Cát Vàng</h3>
-                    <p>Thiên đường của những đồi cát bay trải dài và sóng biển rì rào.</p>
-                    <button class="btn-view" onclick="openModal('muyen')">Xem chi tiết</button>
+                    <h3>美奈金沙丘</h3>
+                    <p>延綿不絕的奇幻移動沙丘與濤濤海浪相映成趣。</p>
+                    <button class="btn-view" onclick="openModal('muyen')">查看詳情</button>
                 </div>
             </div>
         </div>
 
-        <!-- ================= MIỀN NAM ================= -->
-        <h2 class="region-title">Hành Trình Miền Nam</h2>
+        <!-- ================= 南越 ================= -->
+        <h2 class="region-title">南越之旅</h2>
         <div class="tour-grid">
             <div class="tour-card">
                 <div class="card-img img-nhatrang"></div>
                 <div class="card-content">
-                    <h3>Biển Xanh Nha Trang</h3>
-                    <p>Vịnh biển thiên đường với những rạn san hô lộng lẫy và trò chơi mạo hiểm.</p>
-                    <button class="btn-view" onclick="openModal('nhatrang')">Xem chi tiết</button>
+                    <h3>芽莊蔚藍海岸</h3>
+                    <p>熱帶海洋天堂，擁有璀璨的珊瑚礁與豐富的水上活動。</p>
+                    <button class="btn-view" onclick="openModal('nhatrang')">查看詳情</button>
                 </div>
             </div>
             <div class="tour-card">
                 <div class="card-img img-phuquoc"></div>
                 <div class="card-content">
-                    <h3>Đảo Ngọc Phú Quốc</h3>
-                    <p>Hòn đảo thiên đường với bãi cát trắng mịn và hoàng hôn buông tuyệt đẹp.</p>
-                    <button class="btn-view" onclick="openModal('phuquoc')">Xem chi tiết</button>
+                    <h3>富國島</h3>
+                    <p>度假珍珠島，擁有細白沙灘與絕美的黃昏日落。</p>
+                    <button class="btn-view" onclick="openModal('phuquoc')">查看詳情</button>
                 </div>
             </div>
             <div class="tour-card">
                 <div class="card-img img-saigon"></div>
                 <div class="card-content">
-                    <h3>TP. Hồ Chí Minh</h3>
-                    <p>Đô thị năng động sầm uất hòa quyện nét văn hóa hiện đại và lịch sử.</p>
-                    <button class="btn-view" onclick="openModal('saigon')">Xem chi tiết</button>
+                    <h3>胡志明市 (西貢)</h3>
+                    <p>繁華活力的大都市，交織著現代摩登與殖民歷史印記。</p>
+                    <button class="btn-view" onclick="openModal('saigon')">查看詳情</button>
                 </div>
             </div>
             <div class="tour-card">
                 <div class="card-img img-cantho"></div>
                 <div class="card-content">
-                    <h3>Cần Thơ Gạo Trắng</h3>
-                    <p>Thủ phủ miền Tây sông nước với Chợ nổi Cái Răng tấp nập buổi sớm.</p>
-                    <button class="btn-view" onclick="openModal('cantho')">Xem chi tiết</button>
+                    <h3>芹苴水鄉 (Can Tho)</h3>
+                    <p>湄公河西部的核心水都，清晨熱鬧非凡的蔡Rang水上市場。</p>
+                    <button class="btn-view" onclick="openModal('cantho')">查看詳情</button>
                 </div>
             </div>
             <div class="tour-card">
                 <div class="card-img img-vungtau"></div>
                 <div class="card-content">
-                    <h3>Vũng Tàu Lộng Gió</h3>
-                    <p>Điểm đến nghỉ dưỡng biển lý tưởng ngay sát vách Sài Gòn.</p>
-                    <button class="btn-view" onclick="openModal('vungtau')">Xem chi tiết</button>
+                    <h3>頭頓海濱 (Vung Tau)</h3>
+                    <p>鄰近胡志明市的最佳海濱度假勝地。</p>
+                    <button class="btn-view" onclick="openModal('vungtau')">查看詳情</button>
                 </div>
             </div>
             <div class="tour-card">
                 <div class="card-img img-condao"></div>
                 <div class="card-content">
-                    <h3>Côn Đảo Linh Thiêng</h3>
-                    <p>Hòn đảo mang dấu ấn lịch sử oai hùng kết hợp thiên nhiên hoang sơ.</p>
-                    <button class="btn-view" onclick="openModal('condao')">Xem chi tiết</button>
+                    <h3>崑島秘境 (Con Dao)</h3>
+                    <p>兼具歷史滄桑與原始純淨海島生態的靈性之地。</p>
+                    <button class="btn-view" onclick="openModal('condao')">查看詳情</button>
                 </div>
             </div>
             <div class="tour-card">
                 <div class="card-img img-angiang"></div>
                 <div class="card-content">
-                    <h3>An Giang Sông Nước</h3>
-                    <p>Vùng đất Thất Sơn huyền bí với rừng tràm Trà Sư xanh ngút ngàn.</p>
-                    <button class="btn-view" onclick="openModal('angiang')">Xem chi tiết</button>
+                    <h3>安江水鄉 (An Giang)</h3>
+                    <p>神秘的七山地區，擁有滿眼翠綠的茶師白千層紅樹林。</p>
+                    <button class="btn-view" onclick="openModal('angiang')">查看詳情</button>
                 </div>
             </div>
         </div>
@@ -518,15 +578,24 @@ Tất cả các liên kết ảnh ở phần CSS và phần JavaScript Pop-up đ
                 <button class="btn-close" onclick="closeModal()">&times;</button>
             </div>
             <div class="modal-body">
-                <h2 id="modalTitle">Tên Địa Danh</h2>
+                <h2 id="modalTitle">景點名稱</h2>
                 <div class="modal-info">
-                    <span id="modalDuration">Thời gian: --</span>
-                    <span id="modalTransport">Phương tiện: --</span>
+                    <span id="modalDuration">行程天數: --</span>
+                    <span id="modalTransport">交通方式: --</span>
                 </div>
-                <p class="modal-desc" id="modalDesc">Mô tả ngắn...</p>
+                <p class="modal-desc" id="modalDesc">簡短描述...</p>
                 <div class="highlight-box">
-                    <h4>Trải nghiệm nổi bật:</h4>
-                    <p id="modalHighlight">Các hoạt động không thể bỏ lỡ tại địa điểm này.</p>
+                    <h4>主打體驗：</h4>
+                    <p id="modalHighlight">此景點不可錯過的精采活動。</p>
+                </div>
+
+                <!-- SCHEDULE SECTION TOGGLE -->
+                <button class="btn-toggle-schedule" onclick="toggleSchedule()">
+                    <span>查看詳細推薦行程 📋</span>
+                    <span id="arrowIcon">▼</span>
+                </button>
+                <div class="schedule-container" id="scheduleContainer">
+                    <!-- 詳細行程將透過 JS 自動生成 -->
                 </div>
             </div>
         </div>
@@ -534,180 +603,284 @@ Tất cả các liên kết ảnh ở phần CSS và phần JavaScript Pop-up đ
 
     <!-- JAVASCRIPT FOR DYNAMIC POPUP CONTROLS -->
     <script>
-        // DATA OBJECTS FOR EACH DESTINATION
         const detailData = {
-            // MIỀN BẮC
+            // 北越
             taybac: {
-                title: "Tây Bắc Đại Ngàn vẫy gọi",
-                duration: "5 Ngày 4 Đêm",
-                transport: "Xe Ô tô giường nằm / Xe máy",
-                desc: "Tây Bắc mang vẻ đẹp oai hùng của những dãy núi trùng điệp, những con đèo uốn lượn như dải lụa vắt qua mây. Nơi đây sở hữu nét đẹp văn hóa đa dạng của các dân tộc anh em vùng cao và các mùa hoa đặc trưng nở rộ suốt bốn mùa.",
-                highlight: "Hòa mình vào chợ phiên vùng cao Bắc Hà, chinh phục một trong tứ đại đỉnh đèo, thưởng thức thắng cố và ngắm nhìn thung lũng lúa chín vàng óng.",
-                img: "https://namthientravel.com.vn/wp-content/uploads/2024/05/Sun.jpg"
+                title: "壯麗西北山嶽呼喚",
+                duration: "5天4夜",
+                transport: "臥鋪巴士 / 摩托車",
+                desc: "越南西北部擁有連綿起伏的雄偉山脈，一條條如絲帶般穿梭在雲霧間的險峻山路。這裡融合了多個高山少數民族的多元文化，且四季皆有獨特的繁花盛開與自然美景。",
+                highlight: "體驗北河傳統高山集市、挑戰越南四大險峻山路之一、品嚐當地特色美食並欣賞滿山金黃的梯田景致。",
+                img: "https://namthientravel.com.vn/wp-content/uploads/2024/05/Sun.jpg",
+                schedule: [
+                    { name: "Khau Pha 岬 & 烏奎胡岬 (O Quy Ho)", detail: "挑戰北越最險峻、最壯觀的兩大傳奇山路山岬。" },
+                    { name: "木江界梯田 (Mu Cang Chai)", detail: "在La Pan Tan近距離欣賞如波浪般傾瀉而下的金黃稻浪。" },
+                    { name: "白村 (Mai Chau 麥州)", detail: "探訪白泰族極具特色的傳統高腳屋建築與織布文化。" }
+                ]
             },
             halong: {
-                title: "Khám Phá Kỳ Quan Vịnh Hạ Long",
-                duration: "2 Ngày 1 Đêm",
-                transport: "Du Thuyền Quốc Tế",
-                desc: "Vịnh Hạ Long được UNESCO công nhận là di sản thiên nhiên thế giới, bao gồm hàng nghìn hòn đảo đá vôi trồi lên từ mặt nước biển xanh ngọc bích, tạo nên một bức tranh thủy mặc vô cùng tráng lệ.",
-                highlight: "Nghỉ đêm trên du thuyền hạng sang 5 sao, chèo thuyền kayak qua Hang Luồn, khám phá Hang Sửng Sốt và ngắm hoàng hôn rực rỡ giữa biển khơi.",
-                img: "https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=800&q=80"
+                title: "探索世界奇景下龍灣",
+                duration: "2天1夜",
+                transport: "國際豪華過夜郵輪",
+                desc: "下龍灣被聯合國教科文組織列為世界自然遺產，成千上萬座石灰岩島嶼從碧綠的海水中拔地而起，構成一幅令人嘆為觀止的天然山水畫卷。",
+                highlight: "入住五星級奢華郵輪、划皮艇穿越穿洞 (Hang Luon)、探索驚訝洞並在甲板上欣賞絕美海上落日。",
+                img: "https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=800&q=80",
+                schedule: [
+                    { name: "驚訝洞 (Hang Sung Sot)", detail: "下龍灣最大、最壯麗的鐘乳石洞穴，內部景觀令人震撼。" },
+                    { name: "英雄島 (Ti Top Island)", detail: "登上島頂俯瞰360度下龍灣全景，或在半月形沙灘漫步戲水。" },
+                    { name: "萬門漁村 (Cua Van)", detail: "探索昔日海上漁民的獨特生活空間與傳統水上文化。" }
+                ]
             },
             hanoi: {
-                title: "Hà Nội - Tinh Hoa Nghìn Năm Văn Hiến",
-                duration: "3 Ngày 2 Đêm",
-                transport: "Xích lô & Xe điện",
-                desc: "Thủ đô Hà Nội níu chân du khách bằng sự yên bình cổ kính của khu phố cổ, những công trình kiến trúc kiểu Pháp lãng mạn và nét ẩm thực đường phố độc đáo nổi tiếng khắp thế giới.",
-                highlight: "Dạo bước quanh Hồ Gươm sáng sớm, viếng Lăng Bác, trải nghiệm cafe đường tàu độc đáo và thưởng thức phở Bát Đàn truyền thống.",
-                img: "https://res.klook.com/image/upload/q_85/c_fill,w_750/v1706172921/cbpzdtxqxjztadwrw8zg.jpg"
+                title: "河內 - 千年文藝之都",
+                duration: "3天2夜",
+                transport: "傳統三輪車 / 電瓶車",
+                desc: "首都河內以古街區的古樸寧靜、優雅的法式殖民建築以及聞名全球的街頭美食，深深吸引著來自世界各地的旅人。",
+                highlight: "清晨漫步還劍湖畔、瞻仰胡志明陵寢、體驗極具特色的火車街咖啡，並品嚐正宗的百家傳承河內河粉。",
+                img: "https://res.klook.com/image/upload/q_85/c_fill,w_750/v1706172921/cbpzdtxqxjztadwrw8zg.jpg",
+                schedule: [
+                    { name: "胡志明陵寢群 & 一柱廟", detail: "見證越南歷史的重要地標，以及造型獨一無二的佛教聖地。" },
+                    { name: "文廟 - 國子監", detail: "越南的第一所大學，象徵著千年儒家文化與崇尚好學的精神。" },
+                    { name: "還劍湖 & 玉山祠", detail: "河內的心臟，流傳著神龜還劍給黎利國王的唯美傳說。" }
+                ]
             },
             sapa: {
-                title: "Sa Pa - Thị Trấn Trong Sương Mờ",
-                duration: "3 Ngày 2 Đêm",
-                transport: "Tàu hỏa hỏa tốc / Ô tô",
-                desc: "Nằm ở độ cao trung bình 1.500m - 1.800m, Sa Pa được thiên nhiên ưu ái ban tặng khí hậu ôn đới mát mẻ quanh năm cùng với cảnh sắc thiên nhiên hùng vĩ của dãy Hoàng Liên Sơn.",
-                highlight: "Chinh phục đỉnh Fansipan - Nóc nhà Đông Dương bằng cáp treo, trekking bản Cát Cát của người H'Mông, check-in đỉnh đèo Ô Quy Hồ.",
-                img: "https://images.unsplash.com/photo-1508873696983-2df5199e4009?auto=format&fit=crop&w=800&q=80"
+                title: "沙壩 - 雲霧繚繞的世外桃源",
+                duration: "3天2夜",
+                transport: "觀光夜車火車 / 豪華巴士",
+                desc: "沙壩位於海拔1,500至1,800公尺之間，得天獨厚擁有四季涼爽的溫帶氣候，並被雄偉的黃連山脈所環抱。",
+                highlight: "搭乘創紀錄的登山纜車登上印度支那屋脊——番西邦峰、健行探訪黑苗族的貓貓村、打卡烏奎胡山岬日落。",
+                img: "https://images.unsplash.com/photo-1508873696983-2df5199e4009?auto=format&fit=crop&w=800&q=80",
+                schedule: [
+                    { name: "番西邦峰 (海拔3,143米)", detail: "穿越雲海直達巔峰，觸摸高聳入雲的印度支那最高點地標。" },
+                    { name: "貓貓村 (Cat Cat Village)", detail: "依山傍水、風景如畫的苗族古老村落，充滿濃郁少數民族風情。" },
+                    { name: "沙壩石教堂", detail: "沙壩市中心最完整的法國哥德式建築遺跡，歷史悠久。" }
+                ]
             },
             ninhbinh: {
-                title: "Ninh Bình - Danh Thắng Tràng An",
-                duration: "1 Ngày / 2 Ngày 1 Đêm",
-                transport: "Xe du lịch / Thuyền chèo",
-                desc: "Ninh Bình là sự kết hợp hoàn hảo giữa những dãy núi đá vôi uốn lượn bao quanh các thung lũng nước sâu ngập rực rỡ và những trang sử oai hùng của cố đô Hoa Lư.",
-                highlight: "Ngồi thuyền xuôi dòng Tràng An xuyên qua các hang động ngầm, leo 500 bậc đá lên đỉnh Hang Múa ngắm toàn cảnh Tam Cốc xinh đẹp.",
-                img: "https://images.unsplash.com/photo-1599708153386-62bf3f035e7b?auto=format&fit=crop&w=800&q=80"
+                title: "寧平 - 長安名勝大觀",
+                duration: "1至2天",
+                transport: "旅遊巴士 / 手搖木船",
+                desc: "寧平完美融合了蜿蜒於翠綠稻田間的石灰岩山脈，與水深幽靜的縱橫河流，這裡更承載著華閭古都的輝煌歷史。",
+                highlight: "搭乘手搖船穿梭於長安水上溶洞，攀登500級台階登上臥龍山（舞洞）俯瞰絕美的三谷風光。",
+                img: "https://images.unsplash.com/photo-1599708153386-62bf3f035e7b?auto=format&fit=crop&w=800&q=80",
+                schedule: [
+                    { name: "長安生態景區", detail: "乘著小舟盪槳前行，穿梭於神奇的水下石灰岩溶洞群。" },
+                    { name: "絕情谷 (An Tiem 庵僊洞)", detail: "隱藏在峭壁山谷深處的碧綠湖泊，環境清幽宛如世外桃源。" },
+                    { name: "拜頂寺 (Bai Dinh)", detail: "規模宏大的佛教聖地，擁有亞洲最長羅漢長廊等多項紀錄。" }
+                ]
             },
             haigiang: {
-                title: "Hà Giang - Mảnh Đất Địa Đầu Tổ Quốc",
-                duration: "4 Ngày 3 Đêm",
-                transport: "Xe máy (Phượt) / Ô tô",
-                desc: "Nơi thử thách những trái tim đam mê xê dịch với những dốc đá tai mèo thẳng đứng, những thung lũng ngập tràn hoa tam giác mạch và dòng sông Nho Quế xanh như ngọc.",
-                highlight: "Chinh phục đèo Mã Pí Lèng, chèo thuyền trên sông Nho Quế đi qua hẻm vực Tu Sản sâu nhất Đông Nam Á, check-in Cột cờ Lũng Cú.",
-                img: "https://pystravel.vn/uploads/posts/avatar/1684319409.jpg"
+                title: "河江 - 邊境之地的壯麗史詩",
+                duration: "4天3夜",
+                transport: "摩托車冒險 / 越野車",
+                desc: "這裡擁有陡峭神秘的石灰岩尖峰、開滿蕎麥花的險峻山谷，以及如翡翠般翠綠的糯儽河（Nho Que），是冒險玩家的天堂。",
+                highlight: "征服傳奇的馬皮涼岬、在東南亞最深的土山峽谷（Tu San）下泛舟糯儽河、打卡龍古旗台。",
+                img: "https://pystravel.vn/uploads/posts/avatar/1684319409.jpg",
+                schedule: [
+                    { name: "龍古旗台 (Lung Cu)", detail: "越南最北端的地理神聖地標，54平方米的國旗在邊境高高飄揚。" },
+                    { name: "土山峽谷 (Tu San Abyss)", detail: "兩側絕壁千仞，俯瞰碧綠清澈的糯儽河從峽谷深處蜿蜒而過。" },
+                    { name: "苗王府 (Dinh Vua Meo)", detail: "融合了中國清代建築、苗族傳統與法式風格的百年宏偉古宅。" }
+                ]
             },
             mocchau: {
-                title: "Mộc Châu - Cao Nguyên Xanh Bình Yên",
-                duration: "2 Ngày 1 Đêm",
-                transport: "Xe ô tô",
-                desc: "Một vùng đất yên bình với bầu không khí trong lành thoang thoảng mùi hương trà, những cánh đồng cỏ xanh mát kéo dài vô tận và những ngọn thác hoang sơ tuyệt mỹ.",
-                highlight: "Ghé thăm đồi chè trái tim xanh mướt, check-in cầu kính Bạch Long dài nhất thế giới, thưởng thức sữa bò tươi Mộc Châu nguyên chất.",
-                img: "https://mocchautourism.com/media/k2/items/cache/097e3a9fa937bc2c00a74d2df46e0ca1_XL.jpg"
+                title: "木州 - 綠意綿延的高原淨土",
+                duration: "2天1夜",
+                transport: "旅遊巴士",
+                desc: "這是一片寧靜祥和的土地，空氣中瀰漫著淡淡的茶香，擁有無邊無際的青翠牧場與壯麗的原始瀑布。",
+                highlight: "造訪充滿浪漫氣息的心形茶園、挑戰全球最長的白龍玻璃橋、品嚐濃郁純正的木州鮮牛奶。",
+                img: "https://mocchautourism.com/media/k2/items/cache/097e3a9fa937bc2c00a74d2df46e0ca1_XL.jpg",
+                schedule: [
+                    { name: "心形茶園", detail: "層層疊疊的翠綠茶樹被修剪成完美的愛心形狀，是熱門打卡點。" },
+                    { name: "帶幔瀑布 (Thac Dai Yem)", detail: "充滿詩意的雙層瀑布，水流如泰族少女輕柔的絲帶般垂落。" },
+                    { name: "白龍玻璃橋", detail: "橫跨險峻峽谷的透明玻璃懸空步道，極具視覺震撼與感官挑戰。" }
+                ]
             },
 
-            // MIỀN TRUNG
+            // 中越
             hoian: {
-                title: "Hội An - Hoài Niệm Dấu Xưa",
-                duration: "3 Ngày 2 Đêm",
-                transport: "Xe đạp / Thuyền mủng",
-                desc: "Phố cổ Hội An như một không gian dừng lại của thời gian với những ngôi nhà cổ tường vàng mái ngói rêu phong, lung linh huyền ảo dưới ánh đèn lồng mỗi khi đêm về.",
-                highlight: "Thả hoa đăng cầu may trên sông Hoài, thưởng thức món cơm gà Bà Buội, đi thuyền mủng khám phá rừng dừa bảy mẫu Cam Thanh náo nhiệt.",
-                img: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80"
+                title: "會安 - 時光倒流的歲月古城",
+                duration: "3天2夜",
+                transport: "復古單車 / 迦南島竹籃船",
+                desc: "會安古鎮彷彿讓時間在此定格，黃牆紅瓦的百年老屋披上青苔，每當夜幕低垂，整座古城便沉浸在璀璨夢幻的燈籠海洋中。",
+                highlight: "在秋盆河上施放水燈祈福、品嚐傳統的會安雞飯、前往迦南島體驗熱鬧刺激的瘋狂旋轉竹籃船。",
+                img: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80",
+                schedule: [
+                    { name: "日本來遠橋 (來遠橋)", detail: "會安的精神象徵，建於17世紀，融合日中越風格的木拱廊橋。" },
+                    { name: "進記老宅 (Tan Ky Old House)", detail: "超過兩百年歷史的商賈古宅，完美保留了中日越融合的狹長管型結構。" },
+                    { name: "迦南島水椰林", detail: "搭乘傳統圓形竹籃船深入水椰林，觀賞精彩的「瘋狂轉轉船」表演。" }
+                ]
             },
             phongnha: {
-                title: "Khám Phá Vương Quốc Hang Động Phong Nha",
-                duration: "3 Ngày 2 Đêm",
-                transport: "Thuyền máy & Trekking",
-                desc: "Vườn quốc gia Phong Nha - Kẻ Bàng sở hữu hệ thống hang động cổ xưa và đồ sộ bậc nhất thế giới, ẩn chứa thế giới thạch nhũ lung linh huyền bí sâu trong lòng núi đá vôi.",
-                highlight: "Ngồi thuyền khám phá Động Phong Nha, trải nghiệm đu dây zipline tại Hang Tối, khám phá thiên đường thạch nhũ trong Động Thiên Đường.",
-                img: "https://dulich9.com/wp-content/uploads/2019/05/Kinh-nghiem-du-lich-Phong-Nha-Ke-Bang-07.jpg"
+                title: "探索風牙地底岩洞王國",
+                duration: "3天2夜",
+                transport: "機動木船 / 叢林健行",
+                desc: "風牙者榜國家公園擁有世界上最古老且規模宏大的地下溶洞系統，地底深處隱藏著歷經億萬年幻化、色彩斑斕的鐘乳石奇觀。",
+                highlight: "乘船深入風牙洞地底河流、在暗洞 (Hang Toi) 體驗高空滑索與泥漿浴、探秘璀璨的探險天堂洞。",
+                img: "https://dulich9.com/wp-content/uploads/2019/05/Kinh-nghiem-du-lich-Phong-Nha-Ke-Bang-07.jpg",
+                schedule: [
+                    { name: "天堂洞 (Thien Duong Cave)", detail: "被譽為「地下皇宮」，內部鐘乳石林立，規模宏大氣勢磅礡。" },
+                    { name: "莫克泉生態區 (Suoi Nuoc Mooc)", detail: "隱藏在原始森林中的翡翠色天然泉水，是消暑與划獨木舟的天堂。" },
+                    { name: "巧江 - 暗洞 (Hang Toi)", detail: "展開一場純天然無照明的地底探險，並享受浮力十足的天然泥漿浴。" }
+                ]
             },
             hue: {
-                title: "Huế - Vẻ Đẹp Thơ Mộng Của Cố Đô",
-                duration: "2 Ngày 1 Đêm",
-                transport: "Thuyền rồng / Xe máy",
-                desc: "Cố đô Huế mang nét trầm mặc, dịu dàng gắn liền với Quần thể di tích Cố đô Huế và những giai điệu Nhã nhạc cung đình sâu lắng đi vào lòng người.",
-                highlight: "Thăm Đại Nội Huế, ngắm hoàng hôn trên phá Tam Giang, nghe ca Huế trên sông Hương và thưởng thức ẩm thực cung đình đặc sắc.",
-                img: "https://bio.hnue.edu.vn/Portals/0/hinh%201_11.jpg?ver=PR60POR5EOue_3eLQKGDEw%3D%3D"
+                title: "順化 - 古典詩意的帝王皇城",
+                duration: "2天1夜",
+                transport: "香江畫舫 / 經典摩托車",
+                desc: "作為昔日京城，順化保留了阮朝皇城與皇家陵墓的古典沉靜與文雅，這裡流淌著深沉的宮廷雅樂與歷史哀愁。",
+                highlight: "參觀順化皇城、在香江上泛舟聆聽順化民歌、欣賞破三江 (Pha Tam Giang) 的絕美落日夕陽。",
+                img: "https://bio.hnue.edu.vn/Portals/0/hinh%201_11.jpg?ver=PR60POR5EOue_3eLQKGDEw%3D%3D",
+                schedule: [
+                    { name: "順化大內皇城", detail: "阮朝13位皇帝的居所與朝堂，包含午門、太和殿等雄偉歷史建築。" },
+                    { name: "天姥寺 (Chua Thien Mu)", detail: "矗立於香江畔的古老佛寺，七層高的福緣塔是中越著名的精神地標。" },
+                    { name: "啟定皇陵 & 嗣德皇陵", detail: "阮朝皇家陵寢藝術的巔峰之作，完美融合東方風水與西方水泥雕刻。" }
+                ]
             },
             danang: {
-                title: "Đà Nẵng - Thành Phố Của Những Cây Cầu",
-                duration: "4 Ngày 3 Đêm",
-                transport: "Máy bay / Ô tô",
-                desc: "Đà Nẵng mang diện mạo trẻ trung, hiện đại năng động với bãi biển cát trắng trải dài sóng vỗ nhẹ nhàng và các khu vui chơi giải trí tầm cỡ quốc tế.",
-                highlight: "Đi cáp treo lên đỉnh Sun World Ba Na Hills check-in Cầu Vàng, ngắm Cầu Rồng phun lửa, phun nước vào cuối tuần và dạo biển Mỹ Khê.",
-                img: "https://images.unsplash.com/photo-1559592413-7ece350ac161?auto=format&fit=crop&w=800&q=80"
+                title: "峴港 - 最具活力的海濱度假城",
+                duration: "4天3夜",
+                transport: "客運巴士 / 出租汽車",
+                desc: "峴港展現出摩登現代的城市面貌，綿延數公里的白沙灘海浪平緩，山城之上更建有國際頂級的巴拿山主題樂園。",
+                highlight: "搭乘高空纜車直達巴拿山打卡「黃金佛手橋」、觀賞週末限定的龍橋噴火秀、在美溪沙灘放鬆。",
+                img: "https://images.unsplash.com/photo-1559592413-7ece350ac161?auto=format&fit=crop&w=800&q=80",
+                schedule: [
+                    { name: "巴拿山太陽世界 (Ba Na Hills)", detail: "漫步於雲霧中的黃金橋，彷彿被一雙巨大的佛手從山谷中托起。" },
+                    { name: "五行山 (Marble Mountains)", detail: "由五座石灰岩巨石組成的佛教聖山，山腹內藏有天然神祕洞窟。" },
+                    { name: "山茶半島 (Son Tra)", detail: "參觀靈應寺，瞻仰全越南最高的面海漢白玉觀音大佛聖像。" }
+                ]
             },
             quynhon: {
-                title: "Quy Nhơn - Kỳ Co - Eo Gió Biển Xanh",
-                duration: "3 Ngày 2 Đêm",
-                transport: "Cano cao tốc",
-                desc: "Quy Nhơn hấp dẫn du khách bằng vẻ đẹp nguyên sơ của biển trời lộng gió, những bờ vách đá hoang sơ xếp tầng kỳ vĩ đón những làn sóng vỗ rì rào quanh năm.",
-                highlight: "Đón bình minh tuyệt đẹp tại Eo Gió - nơi ngắm hoàng hôn/bình minh đẹp nhất Việt Nam, bơi lặn ngắm san hô tại bãi tắm Kỳ Co.",
-                img: "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=800&q=80"
+                title: "歸仁 - 奇哥與風岬的蔚藍秘密",
+                duration: "3天2夜",
+                transport: "海上快艇",
+                desc: "歸仁以未受污染的純淨自然風光著稱，嶙峋的海岸峭壁迎接滔濤海浪，形成多處隱密而絕美蔚藍的海灣。",
+                highlight: "在被譽為「越南馬爾地夫」的奇哥海灘浮潛浮游、在全越觀賞日出日落最美的風岬步道漫步。",
+                img: "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=800&q=80",
+                schedule: [
+                    { name: "奇哥海灘 (Ky Co Beach)", detail: "海水呈現澄澈的漸層雙色，沙質潔白，是游泳與水上運動聖地。" },
+                    { name: "風岬 (Eo Gio)", detail: "沿著依山峭壁修建的臨海木棧道，將浩瀚無垠的南中國海盡收眼底。" },
+                    { name: "雙塔 (Cham Towers)", detail: "位於市區內的兩座古老占婆塔，展現神秘古老的占婆雕刻工藝。" }
+                ]
             },
             dalat: {
-                title: "Đà Lạt - Thành Phố Tình Yêu Lãng Mạn",
-                duration: "3 Ngày 2 Đêm",
-                transport: "Xe giường nằm / Máy bay",
-                desc: "Thành phố tình yêu nằm cao trên cao nguyên Lâm Viên, được bao bọc bởi ngút ngàn rừng thông quanh năm reo ca cùng sương mờ mờ mịt lãng mạn.",
-                highlight: "Săn mây lúc bình minh tại đồi chè Cầu Đất, dạo quanh Hồ Xuân Hương thơ mộng, thưởng thức bánh tráng nướng sưởi ấm tại chợ đêm.",
-                img: "https://images.unsplash.com/photo-1589308078059-be1415eab4c3?auto=format&fit=crop&w=800&q=80"
+                title: "大叻 - 山城霧都的唯美愛戀",
+                duration: "3天2夜",
+                transport: "觀光客運 / 租車自駕",
+                desc: "這座坐落於林同高原上的浪漫山城，被無邊無際的松林所環抱，法式別墅錯落其間，氣候終年涼爽如秋。",
+                highlight: "清晨前往求地茶園 (Cau Dat) 體驗雲海雲霧、在春香湖畔騎單車漫步、晚上在熱鬧的大叻夜市品嚐烤米紙。",
+                img: "https://images.unsplash.com/photo-1589308078059-be1415eab4c3?auto=format&fit=crop&w=800&q=80",
+                schedule: [
+                    { name: "求地茶園雲海平台", detail: "在翠綠的高山茶園木平台上，迎著晨曦捕捉翻滾如浪的壯麗雲海。" },
+                    { name: "達坦拉瀑布 (Datanla)", detail: "搭乘刺激的高山過山車滑軌穿梭於松林峽谷間，探訪深山瀑布。" },
+                    { name: "林園廣場 (Lam Vien Square)", detail: "市中心的現代地標，擁有巨型向日葵與洋薊造型的彩色玻璃建築。" }
+                ]
             },
             muyen: {
-                title: "Mũi Né - Phan Thiết - Nắng Vàng Cát Bay",
-                duration: "2 Ngày 1 Đêm",
-                transport: "Xe Ô tô / Xe Jeep",
-                desc: "Nổi tiếng với những bãi cát mênh mông như sa mạc nhỏ sát bờ biển xanh thẳm, Mũi Né là thiên đường lướt ván diều và check-in chất lừ cho giới trẻ.",
-                highlight: "Trải nghiệm đi xe Jeep chinh phục Đồi Cát Trắng, lội nước mát lạnh tại Suối Tiên tuyệt đẹp, ghé thăm làng chài truyền thống sầm uất.",
-                img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80"
+                title: "美奈 - 大漠與碧海的奇幻交織",
+                duration: "2天1夜",
+                transport: "觀光吉普車",
+                desc: "美奈以延綿至海邊的廣闊沙丘聞名，宛如一座臨海的微型撒哈拉沙漠，這裡更是風箏衝浪者的熱帶天堂。",
+                highlight: "搭乘越野吉普車馳騁於白沙丘、赤腳漫步於色彩奇幻的仙女溪、造訪充滿生活氣息的傳統漁村。",
+                img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
+                schedule: [
+                    { name: "白沙丘 (Bau Trắng)", detail: "無垠的白色沙丘包圍著一座開滿荷花的天然淡水湖，景緻奇特。" },
+                    { name: "仙女溪 (Fairy Stream)", detail: "涉水走在一條清澈腳踝深的溪流中，兩側是紅土與白砂幻化的風化風壁。" },
+                    { name: "婆薩努占婆塔", detail: "矗立於臨海山丘上的古老占婆教塔廟遺跡，歷史底蘊深厚。" }
+                ]
             },
 
-            // MIỀN NAM
+            // 南越
             nhatrang: {
-                title: "Nha Trang - Thiên Đường Biển Nhiệt Đới",
-                duration: "4 Ngày 3 Đêm",
-                transport: "Tàu cá / Cano",
-                desc: "Nha Trang tự hào sở hữu một trong những vịnh biển đẹp nhất thế giới, khí hậu ngập nắng ấm áp quanh năm tạo điều kiện lý tưởng cho các hoạt động vui chơi giải trí dưới nước.",
-                highlight: "Vui chơi thả ga tại VinWonders Nha Trang, đi tàu khám phá Hòn Mun, tắm bùn khoáng nóng thiên nhiên thư giãn phục hồi sức khỏe.",
-                img: "https://images.unsplash.com/photo-1542856391-010fb87dcfed?auto=format&fit=crop&w=800&q=80"
+                title: "芽莊 - 熱帶陽光與珊瑚海風",
+                duration: "4天3夜",
+                transport: "離島快艇 / 出海木船",
+                desc: "芽莊灣名列世界最美海灣之一，全年陽光普照，清澈的海水與發達的珊瑚礁群使其成為水下探險的絕佳溫床。",
+                highlight: "前往跨海的太陽世界珍珠樂園狂歡、乘船前往黑島 (Hon Mun) 潛水、體驗當地的溫泉泥漿浴。",
+                img: "https://images.unsplash.com/photo-1542856391-010fb87dcfed?auto=format&fit=crop&w=800&q=80",
+                schedule: [
+                    { name: "珍珠島主題樂園 (VinWonders)", detail: "搭乘超長跨海纜車前往竹島，暢玩頂級水陸水上樂園與水族館。" },
+                    { name: "黑島珊瑚保護區 (Hon Mun)", detail: "越南最頂級的潛水聖地，水底擁有數百種色彩斑斕的活珊瑚與熱帶魚。" },
+                    { name: "婆那加占婆塔 (Po Nagar)", detail: "建於8世紀的古老印度教神廟，至今仍有當地信徒前來參拜。" }
+                ]
             },
             phuquoc: {
-                title: "Đảo Ngọc Phú Quốc - Thiên Đường Nghỉ Dưỡng",
-                duration: "3 Ngày 2 Đêm",
-                transport: "Máy bay / Tàu cao tốc",
-                desc: "Hòn đảo lớn nhất Việt Nam nổi tiếng thế giới nhờ những bãi biển cát trắng mịn màng như kem, làn nước trong vắt cùng những tổ hợp nghỉ dưỡng đẳng cấp quốc tế.",
-                highlight: "Ngắm hoàng hôn lãng mạn tại Sunset Sanato, lặn ngắm san hô quần đảo An Thới, khám phá thành phố không ngủ Grand World nhộn nhịp.",
-                img: "https://images.unsplash.com/photo-1583212292454-1fe6229603b7?auto=format&fit=crop&w=800&q=80"
+                title: "富國島 - 夢幻珍珠海島奢華度假",
+                duration: "3天2夜",
+                transport: "直飛航班 / 渡輪快艇",
+                desc: "越南最大的島嶼，以細軟如奶油的白沙灘、澄澈碧藍的海水以及奢華的度假村配套聞名於世。",
+                highlight: "在日落沙灘捕捉魔幻網紅鞦韆日落、前往安泰群島跳島浮潛、探索24小時不 market夜城不夜城富國大世界。",
+                img: "https://images.unsplash.com/photo-1583212292454-1fe6229603b7?auto=format&fit=crop&w=800&q=80",
+                schedule: [
+                    { name: "星星沙灘 (Bai Sao)", detail: "富國島最美天然沙灘，海水呈清澈玻璃色，白沙細緻如粉。" },
+                    { name: "富國大世界 (Grand World)", detail: "24小時不夜城，打造了浪漫的威尼斯運河、水上貢多拉與中世紀光影秀。" },
+                    { name: "富國島監獄遺址", detail: "具歷史教育意義的博物館，透過蠟像真實還原昔日集中營的艱苦歲月。" }
+                ]
             },
             saigon: {
-                title: "TP. Hồ Chí Minh - Hòn Ngọc Viễn Đông",
-                duration: "2 Ngày 1 Đêm",
-                transport: "Xe buýt 2 tầng",
-                desc: "Trung tâm kinh tế sầm uất, nơi hội tụ của sự năng động hiện đại bậc nhất với những tòa nhà chọc trời nhưng vẫn giữ vẹn nguyên những công trình mang kiến trúc lịch sử quý giá.",
-                highlight: "Ngắm toàn cảnh thành phố từ tòa tháp Bitexco hoặc Landmark 81, dạo phố đi bộ Nguyễn Huệ, thăm Dinh Độc Lập sừng sững.",
-                img: "https://images.unsplash.com/photo-1543968332-f99478b1ebdc?auto=format&fit=crop&w=800&q=80"
+                title: "胡志明市 - 東方明珠的摩登交響",
+                duration: "2天1夜",
+                transport: "雙層觀光巴士",
+                desc: "作為越南的經濟重鎮，這裡摩天大樓林立，充滿現代大都市的喧囂活力，同時又完好保留了無數優雅的法式歷史地標。",
+                highlight: "登上Landmark 81俯瞰城市全景、漫步阮惠步行街、參觀具歷史意義的統一宮與紅教堂。",
+                img: "https://images.unsplash.com/photo-1543968332-f99478b1ebdc?auto=format&fit=crop&w=800&q=80",
+                schedule: [
+                    { name: "統一宮 & 西貢聖母大教堂", detail: "見證越南近代歷史巨變的近代宮殿，以及宏偉的紅磚法式大教堂。" },
+                    { name: "西貢中央郵局", detail: "由法國著名建築師設計的文藝復興風格郵局，內部挑高極具古典美。" },
+                    { name: "阮惠步行街 & 濱城市場", detail: "白天是熱鬧的傳統市場購物天堂，夜晚化身為現代時尚的熱鬧步行街。" }
+                ]
             },
             cantho: {
-                title: "Cần Thơ - Sông Nước Miền Tây Đậm Tình",
-                duration: "2 Ngày 1 Đêm",
-                transport: "Xuồng máy / Thuyền ba lá",
-                desc: "Nằm bên bờ sông Hậu hiền hòa, Cần Thơ mang đậm bản sắc Nam Bộ mộc mạc với cây trái sum suê trĩu quả quanh năm và con người đôn hậu mến khách.",
-                highlight: "Khám phá Chợ nổi Cái Răng từ lúc bình minh ló rạng, len lỏi qua các con rạch nhỏ, tham quan và thưởng thức trái cây tại vườn.",
-                img: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?auto=format&fit=crop&w=800&q=80"
+                title: "芹苴 - 湄公河畔的水鄉深情",
+                duration: "2天1夜",
+                transport: "水鄉木舟 / 機動突突船",
+                desc: "坐落於後江河畔，芹苴完美展現了湄公河三角洲的純樸風情，這裡土地肥沃、瓜果飄香，居民純樸熱情。",
+                highlight: "清晨搭船造訪最熱鬧的蔡Rang水上市場、穿梭於交錯的綠色河道、在熱帶果園現摘現嚐新鮮水果。",
+                img: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?auto=format&fit=crop&w=800&q=80",
+                schedule: [
+                    { name: "蔡Rang水上市場 (Cai Rang)", detail: "湄公河上最具規模的水上交易奇觀，竹竿上掛著什麼就賣什麼。" },
+                    { name: "平水古宅 (Binh Thuy)", detail: "擁有百餘年歷史的老宅，融合了中式風水與法式洋房的水鄉豪邸。" },
+                    { name: "寧僑碼頭 (Ben Ninh Kieu)", detail: "芹苴市的地標河岸，入夜後微風徐徐，兩岸燈火輝煌夜景迷人。" }
+                ]
             },
             vungtau: {
-                title: "Vũng Tàu - Biển Xanh Lộng Gió Gần Kề",
-                duration: "2 Ngày 1 Đêm",
-                transport: "Xe limousine / Tàu cánh ngầm",
-                desc: "Thành phố biển xinh đẹp ôm trọn hai ngọn núi lớn nhỏ, sở hữu những con đường ven biển thoáng đãng lộng gió và hải sản vô cùng tươi ngon.",
-                highlight: "Check-in ngọn hải đăng cổ xưa nhất Việt Nam, leo núi lên Tượng Chúa Kito dang tay, thưởng thức bánh khọt Gốc Vú Sữa nổi tiếng.",
-                img: "https://vungtaulincolnhotel.com/vung-tau-co-gi-choi.jpg"
+                title: "頭頓 - 浪濤椰影的近郊海濱",
+                duration: "2天1夜",
+                transport: "豪華商務車 / 高速水翼船",
+                desc: "這座美麗的海濱城市依山傍海，擁有開闊舒暢的環海公路、歷史悠久的燈塔以及豐富廉價的現撈海鮮。",
+                highlight: "登上山頂與巨大的耶穌基督像合影、參觀全越南最古老的百年頭頓海岬燈塔、品嚐特色小吃蝦餅。",
+                img: "https://vungtaulincolnhotel.com/vung-tau-co-gi-choi.jpg",
+                schedule: [
+                    { name: "頭頓耶穌基督 market像", detail: "亞洲最大的耶穌雕像，屹立於小山之巔，雙臂張開俯瞰無垠大海。" },
+                    { name: "頭頓燈塔", detail: "法國殖民時期建造的白色圓形老燈塔，是俯瞰全城落日海景的絕佳去處。" },
+                    { name: "迎風岬 (Mui Nghinh Phong)", detail: "一處伸入海中的陡峭懸崖，被稱為「海邊天門」，全年海風呼嘯不絕。" }
+                ]
             },
             condao: {
-                title: "Côn Đảo - Vẻ Đẹp Hoang Sơ Linh Thiêng",
-                duration: "3 Ngày 2 Đêm",
-                transport: "Máy bay / Tàu cao tốc",
-                desc: "Từng được mệnh danh là địa ngục trần gian, Côn Đảo ngày nay chuyển mình thành thiên đường du lịch tâm linh trang nghiêm cùng hệ sinh thái biển nguyên sơ hoang dã hiếm có.",
-                highlight: "Viếng nghĩa trang Hàng Dương ban đêm linh thiêng, tham quan di tích lịch sử Nhà tù Côn Đảo, tắm biển tại Bãi Nhát hoang sơ quyến rũ.",
-                img: "https://Vascomtravel.com/uploads/images/con-dao.jpg"
+                title: "崑島 - 遺世獨立的純淨靈性之島",
+                duration: "3天2夜",
+                transport: "島際航班 / 離島快輪",
+                desc: "昔日曾是令人聞風喪膽的「人間地獄」集中營，如今的崑島已華麗轉身為環境靜謐、擁有頂級海洋生態的隱世度假天堂。",
+                highlight: "深夜前往杭陽烈士陵園探訪、參觀具歷史震撼力的崑島監獄遺址、在無人的白潭海灘 (Bai Dam Trau) 放鬆。",
+                img: "https://Vascomtravel.com/uploads/images/con-dao.jpg",
+                schedule: [
+                    { name: "杭陽烈士陵園 (Hang Duong)", detail: "島上充滿靈性與莊嚴的聖地，安葬著無數為國捐軀的英雄英烈。" },
+                    { name: "崑島老監獄遺址", detail: "保留了惡名昭彰的「老虎籠」地牢，無聲訴說著那段沉重的殖民歷史。" },
+                    { name: "白潭海灘", detail: "被峭壁與森林環繞的半月形海灘，因緊鄰機場跑道，可近距離感受飛機貼海降落。" }
+                ]
             },
             angiang: {
-                title: "An Giang - Vùng Đất Thất Sơn Huyền Bí",
-                duration: "2 Ngày 1 Đêm",
-                transport: "Thuyền chèo xuồng",
-                desc: "Nổi tiếng với sự kết hợp hài hòa văn hóa của các dân tộc Kinh, Chăm, Hoa, Khmer cùng cảnh quan sông nước vùng biên thùy Tây Nam trù phú.",
-                highlight: "Đi thuyền chèo xuôi dòng rẽ bèo xanh mướt tại Rừng tràm Trà Sư, viếng Miếu Bà Chúa Xứ Núi Sam linh thiêng nổi tiếng cầu tài lộc.",
-                img: "https://Luhanhvietnam.com.vn/du-lich/vnt_upload/news/06_2020/rung-tram-tra-su-an-giang-1.jpg"
+                title: "安江 - 綠色水椰與神秘七山",
+                duration: "2天1夜",
+                transport: "手搖木船",
+                desc: "位於越柬邊境的富饒水鄉，這裡完美融合了京族、占族、華族與高棉族的多元宗教文化，自然景觀獨具一格。",
+                highlight: "搭乘手搖小舟滑行於茶師白千層森林的綠色浮萍之上、造訪香火鼎盛的龍山主處聖母廟祈福。",
+                img: "https://Luhanhvietnam.com.vn/du-lich/vnt_upload/news/06_2020/rung-tram-tra-su-an-giang-1.jpg",
+                schedule: [
+                    { name: "茶師白千層林 (Tra Su)", detail: "乘小舟穿梭在被綠色浮萍完全覆蓋的水上森林，宛如進入綠色童話。" },
+                    { name: "山主處聖母廟 (Mieu Ba Chua Xu)", detail: "南部最靈驗、香火最盛的朝聖中心，展現宏偉的東方古典廟宇建築。" },
+                    { name: "朱篤水上魚排村", detail: "順著河流探訪邊境特有的水上高腳屋與網箱養殖漁業的傳統生活。" }
+                ]
             }
         };
 
@@ -717,20 +890,50 @@ Tất cả các liên kết ảnh ở phần CSS và phần JavaScript Pop-up đ
             if(!data) return;
 
             document.getElementById('modalTitle').innerText = data.title;
-            document.getElementById('modalDuration').innerText = "Thời gian: " + data.duration;
-            document.getElementById('modalTransport').innerText = "Phương tiện: " + data.transport;
+            document.getElementById('modalDuration').innerText = "行程天數: " + data.duration;
+            document.getElementById('modalTransport').innerText = "交通方式: " + data.transport;
             document.getElementById('modalDesc').innerText = data.desc;
             document.getElementById('modalHighlight').innerText = data.highlight;
             document.getElementById('modalImg').style.backgroundImage = `url('${data.img}')`;
 
+            // Render Schedule Details
+            const container = document.getElementById('scheduleContainer');
+            container.innerHTML = '';
+            
+            container.classList.remove('open');
+            document.getElementById('arrowIcon').innerText = "▼";
+
+            if (data.schedule && data.schedule.length > 0) {
+                data.schedule.forEach(item => {
+                    const div = document.createElement('div');
+                    div.className = 'schedule-item';
+                    div.innerHTML = `<strong>${item.name}</strong><p>${item.detail}</p>`;
+                    container.appendChild(div);
+                });
+            }
+
             document.getElementById('modalOverlay').classList.add('active');
-            document.body.style.overflow = 'hidden'; // Ngăn cuộn trang nền bên dưới
+            document.body.style.overflow = 'hidden'; 
         }
 
         // CLOSE MODAL FUNCTION
         function closeModal() {
             document.getElementById('modalOverlay').classList.remove('active');
-            document.body.style.overflow = 'auto'; // Cho phép cuộn trang lại bình thường
+            document.body.style.overflow = 'auto'; 
+        }
+
+        // TOGGLE SCHEDULE DROPDOWN FUNCTION
+        function toggleSchedule() {
+            const container = document.getElementById('scheduleContainer');
+            const arrow = document.getElementById('arrowIcon');
+            
+            if (container.classList.contains('open')) {
+                container.classList.remove('open');
+                arrow.innerText = "▼";
+            } else {
+                container.classList.add('open');
+                arrow.innerText = "▲";
+            }
         }
     </script>
 </body>
